@@ -1,4 +1,4 @@
-package renderer.actions;
+package game.actions;
 
 import game.ProgramManager;
 
