@@ -4,7 +4,6 @@ import renderer.gameplay.GameplayJPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class GameJFrame extends JFrame {
 
