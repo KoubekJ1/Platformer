@@ -15,8 +15,7 @@ public class GameJFrame extends JFrame {
     
     public void initialize() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setTitle("Snake");
-        this.setIconImage(new ImageIcon("assets/textures/apple.png").getImage());
+        this.setTitle("Platformer");
 
         cardLayout = new CardLayout();
         this.setLayout(cardLayout);
