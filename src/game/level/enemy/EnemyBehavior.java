@@ -1,4 +1,4 @@
 package game.level.enemy;
 
-public class EnemyAI {
+public class EnemyBehavior {
 }
