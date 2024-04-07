@@ -9,8 +9,10 @@ public class Sprite {
     private int activeImage;
     private Timer animationTimer;
     private boolean loop;
+    private int width;
+    private int height;
 
-    public Sprite(BufferedImage image) {
+    public Sprite(BufferedImage image, int width, int height) {
         images = new ArrayList<>();
         images.add(image);
         activeImage = 0;
