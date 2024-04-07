@@ -1,12 +1,10 @@
-package game;
+package game.level;
 
 import renderer.Sprite;
 
 import java.awt.*;
 
 public class Player {
-    private Point position;
-    private int width;
-    private int height;
+    private Rectangle position;
     private Sprite sprite;
 }

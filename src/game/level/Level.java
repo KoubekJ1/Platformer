@@ -1,8 +1,5 @@
 package game.level;
 
-import game.Enemy;
-import game.Player;
-
 import java.util.LinkedList;
 
 public class Level {
