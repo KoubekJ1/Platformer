@@ -1,8 +1,10 @@
 package renderer;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class Sprite {
     private BufferedImage activeImage;
-    private Animation animation;
+    private ArrayList<BufferedImage> images;
+    private float switchFrequency;
 }
