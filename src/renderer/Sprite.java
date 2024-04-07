@@ -1,10 +1,13 @@
 package renderer;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public class Sprite {
+public class Sprite implements ActionListener {
     private ArrayList<BufferedImage> images;
     private int activeImage;
     private Timer animationTimer;
@@ -13,10 +16,23 @@ public class Sprite {
     private int height;
 
     public Sprite(BufferedImage image, int width, int height) {
+        image = (BufferedImage) image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
         images = new ArrayList<>();
         images.add(image);
         activeImage = 0;
     }
 
+    public Sprite(ArrayList<BufferedImage> images, int period, boolean loop, int width, int height) {
+        this.images = images;
+        activeImage = 0;
+        animationTimer = new Timer(period, this);
+        this.loop = loop;
+        this.width = width;
+        this.height = height;
+    }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
 }
