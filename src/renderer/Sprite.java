@@ -31,6 +31,10 @@ public class Sprite implements ActionListener {
         this.height = height;
     }
 
+    public void playAnimation() {
+        animationTimer.start();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
