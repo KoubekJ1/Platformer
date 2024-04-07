@@ -10,11 +10,11 @@ public class ProgramManager {
     private static boolean debug;
 
     public static void startProgram(String[] args) {
-
-        args = args[0].split("-");
         for (String arg : args) {
-            if (arg.equalsIgnoreCase("debug"))
+            if (arg.equalsIgnoreCase("debug")) {
                 debug = true;
+                System.out.println("Debug mode enabled!");
+            }
         }
 
         // Initializes and shows the window
