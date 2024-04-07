@@ -7,4 +7,5 @@ public class Sprite {
     private BufferedImage activeImage;
     private ArrayList<BufferedImage> images;
     private float switchFrequency;
+    private boolean loop;
 }
