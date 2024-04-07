@@ -35,6 +35,13 @@ public class Sprite implements ActionListener {
         animationTimer.start();
     }
 
+    public void stopAnimation(boolean resetSprite) {
+        animationTimer.stop();
+        if (resetSprite) {
+            activeImage = 0;
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
