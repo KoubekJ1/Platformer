@@ -1,4 +1,4 @@
-package game.actions;
+package renderer.actions;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

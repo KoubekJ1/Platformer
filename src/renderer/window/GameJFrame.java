@@ -1,7 +1,5 @@
 package renderer.window;
 
-import renderer.gameplay.GameplayJPanel;
-
 import javax.swing.*;
 import java.awt.*;
 

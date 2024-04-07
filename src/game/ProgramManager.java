@@ -1,6 +1,6 @@
 package game;
 
-import game.actions.*;
+import renderer.actions.*;
 import renderer.window.WindowManager;
 
 import javax.swing.*;
