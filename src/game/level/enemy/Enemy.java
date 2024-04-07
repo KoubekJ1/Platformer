@@ -7,4 +7,5 @@ import java.awt.*;
 public class Enemy {
     private Rectangle position;
     private Sprite sprite;
+    private EnemyBehavior ai;
 }
