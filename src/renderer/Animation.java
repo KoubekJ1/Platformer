@@ -39,6 +39,13 @@ public class Animation implements ActionListener {
         this.loop = loop;
     }
 
+    public void play() {
+        if (images.size() <= 1) {
+            return;
+        }
+        animationTimer.start();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
