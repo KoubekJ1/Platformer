@@ -28,7 +28,7 @@ public class Player {
         try {
             images.add(ImageIO.read(new File(PLAYER_TEXTURES_DIRECTORY + "running/run1.png")));
             images.add(ImageIO.read(new File(PLAYER_TEXTURES_DIRECTORY + "running/run2.png")));
-            images.add(ImageIO.read(new File(PLAYER_TEXTURES_DIRECTORY + "running/run.png")));
+            images.add(ImageIO.read(new File(PLAYER_TEXTURES_DIRECTORY + "running/run3.png")));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
