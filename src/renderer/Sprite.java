@@ -3,5 +3,5 @@ package renderer;
 import java.awt.image.BufferedImage;
 
 public class Sprite {
-    BufferedImage activeImage;
+    private BufferedImage activeImage;
 }
