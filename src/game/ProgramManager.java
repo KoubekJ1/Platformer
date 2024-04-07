@@ -31,8 +31,4 @@ public class ProgramManager {
     public static boolean isDebug() {
         return debug;
     }
-
-    private static void setDebug(boolean debug) {
-        ProgramManager.debug = debug;
-    }
 }
