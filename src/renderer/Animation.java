@@ -46,6 +46,13 @@ public class Animation implements ActionListener {
         animationTimer.start();
     }
 
+    public void stop() {
+        if (images.size() <= 1) {
+            return;
+        }
+        animationTimer.stop();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
