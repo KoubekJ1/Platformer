@@ -6,51 +6,33 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class Sprite implements ActionListener {
-    private ArrayList<BufferedImage> images;
-    private int activeImage;
-    private Timer animationTimer;
-    private boolean loop;
+public class Sprite {
+    private HashMap<String, Animation> animations;
     private int width;
     private int height;
 
     public Sprite(BufferedImage image, int width, int height) {
+        this.width = width;
+        this.height = height;
         image = (BufferedImage) image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-        images = new ArrayList<>();
-        images.add(image);
-        activeImage = 0;
+        animations = new HashMap<>();
+        animations.put("static", new Animation(image));
+        animations.get("static").play();
     }
 
-    public Sprite(ArrayList<BufferedImage> images, int period, boolean loop, int width, int height) {
-        this.images = images;
-        activeImage = 0;
-        animationTimer = new Timer(period, this);
-        this.loop = loop;
+    public Sprite(HashMap<String, Animation> animations, int width, int height) {
+        this.animations = animations;
         this.width = width;
         this.height = height;
     }
 
-    public void playAnimation() {
-        animationTimer.start();
+    public void playAnimation(String animation) {
+        animations.get(animation).play();
     }
 
-    public void stopAnimation(boolean resetSprite) {
-        animationTimer.stop();
-        if (resetSprite) {
-            activeImage = 0;
-        }
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == animationTimer) {
-            if (activeImage >= images.size()) {
-                activeImage = 0;
-                if (!loop) {
-                    stopAnimation(false);
-                }
-            }
-        }
+    public void stopAnimation(String animation) {
+        animations.get(animation).stop();
     }
 }
