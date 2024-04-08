@@ -46,4 +46,8 @@ public class Player {
 
         sprite = new Sprite(animations, PLAYER_WIDTH, SMALL_PLAYER_HEIGHT);
     }
+
+    public Camera getCamera() {
+        return camera;
+    }
 }
