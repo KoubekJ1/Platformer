@@ -53,6 +53,10 @@ public class Animation implements ActionListener {
         animationTimer.stop();
     }
 
+    public BufferedImage getCurrentImage() {
+        return images.get(imageOrder[currentImage]);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
