@@ -13,15 +13,16 @@ import java.util.HashMap;
 
 public class Player {
 
-    private static final int PLAYER_WIDTH = 16;
-    private static final int PLAYER_HEIGHT = 16;
+    private static final int PLAYER_WIDTH = 1;
+    private static final int SMALL_PLAYER_HEIGHT = 1;
+    private static final int LARGE_PLAYER_HEIGHT = 1;
     private static final String PLAYER_TEXTURES_DIRECTORY = "assets/textures/player/";
 
     private Rectangle position;
     private Sprite sprite;
 
     public Player() {
-        position = new Rectangle(0, 0, 16, 16);
+        position = new Rectangle(0, 0, 1, 1);
         HashMap<String, Animation> animations = new HashMap<>();
         ArrayList<BufferedImage> images = new ArrayList<>();
 
@@ -41,6 +42,6 @@ public class Player {
             throw new RuntimeException(e);
         }
 
-        sprite = new Sprite(animations, PLAYER_WIDTH, PLAYER_HEIGHT);
+        sprite = new Sprite(animations, PLAYER_WIDTH, SMALL_PLAYER_HEIGHT);
     }
 }
