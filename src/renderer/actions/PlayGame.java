@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 public class PlayGame extends AbstractAction {
 
     public PlayGame() {
-        super("Play Snake!");
+        super("Play game");
     }
 
     @Override

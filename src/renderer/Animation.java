@@ -35,7 +35,8 @@ public class Animation implements ActionListener {
     public void initialize(ArrayList<BufferedImage> images, int[] imageOrder, int delay, boolean loop) {
         this.images = images;
         this.imageOrder = imageOrder;
-        animationTimer = new Timer(delay, this);
+        this.animationTimer = new Timer(delay, this);
+        animationTimer.setInitialDelay(0);
         this.loop = loop;
     }
 
@@ -51,6 +52,10 @@ public class Animation implements ActionListener {
             return;
         }
         animationTimer.stop();
+    }
+
+    public BufferedImage getCurrentImage() {
+        return images.get(imageOrder[currentImage]);
     }
 
     @Override
