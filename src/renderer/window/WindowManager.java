@@ -35,4 +35,8 @@ public abstract class WindowManager {
     public static void switchCard(String card) {
         window.switchCards(card);
     }
+
+    public static int[] getResolution() {
+        return new int[]{window.getContentPane().getWidth(), window.getContentPane().getHeight()};
+    }
 }
