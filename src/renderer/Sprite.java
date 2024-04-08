@@ -10,6 +10,7 @@ import java.util.HashMap;
 
 public class Sprite {
     private HashMap<String, Animation> animations;
+    private Animation currentAnimation;
     private int width;
     private int height;
 
@@ -29,10 +30,12 @@ public class Sprite {
     }
 
     public void playAnimation(String animation) {
-        animations.get(animation).play();
+        currentAnimation = animations.get(animation);
+        currentAnimation.play();
     }
 
-    public void stopAnimation(String animation) {
-        animations.get(animation).stop();
+    public void stopAnimation() {
+        currentAnimation.stop();
+        currentAnimation = null;
     }
 }
