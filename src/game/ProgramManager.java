@@ -21,7 +21,8 @@ public class ProgramManager {
         WindowManager.showWindow();
 
         // Creates the menu screen
-        WindowManager.createMenuCard(new JButton[]{new JButton(new PlayGame()), new JButton(new Quit())}, "mainMenu");
+        WindowManager.createMenuCard(new JButton[]{new JButton(new PlayGame()), new JButton(new Quit())}, "main-menu");
+        WindowManager.switchCard("main-menu");
     }
 
     public static void play() {
