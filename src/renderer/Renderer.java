@@ -7,7 +7,7 @@ import java.awt.*;
 public abstract class Renderer {
 
     private static Graphics2D g2D;
-    private static int baseBlockSize;
+    private static float baseBlockSize;
 
     public static void setGraphics(Graphics2D graphics) {
         Renderer.g2D = graphics;
@@ -15,7 +15,7 @@ public abstract class Renderer {
     }
 
     private static void updateBaseBlockSize() {
-        baseBlockSize = WindowManager.getResolution()[0];
+        baseBlockSize = WindowManager.getResolution()[0] / 60.0f;
     }
 
 }
