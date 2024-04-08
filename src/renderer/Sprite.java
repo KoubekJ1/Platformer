@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,5 +43,26 @@ public class Sprite {
 
     public void setMirrored(boolean mirrored) {
         this.mirrored = mirrored;
+    }
+
+    public BufferedImage getCurrentImage() {
+        if (currentAnimation == null) return null;
+
+        BufferedImage image = currentAnimation.getCurrentImage();
+        if (!mirrored) {
+            return image;
+        } else {
+            AffineTransform affineTransform = new AffineTransform();
+            affineTransform.concatenate(AffineTransform.getScaleInstance(-1, 1));
+            affineTransform.concatenate(AffineTransform.getTranslateInstance(image.getWidth(), 0));
+
+            BufferedImage mirroredImage = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_ARGB);
+            Graphics2D mirroredImageG2D = (Graphics2D) mirroredImage.getGraphics();
+            mirroredImageG2D.transform(affineTransform);
+            mirroredImageG2D.drawImage(image, 0, 0, null);
+            mirroredImageG2D.dispose();
+
+            return mirroredImage;
+        }
     }
 }
