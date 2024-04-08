@@ -13,6 +13,7 @@ public class Sprite {
     private Animation currentAnimation;
     private int width;
     private int height;
+    private boolean mirrored;
 
     public Sprite(BufferedImage image, int width, int height) {
         this.width = width;
@@ -37,5 +38,9 @@ public class Sprite {
     public void stopAnimation() {
         currentAnimation.stop();
         currentAnimation = null;
+    }
+
+    public void setMirrored(boolean mirrored) {
+        this.mirrored = mirrored;
     }
 }
