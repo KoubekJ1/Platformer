@@ -20,4 +20,8 @@ public class Camera {
         transform.scale(scale, scale);
         setPosition(translation[0], translation[1]);
     }
+
+    public AffineTransform getTransform() {
+        return transform;
+    }
 }
