@@ -42,4 +42,12 @@ public class Player {
     public Camera getCamera() {
         return camera;
     }
+
+    public Point getPosition() {
+        return position.getLocation();
+    }
+
+    public BufferedImage getCurrentImage(float currentBlockSize) {
+        return sprite.getCurrentImage(currentBlockSize);
+    }
 }
