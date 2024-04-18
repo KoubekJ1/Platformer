@@ -13,6 +13,6 @@ public class PlayGame extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ProgramManager.play();
+        //ProgramManager.play();
     }
 }
