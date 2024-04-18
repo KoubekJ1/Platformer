@@ -45,7 +45,7 @@ public class Sprite {
         this.mirrored = mirrored;
     }
 
-    public BufferedImage getCurrentImage() {
+    public BufferedImage getCurrentImage(float currentBlockSize) {
         if (currentAnimation == null) return null;
 
         BufferedImage image = currentAnimation.getCurrentImage();
@@ -62,12 +62,12 @@ public class Sprite {
             mirroredImageG2D.drawImage(image, 0, 0, null);
             mirroredImageG2D.dispose();
 
-            return getProperlySizedImage(mirroredImage);
+            return getProperlySizedImage(mirroredImage, currentBlockSize);
         }
     }
 
-    private BufferedImage getProperlySizedImage(BufferedImage image) {
-        BufferedImage finalImage = (BufferedImage) image.getScaledInstance(width, height, BufferedImage.SCALE_FAST);
+    private BufferedImage getProperlySizedImage(BufferedImage image, float currentBlockSize) {
+        BufferedImage finalImage = (BufferedImage) image.getScaledInstance((int) (width * currentBlockSize), (int) (height * currentBlockSize), BufferedImage.SCALE_FAST);
         return finalImage;
     }
 }
