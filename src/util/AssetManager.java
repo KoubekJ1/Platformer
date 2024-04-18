@@ -18,7 +18,7 @@ public abstract class AssetManager {
 
     static {
         try {
-            defaultImage = ImageIO.read(new File(TEXTURES_PATH + "missing.png"));
+            defaultImage = ImageIO.read(new File(TEXTURES_PATH + "default.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
