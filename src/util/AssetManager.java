@@ -1,9 +1,13 @@
 package util;
 
+import game.level.Level;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.HashMap;
 
 public abstract class AssetManager {
@@ -33,5 +37,16 @@ public abstract class AssetManager {
                 return defaultImage;
             }
         }
+    }
+
+    public static Level getLevel(String path) throws IOException, ClassNotFoundException {
+        FileInputStream fileInputStream = new FileInputStream(path);
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        Level level = (Level) objectInputStream.readObject();
+
+        objectInputStream.close();
+        fileInputStream.close();
+
+        return level;
     }
 }
