@@ -1,6 +1,7 @@
 package renderer.window;
 
 import javax.swing.*;
+import java.awt.*;
 
 public abstract class WindowManager {
     private static GameJFrame window;
@@ -38,5 +39,9 @@ public abstract class WindowManager {
 
     public static int[] getResolution() {
         return new int[]{window.getContentPane().getWidth(), window.getContentPane().getHeight()};
+    }
+
+    public static int getRefreshRate() {
+        return GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getRefreshRate();
     }
 }
