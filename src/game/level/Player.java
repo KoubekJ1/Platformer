@@ -17,7 +17,7 @@ public class Player {
     private static final int PLAYER_WIDTH = 1;
     private static final int SMALL_PLAYER_HEIGHT = 1;
     private static final int LARGE_PLAYER_HEIGHT = 2;
-    private static final String PLAYER_TEXTURES_DIRECTORY = "player/";
+    private static final String PLAYER_TEXTURES_DIRECTORY = "characters/player/";
 
     private float posX;
     private float posY;
