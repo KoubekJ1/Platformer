@@ -19,12 +19,15 @@ public class Player {
     private static final int LARGE_PLAYER_HEIGHT = 2;
     private static final String PLAYER_TEXTURES_DIRECTORY = "player/";
 
-    private Rectangle position;
+    private float posX;
+    private float posY;
+
     private Sprite sprite;
     private Camera camera;
 
     public Player() {
-        position = new Rectangle(0, 0, PLAYER_WIDTH, SMALL_PLAYER_HEIGHT);
+        posX = 0;
+        posY = 0;
         camera = new Camera();
         HashMap<String, Animation> animations = new HashMap<>();
         ArrayList<BufferedImage> images = new ArrayList<>();
@@ -43,8 +46,8 @@ public class Player {
         return camera;
     }
 
-    public Point getPosition() {
-        return position.getLocation();
+    public float[] getPosition() {
+        return new float[]{posX, posY};
     }
 
     public BufferedImage getCurrentImage(float currentBlockSize) {
