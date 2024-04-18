@@ -19,7 +19,7 @@ public abstract class Renderer {
         updateBaseBlockSize();
     }
 
-    public static void render(Block[][] blocks, Player[] players, Camera camera, LinkedList<Enemy> enemies, Color background) {
+    public static void render(Block[][] blocks, LinkedList<Player> players, Camera camera, LinkedList<Enemy> enemies, Color background) {
         updateBaseBlockSize();
         g2D.setTransform(camera.getTransform());
 
