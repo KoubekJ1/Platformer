@@ -26,7 +26,7 @@ public abstract class Renderer {
 
         // Rendering the player(s)
         for (Player player : players) {
-            g2D.drawImage(player.getCurrentImage(baseBlockSize), (int) (player.getPosition().x * baseBlockSize), (int) (player.getPosition().y * baseBlockSize), null, null);
+            g2D.drawImage(player.getCurrentImage(baseBlockSize), (int) (player.getPosition()[0] * baseBlockSize), (int) (player.getPosition()[1] * baseBlockSize), null, null);
         }
     }
 
