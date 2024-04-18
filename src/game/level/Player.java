@@ -16,7 +16,7 @@ public class Player {
 
     private static final int PLAYER_WIDTH = 1;
     private static final int SMALL_PLAYER_HEIGHT = 1;
-    private static final int LARGE_PLAYER_HEIGHT = 1;
+    private static final int LARGE_PLAYER_HEIGHT = 2;
     private static final String PLAYER_TEXTURES_DIRECTORY = "player/";
 
     private Rectangle position;
@@ -24,7 +24,7 @@ public class Player {
     private Camera camera;
 
     public Player() {
-        position = new Rectangle(0, 0, 1, 1);
+        position = new Rectangle(0, 0, PLAYER_WIDTH, SMALL_PLAYER_HEIGHT);
         camera = new Camera();
         HashMap<String, Animation> animations = new HashMap<>();
         ArrayList<BufferedImage> images = new ArrayList<>();
