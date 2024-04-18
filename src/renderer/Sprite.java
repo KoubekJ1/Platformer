@@ -50,7 +50,7 @@ public class Sprite {
 
         BufferedImage image = currentAnimation.getCurrentImage();
         if (!mirrored) {
-            return image;
+            return getProperlySizedImage(image);
         } else {
             AffineTransform affineTransform = new AffineTransform();
             affineTransform.concatenate(AffineTransform.getScaleInstance(-1, 1));
@@ -62,7 +62,12 @@ public class Sprite {
             mirroredImageG2D.drawImage(image, 0, 0, null);
             mirroredImageG2D.dispose();
 
-            return mirroredImage;
+            return getProperlySizedImage(mirroredImage);
         }
+    }
+
+    private BufferedImage getProperlySizedImage(BufferedImage image) {
+        BufferedImage finalImage = (BufferedImage) image.getScaledInstance(width, height, BufferedImage.SCALE_FAST);
+        return finalImage;
     }
 }
