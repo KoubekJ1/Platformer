@@ -51,6 +51,8 @@ public class Level implements Serializable, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if (e.getSource() == gameTimer) {
+            update();
+        }
     }
 }
