@@ -1,11 +1,15 @@
 package game.level;
 
 import game.level.enemy.Enemy;
+import renderer.window.WindowManager;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.LinkedList;
 
-public class Level implements Serializable {
+public class Level implements Serializable, ActionListener {
     private static final String LEVELS_DIRECTORY = "assets/levels/";
 
     private String levelID;
@@ -15,7 +19,22 @@ public class Level implements Serializable {
     private Block[][] blocks;
     private LinkedList<Enemy> enemies;
 
+    private Timer gameTimer;
+
+    public Level(String levelID, String levelName) {
+        this.levelID = levelID;
+        this.levelName = levelName;
+        this.player = new Player();
+        this.blocks = new Block[0][];
+        this.enemies = new LinkedList<>();
+        this.gameTimer = new Timer(1000/WindowManager.getRefreshRate(), this);
+    }
+
     public void start() {
+
+    }
+
+    public void update() {
 
     }
 
@@ -30,4 +49,8 @@ public class Level implements Serializable {
         fileOutputStream.close();
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
 }
