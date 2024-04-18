@@ -27,6 +27,7 @@ public class Level implements Serializable, ActionListener {
         this.levelID = levelID;
         this.levelName = levelName;
         this.players = new LinkedList<>();
+        players.add(new Player());
         this.blocks = new Block[0][];
         this.enemies = new LinkedList<>();
         this.gameTimer = new Timer(1000/WindowManager.getRefreshRate(), this);
