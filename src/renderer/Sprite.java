@@ -50,7 +50,7 @@ public class Sprite {
 
         BufferedImage image = currentAnimation.getCurrentImage();
         if (!mirrored) {
-            return getProperlySizedImage(image);
+            return getProperlySizedImage(image, currentBlockSize);
         } else {
             AffineTransform affineTransform = new AffineTransform();
             affineTransform.concatenate(AffineTransform.getScaleInstance(-1, 1));
