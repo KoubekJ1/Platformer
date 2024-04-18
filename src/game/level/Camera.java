@@ -11,7 +11,7 @@ public class Camera {
     }
 
     public void setPosition(double x, double y) {
-        transform.translate(x, y);
+        transform.translate(-x, -y);
     }
 
     public void setWorldScale(int scale) {
