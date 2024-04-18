@@ -1,5 +1,6 @@
 package game;
 
+import game.level.Level;
 import renderer.actions.*;
 import renderer.window.WindowManager;
 
@@ -25,8 +26,9 @@ public class ProgramManager {
         WindowManager.switchCard("main-menu");
     }
 
-    public static void play() {
+    public static void play(Level level) {
         WindowManager.showGameplayCard();
+        level.start();
     }
 
     public static boolean isDebug() {
