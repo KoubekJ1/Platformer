@@ -18,6 +18,9 @@ public abstract class Renderer {
     private static AffineTransform defaultTransform = new AffineTransform(1, 0, 0, 1, 0, 0);
 
     public static void setGraphics(Graphics2D graphics) {
+        if (graphics == null) {
+            throw new IllegalArgumentException("Graphics2D is null!");
+        }
         Renderer.g2D = graphics;
         updateBaseBlockSize();
     }
