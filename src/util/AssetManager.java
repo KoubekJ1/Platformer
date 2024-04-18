@@ -10,9 +10,11 @@ public abstract class AssetManager {
     private static HashMap<String, BufferedImage> textures = new HashMap<>();
     private static BufferedImage defaultImage;
 
+    private static final String TEXTURES_PATH = "assets/textures/";
+
     static {
         try {
-            defaultImage = ImageIO.read(new File("assets/textures/default.png"));
+            defaultImage = ImageIO.read(new File(TEXTURES_PATH + "missing.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -26,6 +28,7 @@ public abstract class AssetManager {
         } else {
             try {
                 textures.put(textureFile.getAbsolutePath(), ImageIO.read(textureFile));
+                return textures.get(textureFile.getAbsolutePath());
             } catch (IOException e) {
                 return defaultImage;
             }
