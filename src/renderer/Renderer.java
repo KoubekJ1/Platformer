@@ -7,6 +7,7 @@ import game.level.enemy.Enemy;
 import renderer.window.WindowManager;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.util.LinkedList;
 
 public abstract class Renderer {
@@ -14,12 +15,21 @@ public abstract class Renderer {
     private static Graphics2D g2D;
     private static float baseBlockSize;
 
+    private static AffineTransform defaultTransform = new AffineTransform(1, 0, 0, 1, 0, 0);
+
     public static void setGraphics(Graphics2D graphics) {
         Renderer.g2D = graphics;
         updateBaseBlockSize();
     }
 
     public static void render(Block[][] blocks, LinkedList<Player> players, Camera camera, LinkedList<Enemy> enemies, Color background) {
+        // Reset transform
+        g2D.setTransform(defaultTransform);
+
+        // Render background
+        g2D.setColor(background);
+        g2D.fillRect(0, 0, WindowManager.getResolution()[0], WindowManager.getResolution()[1]);
+
         // Setup
         updateBaseBlockSize();
         g2D.setTransform(camera.getTransform());
