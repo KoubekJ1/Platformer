@@ -33,13 +33,8 @@ public class Player {
         images.add(AssetManager.getTexture(PLAYER_TEXTURES_DIRECTORY + "run2.png"));
         images.add(AssetManager.getTexture(PLAYER_TEXTURES_DIRECTORY + "run3.png"));
 
-        animations.put("running", new Animation(images, (1/60) * 1000, true));
-
-        try {
-            animations.put("static", new Animation(ImageIO.read(new File(PLAYER_TEXTURES_DIRECTORY + "static.png"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        animations.put("running", new Animation(images, (1 / 60) * 1000, true));
+        animations.put("static", new Animation(AssetManager.getTexture(PLAYER_TEXTURES_DIRECTORY + "static.png")));
 
         sprite = new Sprite(animations, PLAYER_WIDTH, SMALL_PLAYER_HEIGHT);
     }
