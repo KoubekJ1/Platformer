@@ -30,10 +30,11 @@ public class Level implements Serializable, ActionListener {
         this.blocks = new Block[0][];
         this.enemies = new LinkedList<>();
         this.gameTimer = new Timer(1000/WindowManager.getRefreshRate(), this);
+        this.gameTimer.setInitialDelay(0);
     }
 
     public void start() {
-
+        gameTimer.start();
     }
 
     public void update() {
