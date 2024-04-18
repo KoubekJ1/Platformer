@@ -21,7 +21,7 @@ public abstract class AssetManager {
     }
 
     public static BufferedImage getTexture(String path) {
-        File textureFile = new File(path);
+        File textureFile = new File(TEXTURES_PATH + path);
 
         if (textures.containsKey(textureFile.getAbsolutePath())) {
             return textures.get(textureFile.getAbsolutePath());
