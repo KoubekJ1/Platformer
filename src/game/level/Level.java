@@ -15,6 +15,10 @@ public class Level implements Serializable {
     private Block[][] blocks;
     private LinkedList<Enemy> enemies;
 
+    public void start() {
+
+    }
+
     public void serialize() throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream(LEVELS_DIRECTORY + "custom/" + levelID + ".level");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
