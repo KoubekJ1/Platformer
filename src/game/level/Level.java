@@ -1,9 +1,11 @@
 package game.level;
 
 import game.level.enemy.Enemy;
+import renderer.Renderer;
 import renderer.window.WindowManager;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
@@ -15,7 +17,7 @@ public class Level implements Serializable, ActionListener {
     private String levelID;
     private String levelName;
 
-    private Player player;
+    private LinkedList<Player> players;
     private Block[][] blocks;
     private LinkedList<Enemy> enemies;
 
@@ -24,7 +26,7 @@ public class Level implements Serializable, ActionListener {
     public Level(String levelID, String levelName) {
         this.levelID = levelID;
         this.levelName = levelName;
-        this.player = new Player();
+        this.players = new LinkedList<>();
         this.blocks = new Block[0][];
         this.enemies = new LinkedList<>();
         this.gameTimer = new Timer(1000/WindowManager.getRefreshRate(), this);
@@ -35,7 +37,7 @@ public class Level implements Serializable, ActionListener {
     }
 
     public void update() {
-
+        Renderer.render(blocks, players, players.getFirst().getCamera(), enemies, Color.CYAN);
     }
 
     public void serialize() throws IOException {
