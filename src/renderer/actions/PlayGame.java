@@ -1,6 +1,7 @@
 package renderer.actions;
 
 import game.ProgramManager;
+import game.level.Level;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -13,6 +14,6 @@ public class PlayGame extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //ProgramManager.play();
+        ProgramManager.play(new Level("1", "1"));
     }
 }
