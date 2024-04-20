@@ -39,7 +39,9 @@ public class Level implements Serializable, ActionListener {
         players.add(new Player());
         this.blocks = new Block[0][];
         this.enemies = new LinkedList<>();
-        this.gameTimer = new Timer(1000/WindowManager.getRefreshRate(), this);
+
+        // Setting the timer delay to half of the refresh rate seems to produce the expected amount of frames per second, weird fix
+        this.gameTimer = new Timer(500/WindowManager.getRefreshRate(), this);
         this.gameTimer.setInitialDelay(0);
     }
 
