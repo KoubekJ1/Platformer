@@ -45,6 +45,10 @@ public class Level implements Serializable, ActionListener {
         this.gameTimer.setInitialDelay(0);
     }
 
+    public void addBlock(Block block, int x, int y) {
+        blocks[x][y] = block;
+    }
+
     public void start() {
         gameTimer.start();
     }
