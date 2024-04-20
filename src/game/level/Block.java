@@ -1,6 +1,7 @@
 package game.level;
 
 import renderer.Sprite;
+import util.AssetManager;
 
 import java.awt.image.BufferedImage;
 import java.io.FileOutputStream;
@@ -17,8 +18,8 @@ public class Block implements Serializable, Cloneable {
     private Sprite sprite;
     private boolean collision;
 
-    public Block(Sprite sprite, boolean collision) {
-        this.sprite = sprite;
+    public Block(String texture, boolean collision) {
+        this.sprite = new Sprite(texture, 1, 1);
         this.collision = collision;
     }
 
