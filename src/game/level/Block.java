@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-public class Block implements Serializable {
+public class Block implements Serializable, Cloneable {
     private static final String BLOCKS_DIRECTORY = "assets/blocks/";
 
     private String blockID;
