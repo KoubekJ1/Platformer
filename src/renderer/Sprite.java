@@ -55,7 +55,7 @@ public class Sprite {
         } else {
             AffineTransform affineTransform = new AffineTransform();
             affineTransform.concatenate(AffineTransform.getScaleInstance(-1, 1));
-            affineTransform.concatenate(AffineTransform.getTranslateInstance(image.getWidth(), 0));
+            affineTransform.concatenate(AffineTransform.getTranslateInstance(-image.getWidth(), 0));
 
             BufferedImage mirroredImage = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_ARGB);
             Graphics2D mirroredImageG2D = (Graphics2D) mirroredImage.getGraphics();
