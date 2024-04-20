@@ -21,7 +21,7 @@ public class Player {
     private static final float JUMP_VELOCITY = 0.4f;
     private static final float GRAVITY_ACCELERATION = 1;
     private static final float MAX_RUNNING_SPEED = 0.15f;
-    private static final float MAX_SPRINTING_SPEED = 0.35f;
+    private static final float MAX_SPRINTING_SPEED = 0.3f;
     private static final float ACCELERATION = 1;
     //private static final float SPRINTING_ACCELERATION = 3;
     //private static final int DRAG_SLOWDOWN = 5;
