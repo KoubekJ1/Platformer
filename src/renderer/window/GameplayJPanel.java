@@ -12,7 +12,7 @@ public class GameplayJPanel extends JPanel {
     private float baseBlockSize;
 
     public void initialize() {
-        Renderer.setGraphics((Graphics2D) this.getGraphics());
+        Renderer.setPanel(this);
     }
 
     private void updateBaseBlockSize() {
