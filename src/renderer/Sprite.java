@@ -45,6 +45,10 @@ public class Sprite {
         this.mirrored = mirrored;
     }
 
+    public boolean isMirrored() {
+        return mirrored;
+    }
+
     public BufferedImage getCurrentImage(float currentBlockSize) {
         if (currentAnimation == null) {
             playAnimation("static");
