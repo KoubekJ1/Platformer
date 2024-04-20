@@ -3,6 +3,7 @@ package game.level;
 import game.ProgramManager;
 import renderer.Animation;
 import renderer.Sprite;
+import util.AssetManager;
 import util.InputManager;
 
 import java.awt.event.KeyEvent;
@@ -169,7 +170,7 @@ public class Player {
         posY += yVelocity;
         //endregion
 
-        //region Camera control
+        //region Debug
         if (!ProgramManager.isDebug()) return;
         if (InputManager.isKeyPressed(KeyEvent.VK_PAGE_UP)) {
             camera.setWorldScale(camera.getTransform().getScaleX() + 1 * dt);
