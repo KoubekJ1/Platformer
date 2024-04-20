@@ -23,6 +23,10 @@ public class Block implements Serializable, Cloneable {
         this.collision = collision;
     }
 
+    public boolean isCollision() {
+        return collision;
+    }
+
     public BufferedImage getCurrentImage(float currentBlockSize) {
         return sprite.getCurrentImage(currentBlockSize);
     }
