@@ -12,16 +12,16 @@ import java.util.HashMap;
 
 public class Player {
 
-    private static final int PLAYER_WIDTH = 1;
-    private static final int SMALL_PLAYER_HEIGHT = 1;
-    private static final int LARGE_PLAYER_HEIGHT = 2;
+    private int playerWidth;
+    private int playerHeight;
+
     private static final String PLAYER_TEXTURES_DIRECTORY = "characters/player/";
 
     private static final int TERMINAL_VELOCITY = 50;
     private static final int JUMP_VELOCITY = 3;
     private static final int GRAVITY_ACCELERATION = 10;
-    private static final int MAX_RUNNING_SPEED = 3;
-    private static final int MAX_SPRINTING_SPEED = 7;
+    private static final float MAX_RUNNING_SPEED = 0.25f;
+    private static final float MAX_SPRINTING_SPEED = 0.5f;
     private static final int RUNNING_ACCELERATION = 2;
     private static final int SPRINTING_ACCELERATION = 3;
     private static final int DRAG_SLOWDOWN = 5;
@@ -41,6 +41,9 @@ public class Player {
         xVelocity = 0;
         yVelocity = 0;
 
+        playerWidth = 1;
+        playerHeight = 1;
+
         camera = new Camera();
         HashMap<String, Animation> animations = new HashMap<>();
         ArrayList<String> images = new ArrayList<>();
@@ -53,7 +56,7 @@ public class Player {
         animations.put("sprinting", new Animation(images, 40, true));
         animations.put("static", new Animation(PLAYER_TEXTURES_DIRECTORY + "static.png"));
 
-        sprite = new Sprite(animations, PLAYER_WIDTH, SMALL_PLAYER_HEIGHT);
+        sprite = new Sprite(animations, playerWidth, playerHeight);
     }
 
     public void update(float dt) {
@@ -103,6 +106,13 @@ public class Player {
                 posY = (float) Math.floor(posY + i);
                 break;
             }
+        }
+
+        if (posX + xVelocity < 0 || posX + playerWidth + xVelocity > ProgramManager.getLevel().getLevelSizeX()) {
+            xVelocity = 0;
+        }
+        if (posY + yVelocity < 0 || posY + playerHeight + yVelocity > ProgramManager.getLevel().getLevelSizeY()) {
+            yVelocity = 0;
         }
 
         posX += xVelocity;
