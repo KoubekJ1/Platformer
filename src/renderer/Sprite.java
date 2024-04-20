@@ -36,6 +36,7 @@ public class Sprite {
     }
 
     public void stopAnimation() {
+        if (currentAnimation == null) return;
         currentAnimation.stop();
         currentAnimation = null;
     }
