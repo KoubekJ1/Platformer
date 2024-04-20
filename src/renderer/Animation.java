@@ -63,6 +63,13 @@ public class Animation implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if (e.getSource() == animationTimer) {
+            currentImage++;
+            if (currentImage >= imageOrder.length) {
+                if (loop) {
+                    currentImage = 0;
+                }
+            }
+        }
     }
 }
