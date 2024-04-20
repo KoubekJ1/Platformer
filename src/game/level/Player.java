@@ -3,7 +3,9 @@ package game.level;
 import game.ProgramManager;
 import renderer.Animation;
 import renderer.Sprite;
+import util.InputManager;
 
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,9 +16,14 @@ public class Player {
     private static final int SMALL_PLAYER_HEIGHT = 1;
     private static final int LARGE_PLAYER_HEIGHT = 2;
     private static final String PLAYER_TEXTURES_DIRECTORY = "characters/player/";
+
     private static final int TERMINAL_VELOCITY = 50;
     private static final int JUMP_VELOCITY = 3;
     private static final int GRAVITY_ACCELERATION = 10;
+    private static final int MAX_RUNNING_SPEED = 3;
+    private static final int MAX_SPRINTING_SPEED = 7;
+    private static final int RUNNING_ACCELERATION = 2;
+    private static final int SPRINTING_ACCELERATION = 3;
 
     private float posX;
     private float posY;
@@ -53,6 +60,20 @@ public class Player {
         yVelocity += GRAVITY_ACCELERATION * dt;
         if (yVelocity > TERMINAL_VELOCITY) {
             yVelocity = TERMINAL_VELOCITY;
+        }
+
+        // Movement left and right
+        if (InputManager.isButtonPressed(KeyEvent.VK_LEFT) || InputManager.isButtonPressed(KeyEvent.VK_A)) {
+            xVelocity -= RUNNING_ACCELERATION * dt;
+        }
+        if (InputManager.isButtonPressed(KeyEvent.VK_RIGHT) || InputManager.isButtonPressed(KeyEvent.VK_D)) {
+            xVelocity += RUNNING_ACCELERATION * dt;
+        }
+
+        if (xVelocity > MAX_RUNNING_SPEED) {
+            xVelocity = MAX_RUNNING_SPEED;
+        } else if (xVelocity < -MAX_RUNNING_SPEED) {
+            xVelocity = -MAX_RUNNING_SPEED;
         }
 
         // Check if the player is touching the ground
