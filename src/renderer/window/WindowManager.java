@@ -31,6 +31,7 @@ public abstract class WindowManager {
             window.createGameplayCard();
         }
         switchCard("gameplay");
+        window.requestFocus();
     }
 
     public static void switchCard(String card) {

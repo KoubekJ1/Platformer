@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class GameJFrame extends JFrame {
+public class GameJFrame extends JFrame implements KeyListener {
 
     private boolean windowInitialized = false;
     private boolean gameplayCardInitialized = false;
@@ -24,6 +24,7 @@ public class GameJFrame extends JFrame {
 
         this.setMinimumSize(new Dimension(800, 600));
         this.setLocationRelativeTo(null);
+        this.addKeyListener(this);
         this.requestFocus();
     }
 
@@ -63,5 +64,20 @@ public class GameJFrame extends JFrame {
 
     public boolean isGameplayCardInitialized() {
         return gameplayCardInitialized;
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        InputManager.pressKey(e.getKeyCode());
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        InputManager.releaseKey(e.getKeyCode());
     }
 }
