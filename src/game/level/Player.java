@@ -18,8 +18,8 @@ public class Player {
     private static final String PLAYER_TEXTURES_DIRECTORY = "characters/player/";
 
     private static final int TERMINAL_VELOCITY = 50;
-    private static final int JUMP_VELOCITY = 3;
-    private static final int GRAVITY_ACCELERATION = 10;
+    private static final float JUMP_VELOCITY = 0.5f;
+    private static final int GRAVITY_ACCELERATION = 2;
     private static final float MAX_RUNNING_SPEED = 0.25f;
     private static final float MAX_SPRINTING_SPEED = 0.5f;
     private static final int RUNNING_ACCELERATION = 2;
@@ -55,48 +55,61 @@ public class Player {
         animations.put("running", new Animation(images, 80, true));
         animations.put("sprinting", new Animation(images, 40, true));
         animations.put("static", new Animation(PLAYER_TEXTURES_DIRECTORY + "small/static.png"));
-        animations.put("air", new Animation("small/air.png"));
-        animations.put("turn", new Animation("small/turn.png"));
+        animations.put("air", new Animation(PLAYER_TEXTURES_DIRECTORY + "small/turn.png"));
+        animations.put("turn", new Animation(PLAYER_TEXTURES_DIRECTORY + "small/turn.png"));
 
         sprite = new Sprite(animations, playerWidth, playerHeight);
     }
 
     public void update(float dt) {
-        // Apply gravity
+        //region Gravity
         yVelocity += GRAVITY_ACCELERATION * dt;
         if (yVelocity > TERMINAL_VELOCITY) {
             yVelocity = TERMINAL_VELOCITY;
         }
+        //endregion
 
-        // Movement left and right
+        // region Movement left and right
         boolean moving = false;
         if (InputManager.isKeyPressed(KeyEvent.VK_RIGHT) || InputManager.isKeyPressed(KeyEvent.VK_D)) {
             sprite.setMirrored(false);
-            sprite.playAnimation("running");
+            if (xVelocity < 0) {
+                sprite.playAnimation("turn");
+            } else {
+                sprite.playAnimation("running");
+            }
             xVelocity += RUNNING_ACCELERATION * dt;
             moving = true;
         }
-
         if (InputManager.isKeyPressed(KeyEvent.VK_LEFT) || InputManager.isKeyPressed(KeyEvent.VK_A)) {
             sprite.setMirrored(true);
-            sprite.playAnimation("running");
+            if (xVelocity > 0) {
+                sprite.playAnimation("turn");
+            } else {
+                sprite.playAnimation("running");
+            }
             xVelocity -= RUNNING_ACCELERATION * dt;
             moving = !moving;
         }
+        //endregion
 
+        //region Drag force
         if (!moving && xVelocity != 0) {
             applyDrag(dt);
         } else if (xVelocity == 0) {
             sprite.stopAnimation();
         }
+        //endregion
 
+        //region Max speed check
         if (xVelocity > MAX_RUNNING_SPEED) {
             xVelocity = MAX_RUNNING_SPEED;
         } else if (xVelocity < -MAX_RUNNING_SPEED) {
             xVelocity = -MAX_RUNNING_SPEED;
         }
+        //endregion
 
-        // Check if the player is touching the ground
+        //region Ground collision check
         for (float i = 0; i < yVelocity + 1 && yVelocity > 0; i++) {
             if (i >= yVelocity) {
                 i = yVelocity;
@@ -110,16 +123,29 @@ public class Player {
                 break;
             }
         }
+        //endregion
 
+        //region Jumping
+        if (InputManager.isKeyPressed(KeyEvent.VK_W) || InputManager.isKeyPressed(KeyEvent.VK_SPACE) || InputManager.isKeyPressed(KeyEvent.VK_UP)) {
+            if (yVelocity == 0) {
+                yVelocity -= JUMP_VELOCITY;
+            }
+        }
+        //endregion
+
+        //region Out of bounds check
         if (posX + xVelocity < 0 || Math.ceil(posX) + xVelocity >= ProgramManager.getLevel().getLevelSizeX()) {
             xVelocity = 0;
         }
         if (posY + yVelocity < 0 || Math.ceil(posY) + playerHeight + yVelocity >= ProgramManager.getLevel().getLevelSizeY()) {
             yVelocity = 0;
         }
+        //endregion
 
+        //region Apply velocity
         posX += xVelocity;
         posY += yVelocity;
+        //endregion
     }
 
     private void applyDrag(float dt) {
