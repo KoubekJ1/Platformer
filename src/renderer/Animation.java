@@ -18,6 +18,7 @@ public class Animation implements ActionListener {
     public Animation(String image) {
         images = new ArrayList<>();
         images.add(image);
+        imageOrder = new int[1];
         loop = false;
         currentImage = 0;
     }

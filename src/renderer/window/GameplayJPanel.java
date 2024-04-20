@@ -48,7 +48,10 @@ public class GameplayJPanel extends JPanel {
 
         // Rendering the player(s)
         for (Player player : renderInfo.getPlayers()) {
-            g.drawImage(player.getCurrentImage(baseBlockSize), (int) (player.getPosition()[0] * baseBlockSize), (int) (player.getPosition()[1] * baseBlockSize), null, null);
+            if (player.getCurrentImage(baseBlockSize) == null) {
+                throw new IllegalStateException("Player doesn't have an active image!");
+            }
+            g.drawImage(player.getCurrentImage(baseBlockSize), (int) (player.getPosition()[0] * baseBlockSize), (int) (player.getPosition()[1] * baseBlockSize), Color.black, null);
         }
 
         if (ProgramManager.isDebug()) {
