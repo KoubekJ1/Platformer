@@ -47,7 +47,7 @@ public class GameplayJPanel extends JPanel {
 
         // Render background
         g2D.setColor(renderInfo.getBackground());
-        //g2D.fillRect(0, 0, this.getWidth(), this.getHeight());
+        g2D.fillRect(0, 0, this.getWidth(), this.getHeight());
 
         // Setup
         updateBaseBlockSize();
