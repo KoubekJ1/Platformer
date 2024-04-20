@@ -68,6 +68,14 @@ public class Level implements Serializable, ActionListener {
         return blocks[x][y];
     }
 
+    public int getLevelSizeX() {
+        return blocks.length;
+    }
+
+    public int getLevelSizeY() {
+        return blocks[0].length;
+    }
+
     public void serialize() throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream(LEVELS_DIRECTORY + "custom/" + levelID + ".level");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
