@@ -17,7 +17,6 @@ public abstract class Renderer {
     private static GameplayJPanel panel;
     private static float baseBlockSize;
 
-    private static AffineTransform defaultTransform = new AffineTransform(1, 0, 0, 1, 0, 0);
 
     public static void setPanel(GameplayJPanel panel) {
         if (panel == null) {
