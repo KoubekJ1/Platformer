@@ -55,7 +55,8 @@ public class Player {
         animations.put("running", new Animation(images, 80, true));
         animations.put("sprinting", new Animation(images, 40, true));
         animations.put("static", new Animation(PLAYER_TEXTURES_DIRECTORY + "small/static.png"));
-        animations.put("air", new Animation(""));
+        animations.put("air", new Animation("small/air.png"));
+        animations.put("turn", new Animation("small/turn.png"));
 
         sprite = new Sprite(animations, playerWidth, playerHeight);
     }
