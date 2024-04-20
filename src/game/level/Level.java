@@ -32,12 +32,12 @@ public class Level implements Serializable, ActionListener {
     float endTime = Time.getTime();
     float dt = 0;
 
-    public Level(String levelID, String levelName) {
+    public Level(String levelID, String levelName, int sizeX, int sizeY) {
         this.levelID = levelID;
         this.levelName = levelName;
         this.players = new LinkedList<>();
         players.add(new Player());
-        this.blocks = new Block[0][];
+        this.blocks = new Block[sizeX][sizeY];
         this.enemies = new LinkedList<>();
 
         // Setting the timer delay to half of the refresh rate seems to produce the expected amount of frames per second, weird fix
