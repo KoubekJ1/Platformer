@@ -1,6 +1,7 @@
 package renderer.window;
 
 import game.ProgramManager;
+import game.level.Block;
 import game.level.Player;
 import renderer.RenderInfo;
 import renderer.Renderer;
@@ -8,6 +9,7 @@ import renderer.Renderer;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 
 public class GameplayJPanel extends JPanel {
     private RenderInfo renderInfo;
@@ -60,7 +62,15 @@ public class GameplayJPanel extends JPanel {
             if (player.getCurrentImage(baseBlockSize) == null) {
                 throw new IllegalStateException("Player doesn't have an active image!");
             }
-            g2D.drawImage(player.getCurrentImage(baseBlockSize), (int) (player.getPosition()[0] * baseBlockSize), (int) (player.getPosition()[1] * baseBlockSize), null, null);
+            renderTile(g2D, player.getCurrentImage(baseBlockSize), player.getPosition()[0], player.getPosition()[1]);
+        }
+
+        Block[][] blocks = renderInfo.getBlocks();
+        for (int i = 0; i < blocks.length; i++) {
+            for (int j = 0; j < blocks[0].length; j++) {
+                if (blocks[i][j] == null) continue;
+                renderTile(g2D, blocks[i][j].getCurrentImage(baseBlockSize), i, j);
+            }
         }
 
         if (ProgramManager.isDebug()) {
@@ -69,5 +79,9 @@ public class GameplayJPanel extends JPanel {
             g2D.setColor(Color.BLACK);
             g2D.drawString("FPS: " + renderInfo.getFrameRate(), 100, 100);
         }
+    }
+
+    private void renderTile(Graphics2D graphics2D, BufferedImage image, float x, float y) {
+        graphics2D.drawImage(image, (int) (x * baseBlockSize), (int) (y * baseBlockSize), null, null);
     }
 }
