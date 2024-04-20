@@ -1,5 +1,7 @@
 package renderer;
 
+import util.AssetManager;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,24 +9,24 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class Animation implements ActionListener {
-    private ArrayList<BufferedImage> images;
+    private ArrayList<String> images;
     private int[] imageOrder;
     private boolean loop;
     private int currentImage;
     private Timer animationTimer;
 
-    public Animation(BufferedImage image) {
+    public Animation(String image) {
         images = new ArrayList<>();
         images.add(image);
         loop = false;
         currentImage = 0;
     }
 
-    public Animation(ArrayList<BufferedImage> images, int[] imageOrder, int delay, boolean loop) {
+    public Animation(ArrayList<String> images, int[] imageOrder, int delay, boolean loop) {
         initialize(images, imageOrder, delay, loop);
     }
 
-    public Animation(ArrayList<BufferedImage> images, int delay, boolean loop) {
+    public Animation(ArrayList<String> images, int delay, boolean loop) {
         int[] imageOrder = new int[images.size()];
         for (int i = 0; i < imageOrder.length; i++) {
             imageOrder[i] = i;
@@ -32,7 +34,7 @@ public class Animation implements ActionListener {
         initialize(images, imageOrder, delay, loop);
     }
 
-    public void initialize(ArrayList<BufferedImage> images, int[] imageOrder, int delay, boolean loop) {
+    public void initialize(ArrayList<String> images, int[] imageOrder, int delay, boolean loop) {
         this.images = images;
         this.imageOrder = imageOrder;
         this.animationTimer = new Timer(delay, this);
@@ -55,7 +57,7 @@ public class Animation implements ActionListener {
     }
 
     public BufferedImage getCurrentImage() {
-        return images.get(imageOrder[currentImage]);
+        return AssetManager.getTexture(images.get(imageOrder[currentImage]));
     }
 
     @Override

@@ -16,10 +16,9 @@ public class Sprite {
     private int height;
     private boolean mirrored;
 
-    public Sprite(BufferedImage image, int width, int height) {
+    public Sprite(String image, int width, int height) {
         this.width = width;
         this.height = height;
-        image = (BufferedImage) image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
         animations = new HashMap<>();
         animations.put("static", new Animation(image));
         animations.get("static").play();
