@@ -26,7 +26,7 @@ public class GameplayJPanel extends JPanel {
     }
 
     private void updateBaseBlockSize() {
-        baseBlockSize = this.getWidth() / 60.0f;
+        baseBlockSize = this.getWidth() / 40.0f;
     }
 
     public void render(RenderInfo renderInfo) {
@@ -60,7 +60,7 @@ public class GameplayJPanel extends JPanel {
             if (player.getCurrentImage(baseBlockSize) == null) {
                 throw new IllegalStateException("Player doesn't have an active image!");
             }
-            g2D.drawImage(player.getCurrentImage(baseBlockSize), (int) (player.getPosition()[0] * baseBlockSize), (int) (player.getPosition()[1] * baseBlockSize), Color.black, null);
+            g2D.drawImage(player.getCurrentImage(baseBlockSize), (int) (player.getPosition()[0] * baseBlockSize), (int) (player.getPosition()[1] * baseBlockSize), null, null);
         }
 
         if (ProgramManager.isDebug()) {
