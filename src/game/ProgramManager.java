@@ -9,6 +9,7 @@ import javax.swing.*;
 public class ProgramManager {
 
     private static boolean debug;
+    private static Level level;
 
     public static void startProgram(String[] args) {
         for (String arg : args) {
@@ -28,7 +29,12 @@ public class ProgramManager {
 
     public static void play(Level level) {
         WindowManager.showGameplayCard();
-        level.start();
+        ProgramManager.level = level;
+        ProgramManager.level.start();
+    }
+
+    public static Level getLevel() {
+        return level;
     }
 
     public static boolean isDebug() {
