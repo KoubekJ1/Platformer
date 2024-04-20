@@ -30,14 +30,14 @@ public class Player {
         posY = 0;
         camera = new Camera();
         HashMap<String, Animation> animations = new HashMap<>();
-        ArrayList<BufferedImage> images = new ArrayList<>();
+        ArrayList<String> images = new ArrayList<>();
 
-        images.add(AssetManager.getTexture(PLAYER_TEXTURES_DIRECTORY + "run1.png"));
-        images.add(AssetManager.getTexture(PLAYER_TEXTURES_DIRECTORY + "run2.png"));
-        images.add(AssetManager.getTexture(PLAYER_TEXTURES_DIRECTORY + "run3.png"));
+        images.add(PLAYER_TEXTURES_DIRECTORY + "run1.png");
+        images.add(PLAYER_TEXTURES_DIRECTORY + "run2.png");
+        images.add(PLAYER_TEXTURES_DIRECTORY + "run3.png");
 
         animations.put("running", new Animation(images, (1 / 60) * 1000, true));
-        animations.put("static", new Animation(AssetManager.getTexture(PLAYER_TEXTURES_DIRECTORY + "static.png")));
+        animations.put("static", new Animation(PLAYER_TEXTURES_DIRECTORY + "static.png"));
 
         sprite = new Sprite(animations, PLAYER_WIDTH, SMALL_PLAYER_HEIGHT);
     }
