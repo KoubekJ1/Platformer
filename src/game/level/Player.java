@@ -18,9 +18,15 @@ public class Player {
     private static final int SMALL_PLAYER_HEIGHT = 1;
     private static final int LARGE_PLAYER_HEIGHT = 2;
     private static final String PLAYER_TEXTURES_DIRECTORY = "characters/player/";
+    private static final int TERMINAL_VELOCITY = -50;
+    private static final int JUMP_VELOCITY = 3;
+    private static final int GRAVITY_ACCELERATION = 10;
 
     private float posX;
     private float posY;
+    private float xVelocity;
+    private float yVelocity;
+
 
     private Sprite sprite;
     private Camera camera;
@@ -28,6 +34,9 @@ public class Player {
     public Player() {
         posX = 0;
         posY = 0;
+        xVelocity = 0;
+        yVelocity = 0;
+
         camera = new Camera();
         HashMap<String, Animation> animations = new HashMap<>();
         ArrayList<String> images = new ArrayList<>();
@@ -41,6 +50,15 @@ public class Player {
 
         sprite = new Sprite(animations, PLAYER_WIDTH, SMALL_PLAYER_HEIGHT);
         sprite.playAnimation("static");
+    }
+
+    public void update(float dt) {
+        yVelocity -= GRAVITY_ACCELERATION * dt;
+        if (yVelocity < TERMINAL_VELOCITY) {
+            yVelocity = TERMINAL_VELOCITY;
+        }
+
+        posY += yVelocity;
     }
 
     public Camera getCamera() {
