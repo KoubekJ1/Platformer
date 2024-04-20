@@ -18,7 +18,7 @@ public class Player {
     private static final int SMALL_PLAYER_HEIGHT = 1;
     private static final int LARGE_PLAYER_HEIGHT = 2;
     private static final String PLAYER_TEXTURES_DIRECTORY = "characters/player/";
-    private static final int TERMINAL_VELOCITY = -50;
+    private static final int TERMINAL_VELOCITY = 50;
     private static final int JUMP_VELOCITY = 3;
     private static final int GRAVITY_ACCELERATION = 10;
 
@@ -53,8 +53,8 @@ public class Player {
     }
 
     public void update(float dt) {
-        yVelocity -= GRAVITY_ACCELERATION * dt;
-        if (yVelocity < TERMINAL_VELOCITY) {
+        yVelocity += GRAVITY_ACCELERATION * dt;
+        if (yVelocity > TERMINAL_VELOCITY) {
             yVelocity = TERMINAL_VELOCITY;
         }
 
