@@ -67,7 +67,7 @@ public class Sprite {
 
     private BufferedImage getProperlySizedImage(BufferedImage image, float currentBlockSize) {
         Image scaledImage = image.getScaledInstance((int) (width * currentBlockSize), (int) (height * currentBlockSize), BufferedImage.SCALE_FAST);
-        BufferedImage finalImage = new BufferedImage(width, height, BufferedImage.SCALE_FAST);
+        BufferedImage finalImage = new BufferedImage((int) (width * currentBlockSize), (int) (height * currentBlockSize), BufferedImage.SCALE_FAST);
         finalImage.createGraphics().drawImage(scaledImage, 0, 0, null);
         return finalImage;
     }
