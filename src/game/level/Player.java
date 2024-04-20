@@ -66,7 +66,7 @@ public class Player {
             Block block2 = ProgramManager.getLevel().getBlock((int) Math.ceil(posX), (int) Math.ceil(posY + i));
             if ((block1 != null && block1.isCollision()) || (block2 != null && block2.isCollision())) {
                 yVelocity = 0;
-                //posY = (float) Math.floor(posY);
+                posY = (float) Math.floor(posY);
                 break;
             }
         }
@@ -80,6 +80,10 @@ public class Player {
 
     public float[] getPosition() {
         return new float[]{posX, posY};
+    }
+
+    public float[] getPlayerVelocity() {
+        return new float[]{xVelocity, yVelocity};
     }
 
     public BufferedImage getCurrentImage(float currentBlockSize) {
