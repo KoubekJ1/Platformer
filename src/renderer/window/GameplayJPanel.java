@@ -27,6 +27,9 @@ public class GameplayJPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        if (renderInfo == null) {
+            return;
+        }
         // Reset transform
         //g.setTransform(defaultTransform);
 
