@@ -51,7 +51,6 @@ public class Player {
         animations.put("static", new Animation(PLAYER_TEXTURES_DIRECTORY + "static.png"));
 
         sprite = new Sprite(animations, PLAYER_WIDTH, SMALL_PLAYER_HEIGHT);
-        sprite.playAnimation("running");
     }
 
     public void update(float dt) {
