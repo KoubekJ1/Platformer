@@ -64,8 +64,8 @@ public class Level implements Serializable, ActionListener {
         Renderer.render(renderInfo);
     }
 
-    public Block[][] getBlocks() {
-        return blocks;
+    public Block getBlock(int x, int y) {
+        return blocks[x][y];
     }
 
     public void serialize() throws IOException {
