@@ -42,7 +42,7 @@ public class GameJFrame extends JFrame {
     }
 
     public void createGameplayCard() {
-        gameplayPanel = new GameplayJPanel();
+        gameplayPanel = new GameplayJPanel(true);
         this.add(gameplayPanel, "gameplay");
 
         gameplayPanel.initialize();
