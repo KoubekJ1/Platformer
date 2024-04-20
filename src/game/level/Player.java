@@ -24,6 +24,7 @@ public class Player {
     private static final int MAX_SPRINTING_SPEED = 7;
     private static final int RUNNING_ACCELERATION = 2;
     private static final int SPRINTING_ACCELERATION = 3;
+    private static final int DRAG_SLOWDOWN = 5;
 
     private float posX;
     private float posY;
@@ -63,11 +64,21 @@ public class Player {
         }
 
         // Movement left and right
-        if (InputManager.isKeyPressed(KeyEvent.VK_LEFT) || InputManager.isKeyPressed(KeyEvent.VK_A)) {
-            xVelocity -= RUNNING_ACCELERATION * dt;
-        }
+        boolean moving = false;
         if (InputManager.isKeyPressed(KeyEvent.VK_RIGHT) || InputManager.isKeyPressed(KeyEvent.VK_D)) {
+            sprite.setMirrored(false);
             xVelocity += RUNNING_ACCELERATION * dt;
+            moving = true;
+        }
+
+        if (InputManager.isKeyPressed(KeyEvent.VK_LEFT) || InputManager.isKeyPressed(KeyEvent.VK_A)) {
+            sprite.setMirrored(true);
+            xVelocity -= RUNNING_ACCELERATION * dt;
+            moving = !moving;
+        }
+
+        if (!moving && xVelocity != 0) {
+            applyDrag(dt);
         }
 
         if (xVelocity > MAX_RUNNING_SPEED) {
@@ -90,7 +101,17 @@ public class Player {
             }
         }
 
+        posX += xVelocity;
         posY += yVelocity;
+    }
+
+    private void applyDrag(float dt) {
+        if (xVelocity == 0) return;
+        int direction = (int) (xVelocity / Math.abs(xVelocity));
+        xVelocity -= DRAG_SLOWDOWN * direction * dt;
+        if (xVelocity / Math.abs(xVelocity) != direction) {
+            xVelocity = 0;
+        }
     }
 
     public Camera getCamera() {
