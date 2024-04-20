@@ -16,7 +16,7 @@ public class GameplayJPanel extends JPanel {
     }
 
     private void updateBaseBlockSize() {
-        baseBlockSize = WindowManager.getResolution()[0] / 60.0f;
+        baseBlockSize = this.getWidth() / 60.0f;
     }
 
     public void render(RenderInfo renderInfo) {
