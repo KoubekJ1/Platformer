@@ -13,7 +13,7 @@ public abstract class InputManager {
         keyboardButtonPressed.put(button, false);
     }
 
-    public static boolean getButtonPressed(int button) {
+    public static boolean isButtonPressed(int button) {
         return keyboardButtonPressed.getOrDefault(button, false);
     }
 }
