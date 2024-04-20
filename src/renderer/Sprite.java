@@ -45,7 +45,9 @@ public class Sprite {
     }
 
     public BufferedImage getCurrentImage(float currentBlockSize) {
-        if (currentAnimation == null) return null;
+        if (currentAnimation == null) {
+            playAnimation("static");
+        }
 
         BufferedImage image = currentAnimation.getCurrentImage();
         if (!mirrored) {
