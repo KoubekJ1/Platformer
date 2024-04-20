@@ -156,10 +156,10 @@ public class Player {
         //endregion
 
         //region Out of bounds check
-        if (posX + xVelocity < 0 || Math.ceil(posX) + xVelocity >= ProgramManager.getLevel().getLevelSizeX()) {
+        if (posX + xVelocity < 0 || Math.ceil(posX) + xVelocity > ProgramManager.getLevel().getLevelSizeX() - 1) {
             xVelocity = 0;
         }
-        if (posY + yVelocity < 0 || Math.ceil(posY) + playerHeight + yVelocity >= ProgramManager.getLevel().getLevelSizeY()) {
+        if (posY + yVelocity < 0 || Math.ceil(posY) + playerHeight + yVelocity > ProgramManager.getLevel().getLevelSizeY() - 1) {
             yVelocity = 0;
         }
         //endregion
@@ -171,10 +171,10 @@ public class Player {
 
         //region Camera control
         if (InputManager.isKeyPressed(KeyEvent.VK_PAGE_UP)) {
-            camera.setWorldScale(camera.getTransform().getScaleX() + 0.1 * dt);
+            camera.setWorldScale(camera.getTransform().getScaleX() + 1 * dt);
         }
         if (InputManager.isKeyPressed(KeyEvent.VK_PAGE_DOWN)) {
-            camera.setWorldScale(camera.getTransform().getScaleX() - 0.1 * dt);
+            camera.setWorldScale(camera.getTransform().getScaleX() - 1 * dt);
         }
         //endregion
     }
