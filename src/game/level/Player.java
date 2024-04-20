@@ -48,13 +48,14 @@ public class Player {
         HashMap<String, Animation> animations = new HashMap<>();
         ArrayList<String> images = new ArrayList<>();
 
-        images.add(PLAYER_TEXTURES_DIRECTORY + "running/run1.png");
-        images.add(PLAYER_TEXTURES_DIRECTORY + "running/run2.png");
-        images.add(PLAYER_TEXTURES_DIRECTORY + "running/run3.png");
+        images.add(PLAYER_TEXTURES_DIRECTORY + "small/run1.png");
+        images.add(PLAYER_TEXTURES_DIRECTORY + "small/run2.png");
+        images.add(PLAYER_TEXTURES_DIRECTORY + "small/run3.png");
 
         animations.put("running", new Animation(images, 80, true));
         animations.put("sprinting", new Animation(images, 40, true));
-        animations.put("static", new Animation(PLAYER_TEXTURES_DIRECTORY + "static.png"));
+        animations.put("static", new Animation(PLAYER_TEXTURES_DIRECTORY + "small/static.png"));
+        animations.put("air", new Animation(""));
 
         sprite = new Sprite(animations, playerWidth, playerHeight);
     }
@@ -95,10 +96,11 @@ public class Player {
         }
 
         // Check if the player is touching the ground
-        for (float i = 0; i < yVelocity + 1; i++) {
+        for (float i = 0; i < yVelocity + 1 && yVelocity > 0; i++) {
             if (i >= yVelocity) {
                 i = yVelocity;
             }
+            if (Math.ceil(posY + i) >= ProgramManager.getLevel().getLevelSizeY()) break;
             Block block1 = ProgramManager.getLevel().getBlock((int) posX, (int) Math.ceil(posY + i));
             Block block2 = ProgramManager.getLevel().getBlock((int) Math.ceil(posX), (int) Math.ceil(posY + i));
             if ((block1 != null && block1.isCollision()) || (block2 != null && block2.isCollision())) {
@@ -108,10 +110,10 @@ public class Player {
             }
         }
 
-        if (posX + xVelocity < 0 || posX + playerWidth + xVelocity > ProgramManager.getLevel().getLevelSizeX()) {
+        if (posX + xVelocity < 0 || Math.ceil(posX) + xVelocity >= ProgramManager.getLevel().getLevelSizeX()) {
             xVelocity = 0;
         }
-        if (posY + yVelocity < 0 || posY + playerHeight + yVelocity > ProgramManager.getLevel().getLevelSizeY()) {
+        if (posY + yVelocity < 0 || Math.ceil(posY) + playerHeight + yVelocity >= ProgramManager.getLevel().getLevelSizeY()) {
             yVelocity = 0;
         }
 
