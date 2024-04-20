@@ -18,7 +18,7 @@ public class PlayGame extends AbstractAction {
     public void actionPerformed(ActionEvent e) {
         Level testLevel = new Level("1", "1", 250, 250);
         for (int i = 0; i < 250; i++) {
-            if (i == 10) continue;
+            if (i == 10 || i == 11) continue;
             testLevel.addBlock(new Block("blocks/brick.png", true), i, 20);
         }
         ProgramManager.play(testLevel);
