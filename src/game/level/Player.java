@@ -170,6 +170,7 @@ public class Player {
         //endregion
 
         //region Camera control
+        if (!ProgramManager.isDebug()) return;
         if (InputManager.isKeyPressed(KeyEvent.VK_PAGE_UP)) {
             camera.setWorldScale(camera.getTransform().getScaleX() + 1 * dt);
         }
