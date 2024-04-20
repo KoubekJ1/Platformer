@@ -82,6 +82,9 @@ public class GameplayJPanel extends JPanel {
             g2D.drawString("Player position: " + position[0] + ", " + position[1], 0, 40);
             float[] velocity = renderInfo.getPlayers().getFirst().getVelocity();
             g2D.drawString("Player velocity: " + velocity[0] + ", " + velocity[1], 0, 60);
+            AffineTransform camera = renderInfo.getCamera().getTransform();
+            g2D.drawString("Camera position: " + camera.getTranslateX() + ", " + camera.getTranslateY(), 0, 80);
+            g2D.drawString("Display scale: " + camera.getScaleX(), 0, 100);
         }
     }
 
