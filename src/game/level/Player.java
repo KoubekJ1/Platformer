@@ -63,10 +63,10 @@ public class Player {
         }
 
         // Movement left and right
-        if (InputManager.isButtonPressed(KeyEvent.VK_LEFT) || InputManager.isButtonPressed(KeyEvent.VK_A)) {
+        if (InputManager.isKeyPressed(KeyEvent.VK_LEFT) || InputManager.isKeyPressed(KeyEvent.VK_A)) {
             xVelocity -= RUNNING_ACCELERATION * dt;
         }
-        if (InputManager.isButtonPressed(KeyEvent.VK_RIGHT) || InputManager.isButtonPressed(KeyEvent.VK_D)) {
+        if (InputManager.isKeyPressed(KeyEvent.VK_RIGHT) || InputManager.isKeyPressed(KeyEvent.VK_D)) {
             xVelocity += RUNNING_ACCELERATION * dt;
         }
 
