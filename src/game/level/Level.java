@@ -1,6 +1,7 @@
 package game.level;
 
 import game.level.enemy.Enemy;
+import renderer.RenderInfo;
 import renderer.Renderer;
 import renderer.window.WindowManager;
 
@@ -39,7 +40,7 @@ public class Level implements Serializable, ActionListener {
     }
 
     public void update() {
-        Renderer.render(blocks, players, players.getFirst().getCamera(), enemies, Color.CYAN);
+        Renderer.render(new RenderInfo(Color.CYAN, players.getFirst().getCamera(), blocks, players, enemies));
     }
 
     public void serialize() throws IOException {
