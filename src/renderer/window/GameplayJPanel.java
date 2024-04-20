@@ -1,5 +1,6 @@
 package renderer.window;
 
+import game.ProgramManager;
 import game.level.Player;
 import renderer.RenderInfo;
 import renderer.Renderer;
@@ -44,6 +45,12 @@ public class GameplayJPanel extends JPanel {
         // Rendering the player(s)
         for (Player player : renderInfo.getPlayers()) {
             g.drawImage(player.getCurrentImage(baseBlockSize), (int) (player.getPosition()[0] * baseBlockSize), (int) (player.getPosition()[1] * baseBlockSize), null, null);
+        }
+
+        if (ProgramManager.isDebug()) {
+            g.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+            g.setColor(Color.BLACK);
+            g.drawString("FPS: " + renderInfo.getFrameRate(), 100, 100);
         }
     }
 }
