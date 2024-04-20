@@ -1,5 +1,6 @@
 package util;
 
+import game.level.Block;
 import game.level.Level;
 
 import javax.imageio.ImageIO;
@@ -48,5 +49,16 @@ public abstract class AssetManager {
         fileInputStream.close();
 
         return level;
+    }
+
+    public static Block getBlock(String path) throws IOException, ClassNotFoundException {
+        FileInputStream fileInputStream = new FileInputStream(path);
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        Block block = (Block) objectInputStream.readObject();
+
+        objectInputStream.close();
+        fileInputStream.close();
+
+        return block;
     }
 }
