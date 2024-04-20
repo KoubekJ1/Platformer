@@ -1,9 +1,11 @@
 package game.level;
 
+import game.ProgramManager;
 import game.level.enemy.Enemy;
 import renderer.RenderInfo;
 import renderer.Renderer;
 import renderer.window.WindowManager;
+import util.Time;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,6 +26,12 @@ public class Level implements Serializable, ActionListener {
 
     private Timer gameTimer;
 
+    private RenderInfo renderInfo;
+
+    float beginTime = Time.getTime();
+    float endTime = Time.getTime();
+    float dt = 0;
+
     public Level(String levelID, String levelName) {
         this.levelID = levelID;
         this.levelName = levelName;
@@ -40,7 +48,11 @@ public class Level implements Serializable, ActionListener {
     }
 
     public void update() {
-        Renderer.render(new RenderInfo(Color.CYAN, players.getFirst().getCamera(), blocks, players, enemies));
+        renderInfo = new RenderInfo(Color.CYAN, players.getFirst().getCamera(), blocks, players, enemies);
+        if (ProgramManager.isDebug()) {
+            renderInfo.setFrameRate(1/dt);
+        }
+        Renderer.render(renderInfo);
     }
 
     public void serialize() throws IOException {
@@ -58,6 +70,9 @@ public class Level implements Serializable, ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == gameTimer) {
             update();
+            endTime = Time.getTime();
+            dt = endTime - beginTime;
+            beginTime = endTime;
         }
     }
 }
