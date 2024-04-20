@@ -12,6 +12,10 @@ public class GameplayJPanel extends JPanel {
     private RenderInfo renderInfo;
     private float baseBlockSize;
 
+    public GameplayJPanel(boolean isDoubleBuffered) {
+        super(isDoubleBuffered);
+    }
+
     public void initialize() {
         Renderer.setPanel(this);
     }
@@ -22,7 +26,7 @@ public class GameplayJPanel extends JPanel {
 
     public void render(RenderInfo renderInfo) {
         this.renderInfo = renderInfo;
-        paintComponent(this.getGraphics());
+        repaint();
     }
 
     @Override
