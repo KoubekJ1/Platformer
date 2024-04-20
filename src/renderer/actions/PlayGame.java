@@ -17,7 +17,7 @@ public class PlayGame extends AbstractAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         Level testLevel = new Level("1", "1", 250, 250);
-        testLevel.addBlock(new Block("assets/textures/blocks/brick.png", true), 0, 100);
+        testLevel.addBlock(new Block("assets/textures/blocks/brick.png", true), 0, 20);
         ProgramManager.play(testLevel);
     }
 }
