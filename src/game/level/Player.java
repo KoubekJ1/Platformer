@@ -168,6 +168,15 @@ public class Player {
         posX += xVelocity;
         posY += yVelocity;
         //endregion
+
+        //region Camera control
+        if (InputManager.isKeyPressed(KeyEvent.VK_PAGE_UP)) {
+            camera.setWorldScale(camera.getTransform().getScaleX() + 0.1 * dt);
+        }
+        if (InputManager.isKeyPressed(KeyEvent.VK_PAGE_DOWN)) {
+            camera.setWorldScale(camera.getTransform().getScaleX() - 0.1 * dt);
+        }
+        //endregion
     }
 
     private void applyDrag(float dt, float acceleration) {
