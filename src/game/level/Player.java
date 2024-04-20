@@ -56,12 +56,15 @@ public class Player {
         }
 
         // Check if the player is touching the ground
-        for (int i = 0; i <= yVelocity; i++) {
+        for (float i = 0; i < yVelocity + 1; i++) {
+            if (i >= yVelocity) {
+                i = yVelocity;
+            }
             Block block1 = ProgramManager.getLevel().getBlock((int) posX, (int) Math.ceil(posY + i));
             Block block2 = ProgramManager.getLevel().getBlock((int) Math.ceil(posX), (int) Math.ceil(posY + i));
             if ((block1 != null && block1.isCollision()) || (block2 != null && block2.isCollision())) {
                 yVelocity = 0;
-                posY = (float) Math.floor(posY);
+                posY = (float) Math.floor(posY + i);
                 break;
             }
         }
