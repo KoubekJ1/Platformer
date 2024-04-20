@@ -15,6 +15,8 @@ public class RenderInfo {
     private LinkedList<Player> players;
     private LinkedList<Enemy> enemies;
 
+    private float frameRate = 0;
+
     public RenderInfo(Color background, Camera camera, Block[][] blocks, LinkedList<Player> players, LinkedList<Enemy> enemies) {
         this.background = background;
         this.camera = camera;
@@ -61,5 +63,13 @@ public class RenderInfo {
 
     public void setEnemies(LinkedList<Enemy> enemies) {
         this.enemies = enemies;
+    }
+
+    public float getFrameRate() {
+        return frameRate;
+    }
+
+    public void setFrameRate(float frameRate) {
+        this.frameRate = frameRate;
     }
 }
