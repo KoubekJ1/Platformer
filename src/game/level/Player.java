@@ -1,5 +1,6 @@
 package game.level;
 
+import game.ProgramManager;
 import renderer.Animation;
 import renderer.Sprite;
 import util.AssetManager;
@@ -52,9 +53,21 @@ public class Player {
     }
 
     public void update(float dt) {
+        // Apply gravity
         yVelocity += GRAVITY_ACCELERATION * dt;
         if (yVelocity > TERMINAL_VELOCITY) {
             yVelocity = TERMINAL_VELOCITY;
+        }
+
+        // Check if the player is touching the ground
+        for (int i = 0; i <= yVelocity; i++) {
+            Block block1 = ProgramManager.getLevel().getBlock((int) posX, (int) Math.ceil(posY + i));
+            Block block2 = ProgramManager.getLevel().getBlock((int) Math.ceil(posX), (int) Math.ceil(posY + i));
+            if ((block1 != null && block1.isCollision()) || (block2 != null && block2.isCollision())) {
+                yVelocity = 0;
+                //posY = (float) Math.floor(posY);
+                break;
+            }
         }
 
         posY += yVelocity;
