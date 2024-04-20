@@ -58,6 +58,9 @@ public class Level implements Serializable, ActionListener {
         if (ProgramManager.isDebug()) {
             renderInfo.setFrameRate(1/dt);
         }
+        for (Player player : players) {
+            player.update(dt);
+        }
         Renderer.render(renderInfo);
     }
 
