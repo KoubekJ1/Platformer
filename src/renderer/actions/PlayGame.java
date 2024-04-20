@@ -1,7 +1,9 @@
 package renderer.actions;
 
 import game.ProgramManager;
+import game.level.Block;
 import game.level.Level;
+import renderer.Sprite;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,6 +16,8 @@ public class PlayGame extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ProgramManager.play(new Level("1", "1"));
+        Level testLevel = new Level("1", "1");
+        testLevel.addBlock(new Block("assets/textures/blocks/brick.png", true), 0, 100);
+        ProgramManager.play(testLevel);
     }
 }
