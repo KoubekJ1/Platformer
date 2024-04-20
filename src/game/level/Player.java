@@ -67,18 +67,22 @@ public class Player {
         boolean moving = false;
         if (InputManager.isKeyPressed(KeyEvent.VK_RIGHT) || InputManager.isKeyPressed(KeyEvent.VK_D)) {
             sprite.setMirrored(false);
+            sprite.playAnimation("running");
             xVelocity += RUNNING_ACCELERATION * dt;
             moving = true;
         }
 
         if (InputManager.isKeyPressed(KeyEvent.VK_LEFT) || InputManager.isKeyPressed(KeyEvent.VK_A)) {
             sprite.setMirrored(true);
+            sprite.playAnimation("running");
             xVelocity -= RUNNING_ACCELERATION * dt;
             moving = !moving;
         }
 
         if (!moving && xVelocity != 0) {
             applyDrag(dt);
+        } else if (xVelocity == 0) {
+            sprite.stopAnimation();
         }
 
         if (xVelocity > MAX_RUNNING_SPEED) {
