@@ -3,13 +3,8 @@ package game.level;
 import game.ProgramManager;
 import renderer.Animation;
 import renderer.Sprite;
-import util.AssetManager;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -82,7 +77,7 @@ public class Player {
         return new float[]{posX, posY};
     }
 
-    public float[] getPlayerVelocity() {
+    public float[] getVelocity() {
         return new float[]{xVelocity, yVelocity};
     }
 
