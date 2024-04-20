@@ -14,7 +14,7 @@ public class Camera {
         transform.translate(-x, -y);
     }
 
-    public void setWorldScale(int scale) {
+    public void setWorldScale(double scale) {
         // Weird workaround, the scale() method doesn't save translation, translation is applied again after scaling
         double[] translation = new double[]{transform.getTranslateX(), transform.getTranslateY()};
         transform.scale(scale, scale);
