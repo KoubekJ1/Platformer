@@ -76,7 +76,7 @@ public class GameplayJPanel extends JPanel {
         if (ProgramManager.isDebug()) {
             g2D.setTransform(defaultTransform);
             g2D.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-            g2D.setColor(Color.BLACK);
+            g2D.setColor(Color.WHITE);
             g2D.drawString("FPS: " + renderInfo.getFrameRate(), 0, 20);
             float[] position = renderInfo.getPlayers().getFirst().getPosition();
             g2D.drawString("Player position: " + position[0] + ", " + position[1], 0, 40);
