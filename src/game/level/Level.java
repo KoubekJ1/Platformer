@@ -50,6 +50,10 @@ public class Level implements Serializable, ActionListener {
         blocks[x][y] = block;
     }
 
+    public void addEnemy(Enemy enemy) {
+        enemies.add(enemy);
+    }
+
     public void start() {
         gameTimer.start();
     }
