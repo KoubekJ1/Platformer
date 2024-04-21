@@ -64,4 +64,17 @@ public class Enemy {
     public float getHeight() {
         return sprite.getHeight();
     }
+
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
+
+    public boolean isDead() {
+        if (deathTimer == null) return false;
+        return deathTimer.isRunning();
+    }
 }
