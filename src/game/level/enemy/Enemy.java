@@ -13,8 +13,8 @@ public class Enemy {
     private EnemyBehavior ai;
     private Timer deathTimer;
 
-    private int posX;
-    private int posY;
+    private float posX;
+    private float posY;
 
     public Enemy(Sprite sprite, EnemyBehavior ai, int posX, int posY) {
         this.sprite = sprite;
@@ -53,24 +53,21 @@ public class Enemy {
         sprite.setWidth(width);
     }
 
-    public float getWidth() {
-        return sprite.getWidth();
-    }
-
     public void setHeight(float height) {
         sprite.setHeight(height);
     }
 
-    public float getHeight() {
-        return sprite.getHeight();
+    public float[] getSize() {
+        return new float[]{sprite.getWidth(), sprite.getHeight()};
     }
 
-    public void setPosX(int posX) {
-        this.posX = posX;
+    public void setPos(float[] pos) {
+        posX = pos[0];
+        posY = pos[1];
     }
 
-    public void setPosY(int posY) {
-        this.posY = posY;
+    public float[] getPosition() {
+        return new float[]{posX, posY};
     }
 
     public boolean isDead() {
