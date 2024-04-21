@@ -7,5 +7,7 @@ public abstract class EnemyBehavior {
         this.parentEnemy = parentEnemy;
     }
 
-    public abstract void update();
+    public abstract void update(float dt);
+
+    public abstract void damage();
 }
