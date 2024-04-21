@@ -2,11 +2,14 @@ package game.level.enemy;
 
 import game.ProgramManager;
 import game.level.Block;
+import renderer.Animation;
 import renderer.Sprite;
 import util.InputManager;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Enemy {
     private static final float TERMINAL_VELOCITY = 50;
@@ -140,5 +143,25 @@ public class Enemy {
 
     public void setYVelocity(float yVelocity) {
         this.yVelocity = yVelocity;
+    }
+
+    public static Enemy getGoomba(int x, int y) {
+        HashMap<String, Animation> animations = new HashMap<>();
+        Animation staticAnimation = new Animation("characters/enemies/goomba/static.png");
+
+        ArrayList<String> movementTextures = new ArrayList<>();
+        movementTextures.add("characters/enemies/goomba/move1.png");
+        movementTextures.add("characters/enemies/goomba/move2.png");
+        Animation movementAnimation = new Animation(movementTextures, 80, true);
+
+        ArrayList<String> killTextures = new ArrayList<>();
+        killTextures.add("characters/enemies/goomba/kill.png");
+        killTextures.add("void.png");
+        Animation killAnimation = new Animation(killTextures, new int[]{0, 1, 0, 1}, 40, false);
+
+        animations.put("static", staticAnimation);
+        animations.put("move", movementAnimation);
+        animations.put("kill", killAnimation);
+        return new Enemy(new Sprite(animations, 1, 1), new Goomba(), x, y);
     }
 }
