@@ -19,6 +19,7 @@ public class Enemy {
     public Enemy(Sprite sprite, EnemyBehavior ai, int posX, int posY) {
         this.sprite = sprite;
         this.ai = ai;
+        ai.setParentEnemy(this);
         this.posX = posX;
         this.posY = posY;
     }
