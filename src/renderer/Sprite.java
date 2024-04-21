@@ -16,6 +16,10 @@ public class Sprite {
     private int height;
     private boolean mirrored;
 
+    private float lastBlockSize = 0;
+    private HashMap<BufferedImage, BufferedImage> mirroredImages = new HashMap<>();
+    private HashMap<BufferedImage, BufferedImage> scaledImages = new HashMap<>();
+
     public Sprite(String image, int width, int height) {
         this.width = width;
         this.height = height;
@@ -58,6 +62,10 @@ public class Sprite {
         if (!mirrored) {
             return getProperlySizedImage(image, currentBlockSize);
         } else {
+            if (mirroredImages.containsKey(image)) {
+                return getProperlySizedImage(mirroredImages.get(image), currentBlockSize);
+            }
+
             AffineTransform affineTransform = new AffineTransform();
             affineTransform.concatenate(AffineTransform.getScaleInstance(-1, 1));
             affineTransform.concatenate(AffineTransform.getTranslateInstance(-image.getWidth(), 0));
@@ -68,14 +76,28 @@ public class Sprite {
             mirroredImageG2D.drawImage(image, 0, 0, null);
             mirroredImageG2D.dispose();
 
+            mirroredImages.put(image, mirroredImage);
             return getProperlySizedImage(mirroredImage, currentBlockSize);
         }
     }
 
     private BufferedImage getProperlySizedImage(BufferedImage image, float currentBlockSize) {
-        Image scaledImage = image.getScaledInstance((int) (width * currentBlockSize), (int) (height * currentBlockSize), BufferedImage.SCALE_FAST);
-        BufferedImage finalImage = new BufferedImage((int) (width * currentBlockSize), (int) (height * currentBlockSize), BufferedImage.SCALE_FAST);
+        // Optimization
+        if (currentBlockSize != lastBlockSize) {
+            scaledImages.clear();
+            lastBlockSize = currentBlockSize;
+        }
+
+        if (scaledImages.containsKey(image)) {
+            return scaledImages.get(image);
+        }
+
+        lastBlockSize = currentBlockSize;
+        Image scaledImage = image.getScaledInstance((int) (width * currentBlockSize), (int) (height * currentBlockSize), BufferedImage.SCALE_SMOOTH);
+        BufferedImage finalImage = new BufferedImage((int) (width * currentBlockSize), (int) (height * currentBlockSize), BufferedImage.SCALE_SMOOTH);
         finalImage.createGraphics().drawImage(scaledImage, 0, 0, null);
+        scaledImages.put(image, finalImage);
+        System.out.println(image);
         return finalImage;
     }
 }
