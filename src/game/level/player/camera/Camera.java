@@ -34,9 +34,8 @@ public class Camera {
     }
 
     public void update() {
-        if (parentPlayer == null) return;
-
-        setPosition(parentPlayer.getPosition()[0], parentPlayer.getPosition()[1]);
+        if (cameraStrategy == null) return;
+        cameraStrategy.update();
     }
 
     public AffineTransform getTransform() {
