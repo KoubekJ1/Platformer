@@ -19,6 +19,7 @@ public class Goomba extends EnemyBehavior {
     public void update(float dt) {
         if (parentEnemy.isDead()) return;
         parentEnemy.setXVelocity(SPEED * dt * getDirection());
+        parentEnemy.playAnimation("move");
     }
 
     @Override
