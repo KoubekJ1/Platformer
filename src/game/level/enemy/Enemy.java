@@ -61,9 +61,9 @@ public class Enemy {
         return new float[]{sprite.getWidth(), sprite.getHeight()};
     }
 
-    public void setPos(float[] pos) {
-        posX = pos[0];
-        posY = pos[1];
+    public void setPosition(float posX, float posY) {
+        this.posX = posX;
+        this.posY = posY;
     }
 
     public float[] getPosition() {
