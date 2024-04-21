@@ -125,4 +125,20 @@ public class Enemy {
             }
         }
     }
+
+    public float getXVelocity() {
+        return xVelocity;
+    }
+
+    public void setXVelocity(float xVelocity) {
+        this.xVelocity = xVelocity;
+    }
+
+    public float getYVelocity() {
+        return yVelocity;
+    }
+
+    public void setYVelocity(float yVelocity) {
+        this.yVelocity = yVelocity;
+    }
 }
