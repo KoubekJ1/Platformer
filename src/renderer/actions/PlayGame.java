@@ -21,6 +21,8 @@ public class PlayGame extends AbstractAction {
             if (i == 10 || i == 11) continue;
             testLevel.addBlock(new Block("blocks/brick.png", true), i, 20);
         }
+        testLevel.addBlock(new Block("blocks/brick.png", true), 20, 17);
+        testLevel.addBlock(new Block("blocks/brick.png", true), 25, 19);
         ProgramManager.play(testLevel);
     }
 }
