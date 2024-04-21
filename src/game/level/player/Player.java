@@ -139,6 +139,7 @@ public class Player {
         //endregion
 
         rightBlockCollisionCheck();
+        leftBlockCollisionCheck();
 
         //region Apply velocity
         posX += xVelocity;
@@ -224,6 +225,22 @@ public class Player {
             if ((block1 != null && block1.isCollision()) || (block2 != null && block2.isCollision())) {
                 xVelocity = 0;
                 posX = (float) Math.floor(posX + i);
+                break;
+            }
+        }
+    }
+
+    private void leftBlockCollisionCheck() {
+        for (float i = 0; i > xVelocity - 1 && xVelocity < 0; i--) {
+            if (i <= xVelocity) {
+                i = xVelocity;
+            }
+            if (Math.floor(posY + i) <= 0) break;
+            Block block1 = ProgramManager.getLevel().getBlock((int) Math.floor(posX + i), (int) posY);
+            Block block2 = ProgramManager.getLevel().getBlock((int) Math.floor(posX + i), (int) Math.ceil(posY));
+            if ((block1 != null && block1.isCollision()) || (block2 != null && block2.isCollision())) {
+                xVelocity = 0;
+                posX = (float) Math.ceil(posX + i);
                 break;
             }
         }
