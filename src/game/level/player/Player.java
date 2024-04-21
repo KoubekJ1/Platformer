@@ -182,16 +182,16 @@ public class Player {
             camera.setWorldScale(camera.getTransform().getScaleX() - 1 * dt);
         }
         if (InputManager.isKeyPressed(KeyEvent.VK_I)) {
-            camera.setPosition(camera.getTransform().getTranslateX(), camera.getTransform().getTranslateY() + 1000 * dt);
+            camera.setPosition(camera.getTransform().getTranslateX(), camera.getTransform().getTranslateY() - 10 * dt);
         }
         if (InputManager.isKeyPressed(KeyEvent.VK_K)) {
-            camera.setPosition(camera.getTransform().getTranslateX(), camera.getTransform().getTranslateY() - 1000 * dt);
+            camera.setPosition(camera.getTransform().getTranslateX(), camera.getTransform().getTranslateY() + 10 * dt);
         }
         if (InputManager.isKeyPressed(KeyEvent.VK_J)) {
-            camera.setPosition(camera.getTransform().getTranslateX() + 1000 * dt, camera.getTransform().getTranslateY());
+            camera.setPosition(camera.getTransform().getTranslateX() - 10 * dt, camera.getTransform().getTranslateY());
         }
         if (InputManager.isKeyPressed(KeyEvent.VK_L)) {
-            camera.setPosition(camera.getTransform().getTranslateX() - 1000 * dt, camera.getTransform().getTranslateY());
+            camera.setPosition(camera.getTransform().getTranslateX() + 10 * dt, camera.getTransform().getTranslateY());
         }
         //endregion
     }
