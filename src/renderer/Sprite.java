@@ -99,4 +99,12 @@ public class Sprite {
         scaledImages.put(image, finalImage);
         return finalImage;
     }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
 }
