@@ -41,4 +41,12 @@ public class Camera {
     public AffineTransform getTransform() {
         return transform;
     }
+
+    public Player getParentPlayer() {
+        return parentPlayer;
+    }
+
+    public CameraStrategy getCameraStrategy() {
+        return cameraStrategy;
+    }
 }
