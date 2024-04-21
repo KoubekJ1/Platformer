@@ -1,12 +1,17 @@
 package game.level.enemy;
 
+import game.ProgramManager;
 import renderer.Sprite;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Enemy {
     private Sprite sprite;
     private EnemyBehavior ai;
+    private Timer deathTimer;
 
     private int posX;
     private int posY;
@@ -28,6 +33,19 @@ public class Enemy {
 
     public void damage() {
         ai.damage();
+    }
+
+    public void kill() {
+        playAnimation("kill");
+        deathTimer = new Timer(sprite.getAnimationTimeLeft(), e -> {
+            if (e.getSource() == deathTimer) {
+                removeFromLevel();
+            }
+        });
+    }
+
+    private void removeFromLevel() {
+        ProgramManager.getLevel().getEnemies().remove(this);
     }
 
     public void setWidth(float width) {
