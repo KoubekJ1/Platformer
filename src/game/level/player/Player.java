@@ -14,9 +14,6 @@ import java.util.HashMap;
 
 public class Player {
 
-    private int playerWidth;
-    private int playerHeight;
-
     private static final String PLAYER_TEXTURES_DIRECTORY = "characters/player/";
 
     private static final float TERMINAL_VELOCITY = 50;
@@ -43,9 +40,6 @@ public class Player {
         xVelocity = 0;
         yVelocity = 0;
 
-        playerWidth = 1;
-        playerHeight = 1;
-
         camera = new Camera(this);
         HashMap<String, Animation> animations = new HashMap<>();
         ArrayList<String> images = new ArrayList<>();
@@ -60,7 +54,7 @@ public class Player {
         animations.put("air", new Animation(PLAYER_TEXTURES_DIRECTORY + "small/air.png"));
         animations.put("turn", new Animation(PLAYER_TEXTURES_DIRECTORY + "small/turn.png"));
 
-        sprite = new Sprite(animations, playerWidth, playerHeight);
+        sprite = new Sprite(animations, 1, 1);
     }
 
     public void update(float dt) {
@@ -133,7 +127,7 @@ public class Player {
         if (posX + xVelocity < 0 || Math.ceil(posX) + xVelocity > ProgramManager.getLevel().getLevelSizeX() - 1) {
             xVelocity = 0;
         }
-        if (posY + yVelocity < 0 || Math.ceil(posY) + playerHeight + yVelocity > ProgramManager.getLevel().getLevelSizeY() - 1) {
+        if (posY + yVelocity < 0 || Math.ceil(posY) + getSize()[1] + yVelocity > ProgramManager.getLevel().getLevelSizeY() - 1) {
             yVelocity = 0;
         }
         //endregion
@@ -276,6 +270,10 @@ public class Player {
 
     public float[] getVelocity() {
         return new float[]{xVelocity, yVelocity};
+    }
+
+    public float[] getSize() {
+        return new float[]{sprite.getWidth(), sprite.getHeight()};
     }
 
     public BufferedImage getCurrentImage(float currentBlockSize) {
