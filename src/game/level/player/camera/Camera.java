@@ -21,6 +21,7 @@ public class Camera {
     public Camera(Player parentPlayer, CameraStrategy cameraStrategy) {
         transform = new AffineTransform(1, 0, 0, 1, 0, 0); // Base scale, upper-left corner position
         this.parentPlayer = parentPlayer;
+        this.cameraStrategy = cameraStrategy;
     }
 
     public void setPosition(double x, double y) {
