@@ -2,6 +2,7 @@ package renderer.window;
 
 import game.ProgramManager;
 import game.level.Block;
+import game.level.enemy.Enemy;
 import game.level.player.Player;
 import renderer.RenderInfo;
 import renderer.Renderer;
@@ -63,6 +64,14 @@ public class GameplayJPanel extends JPanel {
                 throw new IllegalStateException("Player doesn't have an active image!");
             }
             renderTile(g2D, player.getCurrentImage(baseBlockSize), player.getPosition()[0], player.getPosition()[1]);
+        }
+
+        // Rendering the enemies
+        for (Enemy enemy : renderInfo.getEnemies()) {
+            if (enemy.getActiveImage(baseBlockSize) == null) {
+                throw new IllegalStateException("Enemy doesn't have an active image!");
+            }
+            renderTile(g2D, enemy.getActiveImage(baseBlockSize), enemy.getPosition()[0], enemy.getPosition()[1]);
         }
 
         Block[][] blocks = renderInfo.getBlocks();
