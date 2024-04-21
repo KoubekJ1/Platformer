@@ -28,7 +28,7 @@ public class GameplayJPanel extends JPanel {
     }
 
     private void updateBaseBlockSize() {
-        baseBlockSize = this.getWidth() / 40.0f;
+        baseBlockSize = this.getHeight() / 20.0f;
     }
 
     public void render(RenderInfo renderInfo) {
