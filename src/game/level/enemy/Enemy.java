@@ -157,7 +157,7 @@ public class Enemy {
         ArrayList<String> movementTextures = new ArrayList<>();
         movementTextures.add("characters/enemies/goomba/move1.png");
         movementTextures.add("characters/enemies/goomba/move2.png");
-        Animation movementAnimation = new Animation(movementTextures, 80, true);
+        Animation movementAnimation = new Animation(movementTextures, 160, true);
 
         ArrayList<String> killTextures = new ArrayList<>();
         killTextures.add("characters/enemies/goomba/kill.png");
