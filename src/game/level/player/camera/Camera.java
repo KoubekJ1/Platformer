@@ -26,7 +26,7 @@ public class Camera {
     }
 
     public void setPosition(double x, double y) {
-        transform.setTransform(transform.getScaleX(), 0, 0, transform.getScaleY(), -x, -y);
+        transform.setTransform(transform.getScaleX(), 0, 0, transform.getScaleY(), x, y);
     }
 
     public void setWorldScale(double scale) {
