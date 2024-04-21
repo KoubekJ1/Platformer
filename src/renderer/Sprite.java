@@ -111,4 +111,8 @@ public class Sprite {
     public void setHeight(float height) {
         this.height = height;
     }
+
+    public int getAnimationTimeLeft() {
+        return currentAnimation.getTimeLeft();
+    }
 }
