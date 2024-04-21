@@ -54,7 +54,7 @@ public class GameplayJPanel extends JPanel {
         // Setup
         updateBaseBlockSize();
         currentTransform = (AffineTransform) renderInfo.getCamera().getTransform().clone();
-        currentTransform.concatenate(defaultTransform);
+        currentTransform.setTransform(currentTransform.getScaleX(), 0, 0, currentTransform.getScaleY(), currentTransform.getTranslateX() * baseBlockSize, currentTransform.getTranslateY() * baseBlockSize);
         g2D.setTransform(currentTransform);
 
         // Rendering the player(s)
