@@ -8,6 +8,7 @@ import util.InputManager;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -143,6 +144,10 @@ public class Enemy {
 
     public void setYVelocity(float yVelocity) {
         this.yVelocity = yVelocity;
+    }
+
+    public BufferedImage getActiveImage(float currentBlockSize) {
+        return sprite.getCurrentImage(currentBlockSize);
     }
 
     public static Enemy getGoomba(int x, int y) {
