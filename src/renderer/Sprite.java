@@ -93,7 +93,7 @@ public class Sprite {
         }
 
         lastBlockSize = currentBlockSize;
-        Image scaledImage = image.getScaledInstance((int) (width * currentBlockSize), (int) (height * currentBlockSize), BufferedImage.SCALE_SMOOTH);
+        Image scaledImage = image.getScaledInstance((int) (width * currentBlockSize), (int) (height * currentBlockSize), BufferedImage.SCALE_DEFAULT);
         BufferedImage finalImage = new BufferedImage((int) (width * currentBlockSize), (int) (height * currentBlockSize), BufferedImage.TYPE_INT_ARGB);
         finalImage.createGraphics().drawImage(scaledImage, 0, 0, null);
         scaledImages.put(image, finalImage);
