@@ -45,8 +45,4 @@ public class Camera {
     public Player getParentPlayer() {
         return parentPlayer;
     }
-
-    public CameraStrategy getCameraStrategy() {
-        return cameraStrategy;
-    }
 }
