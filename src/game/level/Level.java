@@ -66,6 +66,9 @@ public class Level implements Serializable, ActionListener {
         for (Player player : players) {
             player.update(dt);
         }
+        for (Enemy enemy : enemies) {
+            enemy.update(dt);
+        }
         Renderer.render(renderInfo);
     }
 
