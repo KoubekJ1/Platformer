@@ -4,9 +4,6 @@ import game.ProgramManager;
 import renderer.Sprite;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Enemy {
     private Sprite sprite;
