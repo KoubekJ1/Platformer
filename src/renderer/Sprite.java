@@ -12,8 +12,8 @@ import java.util.HashMap;
 public class Sprite {
     private HashMap<String, Animation> animations;
     private Animation currentAnimation;
-    private int width;
-    private int height;
+    private float width;
+    private float height;
     private boolean mirrored;
 
     private float lastBlockSize = 0;
@@ -100,19 +100,19 @@ public class Sprite {
         return finalImage;
     }
 
-    public int getWidth() {
+    public float getWidth() {
         return width;
     }
 
-    public int getHeight() {
+    public float getHeight() {
         return height;
     }
 
-    public void setWidth(int width) {
+    public void setWidth(float width) {
         this.width = width;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(float height) {
         this.height = height;
     }
 }
