@@ -65,9 +65,11 @@ public class Player {
 
     public void update(float dt) {
         applyGravity(dt);
-        // Checking collision with the ground must be done before jumping
-        if (yVelocity > 0) groundCollisionCheck();
+        // Checking collision with the ground must be done BEFORE jumping
+        groundCollisionCheck();
         if (InputManager.isKeyPressed(KeyEvent.VK_W) || InputManager.isKeyPressed(KeyEvent.VK_SPACE) || InputManager.isKeyPressed(KeyEvent.VK_UP)) jump();
+        // Checking collision with the ceiling must be done AFTER jumping
+        ceilingCollisionCheck();
 
         // region Horizontal movement
         float acceleration;
@@ -188,6 +190,22 @@ public class Player {
             if ((block1 != null && block1.isCollision()) || (block2 != null && block2.isCollision())) {
                 yVelocity = 0;
                 posY = (float) Math.floor(posY + i);
+                break;
+            }
+        }
+    }
+
+    private void ceilingCollisionCheck() {
+        for (float i = 0; i > yVelocity - 1 && yVelocity < 0; i--) {
+            if (i <= yVelocity) {
+                i = yVelocity;
+            }
+            if (Math.floor(posY + i) <= 0) break;
+            Block block1 = ProgramManager.getLevel().getBlock((int) posX, (int) Math.floor(posY + i));
+            Block block2 = ProgramManager.getLevel().getBlock((int) Math.ceil(posX), (int) Math.floor(posY + i));
+            if ((block1 != null && block1.isCollision()) || (block2 != null && block2.isCollision())) {
+                yVelocity = 0;
+                posY = (float) Math.ceil(posY + i);
                 break;
             }
         }
