@@ -2,7 +2,7 @@ package renderer.window;
 
 import game.ProgramManager;
 import game.level.Block;
-import game.level.Player;
+import game.level.player.Player;
 import renderer.RenderInfo;
 import renderer.Renderer;
 

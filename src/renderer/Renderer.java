@@ -1,15 +1,6 @@
 package renderer;
 
-import game.level.Block;
-import game.level.Camera;
-import game.level.Player;
-import game.level.enemy.Enemy;
 import renderer.window.GameplayJPanel;
-import renderer.window.WindowManager;
-
-import java.awt.*;
-import java.awt.geom.AffineTransform;
-import java.util.LinkedList;
 
 public abstract class Renderer {
 

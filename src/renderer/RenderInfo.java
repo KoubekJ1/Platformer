@@ -1,8 +1,8 @@
 package renderer;
 
 import game.level.Block;
-import game.level.Camera;
-import game.level.Player;
+import game.level.player.camera.Camera;
+import game.level.player.Player;
 import game.level.enemy.Enemy;
 
 import java.awt.*;

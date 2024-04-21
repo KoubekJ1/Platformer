@@ -1,9 +1,10 @@
-package game.level;
+package game.level.player;
 
 import game.ProgramManager;
+import game.level.Block;
+import game.level.player.camera.Camera;
 import renderer.Animation;
 import renderer.Sprite;
-import util.AssetManager;
 import util.InputManager;
 
 import java.awt.event.KeyEvent;
@@ -170,6 +171,8 @@ public class Player {
         posY += yVelocity;
         //endregion
 
+        updateCamera();
+
         //region Debug
         if (!ProgramManager.isDebug()) return;
         if (InputManager.isKeyPressed(KeyEvent.VK_PAGE_UP)) {
@@ -200,6 +203,10 @@ public class Player {
         if (xVelocity / Math.abs(xVelocity) != direction) {
             xVelocity = 0;
         }
+    }
+
+    public void updateCamera() {
+        camera.update();
     }
 
     public Camera getCamera() {
