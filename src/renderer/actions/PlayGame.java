@@ -3,6 +3,7 @@ package renderer.actions;
 import game.ProgramManager;
 import game.level.Block;
 import game.level.Level;
+import game.level.enemy.Enemy;
 import renderer.Sprite;
 
 import javax.swing.*;
@@ -23,6 +24,10 @@ public class PlayGame extends AbstractAction {
         }
         testLevel.addBlock(new Block("blocks/brick.png", true), 20, 17);
         testLevel.addBlock(new Block("blocks/brick.png", true), 25, 19);
+        testLevel.addBlock(new Block("blocks/brick.png", true), 35, 19);
+
+        testLevel.addEnemy(Enemy.getGoomba(30, 19));
+
         ProgramManager.play(testLevel);
     }
 }
