@@ -1,5 +1,8 @@
 package game.level.enemy;
 
+import game.ProgramManager;
+import game.level.Block;
+
 public class Goomba extends EnemyBehavior {
     private static final float SPEED = 1;
     private boolean direction;
@@ -15,7 +18,7 @@ public class Goomba extends EnemyBehavior {
     @Override
     public void update(float dt) {
         if (parentEnemy.isDead()) return;
-        parentEnemy.setPosition(parentEnemy.getPosition()[0] + SPEED * dt * getDirection(), parentEnemy.getPosition()[1]);
+        parentEnemy.setXVelocity(SPEED * dt * getDirection());
     }
 
     @Override
@@ -28,6 +31,40 @@ public class Goomba extends EnemyBehavior {
             return 1;
         } else {
             return -1;
+        }
+    }
+
+    private void switchDirection() {
+        direction = !direction;
+    }
+
+    private void rightBlockCollisionCheck() {
+        for (float i = 0; i < parentEnemy.getXVelocity() + 1 && parentEnemy.getXVelocity() > 0; i++) {
+            if (i >= parentEnemy.getXVelocity()) {
+                i = parentEnemy.getXVelocity();
+            }
+            if (Math.ceil(parentEnemy.getPosition()[0] + i) >= ProgramManager.getLevel().getLevelSizeX()) break;
+            Block block1 = ProgramManager.getLevel().getBlock((int) (Math.ceil(parentEnemy.getPosition()[0] + i)), (int) parentEnemy.getPosition()[1]);
+            Block block2 = ProgramManager.getLevel().getBlock((int) Math.ceil(parentEnemy.getPosition()[0] + i), (int) Math.ceil(parentEnemy.getPosition()[1]));
+            if ((block1 != null && block1.isCollision()) || (block2 != null && block2.isCollision())) {
+                switchDirection();
+                break;
+            }
+        }
+    }
+
+    private void leftBlockCollisionCheck() {
+        for (float i = 0; i > parentEnemy.getXVelocity() - 1 && parentEnemy.getXVelocity() < 0; i--) {
+            if (i <= parentEnemy.getXVelocity()) {
+                i = parentEnemy.getXVelocity();
+            }
+            if (Math.floor(parentEnemy.getPosition()[1] + i) <= 0) break;
+            Block block1 = ProgramManager.getLevel().getBlock((int) Math.floor(parentEnemy.getPosition()[0] + i), (int) parentEnemy.getPosition()[1]);
+            Block block2 = ProgramManager.getLevel().getBlock((int) Math.floor(parentEnemy.getPosition()[0] + i), (int) Math.ceil(parentEnemy.getPosition()[1]));
+            if ((block1 != null && block1.isCollision()) || (block2 != null && block2.isCollision())) {
+                switchDirection();
+                break;
+            }
         }
     }
 }
