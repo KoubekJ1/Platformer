@@ -45,7 +45,7 @@ public class Player {
         playerWidth = 1;
         playerHeight = 1;
 
-        camera = new Camera();
+        camera = new Camera(this);
         HashMap<String, Animation> animations = new HashMap<>();
         ArrayList<String> images = new ArrayList<>();
 

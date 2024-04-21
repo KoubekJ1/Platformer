@@ -5,9 +5,15 @@ import java.awt.geom.AffineTransform;
 
 public class Camera {
     private AffineTransform transform;
+    private Player parentPlayer;
 
     public Camera() {
         transform = new AffineTransform(1, 0, 0, 1, 0, 0); // Base scale, upper-left corner position
+    }
+
+    public Camera(Player parentPlayer) {
+        transform = new AffineTransform(1, 0, 0, 1, 0, 0); // Base scale, upper-left corner position
+        this.parentPlayer = parentPlayer;
     }
 
     public void setPosition(double x, double y) {
