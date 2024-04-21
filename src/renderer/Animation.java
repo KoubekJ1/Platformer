@@ -57,6 +57,10 @@ public class Animation implements ActionListener {
         animationTimer.stop();
     }
 
+    public int getTimeLeft() {
+        return animationTimer.getDelay() * (imageOrder.length - currentImage - 1);
+    }
+
     public BufferedImage getCurrentImage() {
         return AssetManager.getTexture(images.get(imageOrder[currentImage]));
     }
