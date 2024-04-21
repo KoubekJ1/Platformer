@@ -45,8 +45,4 @@ public abstract class WindowManager {
     public static int getRefreshRate() {
         return GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getRefreshRate();
     }
-
-    public static float getBaseBlockSize() {
-        return window.getBaseBlockSize();
-    }
 }

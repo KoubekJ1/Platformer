@@ -66,10 +66,6 @@ public class GameJFrame extends JFrame implements KeyListener {
         return gameplayCardInitialized;
     }
 
-    public float getBaseBlockSize() {
-        return gameplayPanel.getBaseBlockSize();
-    }
-
     @Override
     public void keyTyped(KeyEvent e) {
 

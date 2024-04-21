@@ -91,8 +91,4 @@ public class GameplayJPanel extends JPanel {
     private void renderTile(Graphics2D graphics2D, BufferedImage image, float x, float y) {
         graphics2D.drawImage(image, (int) (x * baseBlockSize), (int) (y * baseBlockSize), null, null);
     }
-
-    public float getBaseBlockSize() {
-        return baseBlockSize;
-    }
 }
