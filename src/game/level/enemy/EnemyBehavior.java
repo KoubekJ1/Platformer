@@ -1,4 +1,11 @@
 package game.level.enemy;
 
-public class EnemyBehavior {
+public abstract class EnemyBehavior {
+    protected Enemy parentEnemy;
+
+    public EnemyBehavior(Enemy parentEnemy) {
+        this.parentEnemy = parentEnemy;
+    }
+
+    public abstract void update();
 }
