@@ -9,6 +9,6 @@ public class FollowPlayerStrategy extends CameraStrategy {
 
     @Override
     public void update() {
-        parentCamera.setPosition(parentCamera.getParentPlayer().getPosition()[0] - 15, parentCamera.getParentPlayer().getPosition()[1] - 15);
+        parentCamera.setPosition(-(parentCamera.getParentPlayer().getPosition()[0] - 15), -(parentCamera.getParentPlayer().getPosition()[1] - 15));
     }
 }
