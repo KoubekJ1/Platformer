@@ -106,11 +106,9 @@ public abstract class Character {
 
     public boolean collision(Character character) {
         if (this.sprite == null) {
-            System.out.println("Character sprite is null!");
             return false;
         }
         if (character.sprite == null) {
-            System.out.println("Character sprite is null!");
             return false;
         }
         if (this.posX + this.getSizeX() < character.posX) return false;
