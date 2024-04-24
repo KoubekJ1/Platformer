@@ -145,7 +145,7 @@ public class Player extends Character {
             if (this.velocityY > 0) {
                 enemy.damage();
             } else {
-                System.out.println("Player took damage");
+
             }
         }
 
@@ -219,9 +219,5 @@ public class Player extends Character {
 
     public float[] getSize() {
         return new float[]{sprite.getWidth(), sprite.getHeight()};
-    }
-
-    public BufferedImage getCurrentImage(float currentBlockSize) {
-        return sprite.getCurrentImage(currentBlockSize);
     }
 }

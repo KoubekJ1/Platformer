@@ -77,10 +77,6 @@ public class Enemy extends Character {
         return deathTimer.isRunning();
     }
 
-    public BufferedImage getActiveImage(float currentBlockSize) {
-        return sprite.getCurrentImage(currentBlockSize);
-    }
-
     public static Enemy getGoomba(int x, int y) {
         HashMap<String, Animation> animations = new HashMap<>();
         Animation staticAnimation = new Animation("characters/enemies/goomba/static.png");

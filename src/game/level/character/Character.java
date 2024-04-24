@@ -6,6 +6,7 @@ import renderer.Sprite;
 import util.InputManager;
 
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 
 public abstract class Character {
     public static final int GRAVITY_ACCELERATION = 1;
@@ -117,6 +118,10 @@ public abstract class Character {
         if (this.posY > character.posY + character.getSizeY()) return false;
 
         return true;
+    }
+
+    public BufferedImage getCurrentImage(float currentBlockSize) {
+        return sprite.getCurrentImage(currentBlockSize);
     }
 
     public float getVelocityX() {
