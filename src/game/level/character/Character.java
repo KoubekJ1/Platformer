@@ -114,6 +114,8 @@ public abstract class Character {
         if (character.sprite == null) {
             return false;
         }
+        if (!this.hasCollision || !character.hasCollision) return false;
+
         if (this.posX + this.getSizeX() < character.posX) return false;
         if (this.posX > character.posX + character.getSizeX()) return false;
         if (this.posY + this.getSizeY() < character.posY) return false;
