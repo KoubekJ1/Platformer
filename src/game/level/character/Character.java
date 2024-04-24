@@ -26,7 +26,7 @@ public abstract class Character {
         }
         
         characterUpdate(dt);
-        
+
         posX += velocityX;
         posY += velocityY;
     }
@@ -34,11 +34,7 @@ public abstract class Character {
     protected abstract void characterUpdate(float dt);
 
     private void applyGravity(float dt) {
-        float gravityEffectiveness = 1;
-        if (velocityY < 0 && !(InputManager.isKeyPressed(KeyEvent.VK_W) || InputManager.isKeyPressed(KeyEvent.VK_SPACE) || InputManager.isKeyPressed(KeyEvent.VK_UP))) {
-            gravityEffectiveness = 3f;
-        }
-        velocityY += GRAVITY_ACCELERATION * dt * gravityEffectiveness;
+        velocityY += GRAVITY_ACCELERATION * dt;
         if (velocityY > TERMINAL_VELOCITY) {
             velocityY = TERMINAL_VELOCITY;
         }
