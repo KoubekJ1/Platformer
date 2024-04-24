@@ -50,6 +50,7 @@ public class Enemy extends Character {
                 removeFromLevel();
             }
         });
+        deathTimer.start();
     }
 
     private void removeFromLevel() {
