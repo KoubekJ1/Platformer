@@ -20,7 +20,7 @@ public class Goomba extends EnemyBehavior {
         if (parentEnemy.isDead()) return;
         rightBlockCollisionCheck();
         leftBlockCollisionCheck();
-        parentEnemy.setXVelocity(SPEED * dt * getDirection());
+        parentEnemy.setVelocityX(SPEED * dt * getDirection());
         parentEnemy.playAnimation("move");
     }
 
@@ -42,9 +42,9 @@ public class Goomba extends EnemyBehavior {
     }
 
     private void rightBlockCollisionCheck() {
-        for (float i = 0; i < parentEnemy.getXVelocity() + 1 && parentEnemy.getXVelocity() > 0; i++) {
-            if (i >= parentEnemy.getXVelocity()) {
-                i = parentEnemy.getXVelocity();
+        for (float i = 0; i < parentEnemy.getVelocityX() + 1 && parentEnemy.getVelocityX() > 0; i++) {
+            if (i >= parentEnemy.getVelocityX()) {
+                i = parentEnemy.getVelocityX();
             }
             if (Math.ceil(parentEnemy.getPosition()[0] + i) >= ProgramManager.getLevel().getLevelSizeX()) break;
             Block block1 = ProgramManager.getLevel().getBlock((int) (Math.ceil(parentEnemy.getPosition()[0] + i)), (int) parentEnemy.getPosition()[1]);
@@ -57,9 +57,9 @@ public class Goomba extends EnemyBehavior {
     }
 
     private void leftBlockCollisionCheck() {
-        for (float i = 0; i > parentEnemy.getXVelocity() - 1 && parentEnemy.getXVelocity() < 0; i--) {
-            if (i <= parentEnemy.getXVelocity()) {
-                i = parentEnemy.getXVelocity();
+        for (float i = 0; i > parentEnemy.getVelocityX() - 1 && parentEnemy.getVelocityX() < 0; i--) {
+            if (i <= parentEnemy.getVelocityX()) {
+                i = parentEnemy.getVelocityX();
             }
             if (Math.floor(parentEnemy.getPosition()[1] + i) <= 0) break;
             Block block1 = ProgramManager.getLevel().getBlock((int) Math.floor(parentEnemy.getPosition()[0] + i), (int) parentEnemy.getPosition()[1]);
