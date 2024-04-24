@@ -2,7 +2,9 @@ package game.level.character.player;
 
 import game.ProgramManager;
 import game.level.Block;
+import game.level.Level;
 import game.level.character.Character;
+import game.level.character.enemy.Enemy;
 import game.level.character.player.camera.Camera;
 import renderer.Animation;
 import renderer.Sprite;
@@ -26,7 +28,6 @@ public class Player extends Character {
     //private static final float SPRINTING_ACCELERATION = 3;
     //private static final int DRAG_SLOWDOWN = 5;
 
-    private Sprite sprite;
     private Camera camera;
 
     public Player() {
@@ -138,6 +139,14 @@ public class Player extends Character {
         }
         if (leftBlockCollisionCheck()) {
             velocityX = 0;
+        }
+        for (Enemy enemy : ProgramManager.getLevel().getEnemies()) {
+            if (!this.collision(enemy)) continue;
+            if (this.velocityY > 0) {
+                enemy.damage();
+            } else {
+                System.out.println("Player took damage");
+            }
         }
 
         updateCamera();
