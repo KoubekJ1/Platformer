@@ -2,6 +2,7 @@ package game.level.character.player;
 
 import game.ProgramManager;
 import game.level.Block;
+import game.level.character.Character;
 import game.level.character.player.camera.Camera;
 import renderer.Animation;
 import renderer.Sprite;
@@ -12,7 +13,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Player {
+public class Player extends Character {
 
     private static final String PLAYER_TEXTURES_DIRECTORY = "characters/player/";
 
@@ -25,20 +26,14 @@ public class Player {
     //private static final float SPRINTING_ACCELERATION = 3;
     //private static final int DRAG_SLOWDOWN = 5;
 
-    private float posX;
-    private float posY;
-    private float xVelocity;
-    private float yVelocity;
-
-
     private Sprite sprite;
     private Camera camera;
 
     public Player() {
         posX = 0;
         posY = 0;
-        xVelocity = 0;
-        yVelocity = 0;
+        velocityX = 0;
+        velocityY = 0;
 
         camera = new Camera(this);
         HashMap<String, Animation> animations = new HashMap<>();
@@ -57,13 +52,19 @@ public class Player {
         sprite = new Sprite(animations, 1, 1);
     }
 
-    public void update(float dt) {
-        applyGravity(dt);
-        // Checking collision with the ground must be done BEFORE jumping
-        groundCollisionCheck();
-        if (InputManager.isKeyPressed(KeyEvent.VK_W) || InputManager.isKeyPressed(KeyEvent.VK_SPACE) || InputManager.isKeyPressed(KeyEvent.VK_UP)) jump();
+    @Override
+    public void characterUpdate(float dt) {
+        if (InputManager.isKeyPressed(KeyEvent.VK_W) || InputManager.isKeyPressed(KeyEvent.VK_SPACE) || InputManager.isKeyPressed(KeyEvent.VK_UP)) {
+            jump();
+        } else {
+            if (velocityY < 0) {
+                velocityY += 2 * GRAVITY_ACCELERATION * dt;
+            }
+        }
         // Checking collision with the ceiling must be done AFTER jumping
-        ceilingCollisionCheck();
+        if (ceilingCollisionCheck()) {
+            velocityY = 0;
+        }
 
         // region Horizontal movement
         float acceleration;
@@ -83,62 +84,61 @@ public class Player {
         boolean moving = false;
         if (InputManager.isKeyPressed(KeyEvent.VK_RIGHT) || InputManager.isKeyPressed(KeyEvent.VK_D)) {
             sprite.setMirrored(false);
-            if (xVelocity < 0) {
+            if (velocityX < 0) {
                 sprite.playAnimation("turn");
             } else {
                 sprite.playAnimation(animation);
             }
-            xVelocity += acceleration * dt;
+            velocityX += acceleration * dt;
             moving = true;
         }
         if (InputManager.isKeyPressed(KeyEvent.VK_LEFT) || InputManager.isKeyPressed(KeyEvent.VK_A)) {
             sprite.setMirrored(true);
-            if (xVelocity > 0) {
+            if (velocityX > 0) {
                 sprite.playAnimation("turn");
             } else {
                 sprite.playAnimation(animation);
             }
-            xVelocity -= acceleration * dt;
+            velocityX -= acceleration * dt;
             moving = !moving;
         }
         //endregion
 
         //region Drag force (+idle animation)
-        if (!moving && xVelocity != 0) {
+        if (!moving && velocityX != 0) {
             applyDrag(dt, acceleration);
-        } else if (xVelocity == 0) {
+        } else if (velocityX == 0) {
             sprite.stopAnimation();
         }
         //endregion
 
         //region Max speed check
-        if (xVelocity > maxSpeed) {
-            xVelocity = maxSpeed;
-        } else if (xVelocity < -maxSpeed) {
-            xVelocity = -maxSpeed;
+        if (velocityX > maxSpeed) {
+            velocityX = maxSpeed;
+        } else if (velocityX < -maxSpeed) {
+            velocityX = -maxSpeed;
         }
         //endregion
 
         //region Air check (for animation)
-        if (yVelocity != 0) sprite.playAnimation("air");
+        if (velocityY != 0) sprite.playAnimation("air");
         //endregion
 
         //region Out of bounds check
-        if (posX + xVelocity < 0 || Math.ceil(posX) + xVelocity > ProgramManager.getLevel().getLevelSizeX() - 1) {
-            xVelocity = 0;
+        if (posX + velocityX < 0 || Math.ceil(posX) + velocityX > ProgramManager.getLevel().getLevelSizeX() - 1) {
+            velocityX = 0;
         }
-        if (posY + yVelocity < 0 || Math.ceil(posY) + getSize()[1] + yVelocity > ProgramManager.getLevel().getLevelSizeY() - 1) {
-            yVelocity = 0;
+        if (posY + velocityY < 0 || Math.ceil(posY) + getSize()[1] + velocityY > ProgramManager.getLevel().getLevelSizeY() - 1) {
+            velocityY = 0;
         }
         //endregion
 
-        rightBlockCollisionCheck();
-        leftBlockCollisionCheck();
-
-        //region Apply velocity
-        posX += xVelocity;
-        posY += yVelocity;
-        //endregion
+        if (rightBlockCollisionCheck()) {
+            velocityX = 0;
+        }
+        if (leftBlockCollisionCheck()) {
+            velocityX = 0;
+        }
 
         updateCamera();
 
@@ -167,92 +167,28 @@ public class Player {
 
     private void applyGravity(float dt) {
         float gravityEffectiveness = 1;
-        if (yVelocity < 0 && !(InputManager.isKeyPressed(KeyEvent.VK_W) || InputManager.isKeyPressed(KeyEvent.VK_SPACE) || InputManager.isKeyPressed(KeyEvent.VK_UP))) {
+        if (velocityY < 0 && !(InputManager.isKeyPressed(KeyEvent.VK_W) || InputManager.isKeyPressed(KeyEvent.VK_SPACE) || InputManager.isKeyPressed(KeyEvent.VK_UP))) {
             gravityEffectiveness = 3f;
         }
-        yVelocity += GRAVITY_ACCELERATION * dt * gravityEffectiveness;
-        if (yVelocity > TERMINAL_VELOCITY) {
-            yVelocity = TERMINAL_VELOCITY;
-        }
-    }
-
-    private void groundCollisionCheck() {
-        for (float i = 0; i < yVelocity + 1 && yVelocity > 0; i++) {
-            if (i >= yVelocity) {
-                i = yVelocity;
-            }
-            if (Math.ceil(posY + i) >= ProgramManager.getLevel().getLevelSizeY()) break;
-            Block block1 = ProgramManager.getLevel().getBlock((int) posX, (int) Math.ceil(posY + i));
-            Block block2 = ProgramManager.getLevel().getBlock((int) Math.ceil(posX), (int) Math.ceil(posY + i));
-            if ((block1 != null && block1.isCollision()) || (block2 != null && block2.isCollision())) {
-                yVelocity = 0;
-                posY = (float) Math.floor(posY + i);
-                break;
-            }
-        }
-    }
-
-    private void ceilingCollisionCheck() {
-        for (float i = 0; i > yVelocity - 1 && yVelocity < 0; i--) {
-            if (i <= yVelocity) {
-                i = yVelocity;
-            }
-            if (Math.floor(posY + i) <= 0) break;
-            Block block1 = ProgramManager.getLevel().getBlock((int) posX, (int) Math.floor(posY + i));
-            Block block2 = ProgramManager.getLevel().getBlock((int) Math.ceil(posX), (int) Math.floor(posY + i));
-            if ((block1 != null && block1.isCollision()) || (block2 != null && block2.isCollision())) {
-                yVelocity = 0;
-                posY = (float) Math.ceil(posY + i);
-                break;
-            }
-        }
-    }
-
-    private void rightBlockCollisionCheck() {
-        for (float i = 0; i < xVelocity + 1 && xVelocity > 0; i++) {
-            if (i >= xVelocity) {
-                i = xVelocity;
-            }
-            if (Math.ceil(posX + i) >= ProgramManager.getLevel().getLevelSizeX()) break;
-            Block block1 = ProgramManager.getLevel().getBlock((int) (Math.ceil(posX + i)), (int) posY);
-            Block block2 = ProgramManager.getLevel().getBlock((int) Math.ceil(posX + i), (int) Math.ceil(posY));
-            if ((block1 != null && block1.isCollision()) || (block2 != null && block2.isCollision())) {
-                xVelocity = 0;
-                posX = (float) Math.floor(posX + i);
-                break;
-            }
-        }
-    }
-
-    private void leftBlockCollisionCheck() {
-        for (float i = 0; i > xVelocity - 1 && xVelocity < 0; i--) {
-            if (i <= xVelocity) {
-                i = xVelocity;
-            }
-            if (Math.floor(posY + i) <= 0) break;
-            Block block1 = ProgramManager.getLevel().getBlock((int) Math.floor(posX + i), (int) posY);
-            Block block2 = ProgramManager.getLevel().getBlock((int) Math.floor(posX + i), (int) Math.ceil(posY));
-            if ((block1 != null && block1.isCollision()) || (block2 != null && block2.isCollision())) {
-                xVelocity = 0;
-                posX = (float) Math.ceil(posX + i);
-                break;
-            }
+        velocityY += GRAVITY_ACCELERATION * dt * gravityEffectiveness;
+        if (velocityY > TERMINAL_VELOCITY) {
+            velocityY = TERMINAL_VELOCITY;
         }
     }
 
     private void jump() {
-        if (yVelocity == 0) {
-            yVelocity -= JUMP_VELOCITY;
+        if (velocityY == 0) {
+            velocityY -= JUMP_VELOCITY;
         }
 
     }
 
     private void applyDrag(float dt, float acceleration) {
-        if (xVelocity == 0) return;
-        int direction = (int) (xVelocity / Math.abs(xVelocity));
-        xVelocity -= acceleration * direction * dt;
-        if (xVelocity / Math.abs(xVelocity) != direction) {
-            xVelocity = 0;
+        if (velocityX == 0) return;
+        int direction = (int) (velocityX / Math.abs(velocityX));
+        velocityX -= acceleration * direction * dt;
+        if (velocityX / Math.abs(velocityX) != direction) {
+            velocityX = 0;
         }
     }
 
@@ -269,7 +205,7 @@ public class Player {
     }
 
     public float[] getVelocity() {
-        return new float[]{xVelocity, yVelocity};
+        return new float[]{velocityX, velocityY};
     }
 
     public float[] getSize() {
