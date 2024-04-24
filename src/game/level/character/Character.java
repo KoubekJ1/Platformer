@@ -105,6 +105,7 @@ public abstract class Character {
     }
 
     public boolean collision(Character character) {
+        System.out.println(character);
         if (this.posX + this.getSizeX() < character.posX) return false;
         if (this.posX > character.posX + character.getSizeX()) return false;
         if (this.posY + this.getSizeY() < character.posY) return false;
@@ -143,5 +144,10 @@ public abstract class Character {
 
     public void setSizeY(float sizeY) {
         sprite.setWidth(sizeY);
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().toString();
     }
 }
