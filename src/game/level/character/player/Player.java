@@ -56,7 +56,7 @@ public class Player extends Character {
     @Override
     public void characterUpdate(float dt) {
         if (InputManager.isKeyPressed(KeyEvent.VK_W) || InputManager.isKeyPressed(KeyEvent.VK_SPACE) || InputManager.isKeyPressed(KeyEvent.VK_UP)) {
-            jump();
+            if (velocityY == 0) jump();
         } else {
             if (velocityY < 0) {
                 velocityY += 2 * GRAVITY_ACCELERATION * dt;
@@ -144,6 +144,7 @@ public class Player extends Character {
             if (!this.collision(enemy)) continue;
             if (this.velocityY > 0) {
                 enemy.damage();
+                jump();
             } else {
 
             }
@@ -186,10 +187,7 @@ public class Player extends Character {
     }
 
     private void jump() {
-        if (velocityY == 0) {
-            velocityY -= JUMP_VELOCITY;
-        }
-
+        velocityY -= JUMP_VELOCITY;
     }
 
     private void applyDrag(float dt, float acceleration) {
