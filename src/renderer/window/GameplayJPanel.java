@@ -106,7 +106,7 @@ public class GameplayJPanel extends JPanel {
 
         currentTransform.transform(new Point2D.Float(x * baseBlockSize, y * baseBlockSize), destinationPoint);
 
-        // Tile is off the screen horizontally (Left)        (Right)                                                        // Tile is out of bounds vertically (up)         (down)
+        // Tile is off the screen horizontally (Left)        (Right)                                                                                        // Tile is out of bounds vertically (up)         (down)
         if ((destinationPoint.getX() + baseBlockSize < 0 || destinationPoint.getX() > WindowManager.getResolution()[0] * (defaultTransform.getScaleX())) || (destinationPoint.getY() + baseBlockSize < 0 || destinationPoint.getY() > WindowManager.getResolution()[1] * (defaultTransform.getScaleY()))) {
             return;
         }
