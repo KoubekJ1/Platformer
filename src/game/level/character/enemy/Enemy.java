@@ -14,8 +14,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Enemy extends Character {
-    private static final float TERMINAL_VELOCITY = 50;
-    private static final float GRAVITY_ACCELERATION = 1;
 
     private EnemyBehavior ai;
     private Timer deathTimer;
