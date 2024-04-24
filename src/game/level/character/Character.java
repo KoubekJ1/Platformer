@@ -104,6 +104,10 @@ public abstract class Character {
         return false;
     }
 
+    public Character collision(Character character) {
+        return null;
+    }
+
     public float getVelocityX() {
         return velocityX;
     }
@@ -118,5 +122,21 @@ public abstract class Character {
 
     public void setVelocityY(float velocityY) {
         this.velocityY = velocityY;
+    }
+
+    public float getSizeX() {
+        return sprite.getWidth();
+    }
+
+    public void setSizeX(float sizeX) {
+        sprite.setWidth(sizeX);
+    }
+
+    public float getSizeY() {
+        return sprite.getHeight();
+    }
+
+    public void setSizeY(float sizeY) {
+        sprite.setWidth(sizeY);
     }
 }
