@@ -10,6 +10,7 @@ import renderer.Renderer;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 
 public class GameplayJPanel extends JPanel {
@@ -26,6 +27,7 @@ public class GameplayJPanel extends JPanel {
     public void initialize() {
         Renderer.setPanel(this);
         defaultTransform = ((Graphics2D) this.getGraphics()).getTransform();
+        currentTransform = new AffineTransform();
     }
 
     private void updateBaseBlockSize() {
@@ -54,8 +56,7 @@ public class GameplayJPanel extends JPanel {
 
         // Setup
         updateBaseBlockSize();
-        currentTransform = (AffineTransform) renderInfo.getCamera().getTransform().clone();
-        currentTransform.setTransform(currentTransform.getScaleX(), 0, 0, currentTransform.getScaleY(), currentTransform.getTranslateX() * baseBlockSize * currentTransform.getScaleX(), currentTransform.getTranslateY() * baseBlockSize * currentTransform.getScaleX());
+        currentTransform.setTransform(renderInfo.getCamera().getTransform().getScaleX(), 0, 0, renderInfo.getCamera().getTransform().getScaleY(), renderInfo.getCamera().getTransform().getTranslateX() * baseBlockSize * renderInfo.getCamera().getTransform().getScaleX(), renderInfo.getCamera().getTransform().getTranslateY() * baseBlockSize * renderInfo.getCamera().getTransform().getScaleX());
         g2D.setTransform(currentTransform);
 
         // Rendering the player(s)
@@ -91,13 +92,25 @@ public class GameplayJPanel extends JPanel {
             g2D.drawString("Player position: " + position[0] + ", " + position[1], 0, 40);
             float[] velocity = renderInfo.getPlayers().getFirst().getVelocity();
             g2D.drawString("Player velocity: " + velocity[0] + ", " + velocity[1], 0, 60);
-            AffineTransform camera = renderInfo.getCamera().getTransform();
-            g2D.drawString("Camera position: " + camera.getTranslateX() + ", " + camera.getTranslateY(), 0, 80);
-            g2D.drawString("Display scale: " + camera.getScaleX(), 0, 100);
+            AffineTransform playerCamera = renderInfo.getCamera().getTransform();
+            g2D.drawString("Camera position: " + playerCamera.getTranslateX() + ", " + playerCamera.getTranslateY(), 0, 80);
+            g2D.drawString("Display scale: " + playerCamera.getScaleX(), 0, 100);
+            AffineTransform finalTransform = currentTransform;
+            g2D.drawString("Transform translate: " + finalTransform.getTranslateX() + ", " + finalTransform.getTranslateY(), 600, 20);
+            g2D.drawString("Transform scale: " + finalTransform.getScaleX() + ", " + finalTransform.getScaleY(), 600, 40);
         }
     }
 
     private void renderTile(Graphics2D graphics2D, BufferedImage image, float x, float y) {
+        Point2D destinationPoint = new Point2D.Float();
+
+        currentTransform.transform(new Point2D.Float(x * baseBlockSize, y * baseBlockSize), destinationPoint);
+
+        // Tile is off the screen horizontally (Left)        (Right)                                                        // Tile is out of bounds vertically (up)         (down)
+        if ((destinationPoint.getX() + baseBlockSize < 0 || destinationPoint.getX() > WindowManager.getResolution()[0] * (defaultTransform.getScaleX())) || (destinationPoint.getY() + baseBlockSize < 0 || destinationPoint.getY() > WindowManager.getResolution()[1] * (defaultTransform.getScaleY()))) {
+            return;
+        }
+
         graphics2D.drawImage(image, (int) (x * baseBlockSize), (int) (y * baseBlockSize), null, null);
     }
 }
