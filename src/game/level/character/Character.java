@@ -20,6 +20,8 @@ public abstract class Character {
     protected float velocityX;
     protected float velocityY;
 
+    private boolean hasCollision = true;
+
     public void update(float dt) {
         applyGravity(dt);
         if (checkGroundCollision()) {
@@ -154,6 +156,14 @@ public abstract class Character {
 
     public void setSizeY(float sizeY) {
         sprite.setWidth(sizeY);
+    }
+
+    public boolean hasCollision() {
+        return hasCollision;
+    }
+
+    public void setCollision(boolean hasCollision) {
+        this.hasCollision = hasCollision;
     }
 
     @Override
