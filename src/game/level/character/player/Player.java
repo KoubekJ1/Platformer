@@ -187,7 +187,7 @@ public class Player extends Character {
     }
 
     private void jump() {
-        velocityY -= JUMP_VELOCITY;
+        velocityY = -JUMP_VELOCITY;
     }
 
     private void applyDrag(float dt, float acceleration) {
