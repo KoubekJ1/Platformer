@@ -103,4 +103,20 @@ public abstract class Character {
         }
         return false;
     }
+
+    public float getVelocityX() {
+        return velocityX;
+    }
+
+    public void setVelocityX(float velocityX) {
+        this.velocityX = velocityX;
+    }
+
+    public float getVelocityY() {
+        return velocityY;
+    }
+
+    public void setVelocityY(float velocityY) {
+        this.velocityY = velocityY;
+    }
 }
