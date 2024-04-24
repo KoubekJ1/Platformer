@@ -1,4 +1,4 @@
-package game.level.enemy;
+package game.level.character.enemy;
 
 public abstract class EnemyBehavior {
     protected Enemy parentEnemy;

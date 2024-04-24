@@ -1,4 +1,4 @@
-package game.level.enemy;
+package game.level.character.enemy;
 
 import game.ProgramManager;
 import game.level.Block;

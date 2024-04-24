@@ -1,4 +1,4 @@
-package game.level.player.camera;
+package game.level.character.player.camera;
 
 public abstract class CameraStrategy {
 

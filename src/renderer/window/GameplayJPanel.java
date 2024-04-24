@@ -2,8 +2,8 @@ package renderer.window;
 
 import game.ProgramManager;
 import game.level.Block;
-import game.level.enemy.Enemy;
-import game.level.player.Player;
+import game.level.character.enemy.Enemy;
+import game.level.character.player.Player;
 import renderer.RenderInfo;
 import renderer.Renderer;
 

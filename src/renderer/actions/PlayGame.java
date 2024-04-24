@@ -3,8 +3,7 @@ package renderer.actions;
 import game.ProgramManager;
 import game.level.Block;
 import game.level.Level;
-import game.level.enemy.Enemy;
-import renderer.Sprite;
+import game.level.character.enemy.Enemy;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

@@ -1,6 +1,4 @@
-package game.level.player.camera;
-
-import renderer.window.WindowManager;
+package game.level.character.player.camera;
 
 public class FollowPlayerStrategy extends CameraStrategy {
     public FollowPlayerStrategy(Camera parentCamera) {

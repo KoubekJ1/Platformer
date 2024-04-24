@@ -1,9 +1,9 @@
 package renderer;
 
 import game.level.Block;
-import game.level.player.camera.Camera;
-import game.level.player.Player;
-import game.level.enemy.Enemy;
+import game.level.character.player.camera.Camera;
+import game.level.character.player.Player;
+import game.level.character.enemy.Enemy;
 
 import java.awt.*;
 import java.util.LinkedList;

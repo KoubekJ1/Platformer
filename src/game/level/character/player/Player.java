@@ -1,8 +1,8 @@
-package game.level.player;
+package game.level.character.player;
 
 import game.ProgramManager;
 import game.level.Block;
-import game.level.player.camera.Camera;
+import game.level.character.player.camera.Camera;
 import renderer.Animation;
 import renderer.Sprite;
 import util.InputManager;
