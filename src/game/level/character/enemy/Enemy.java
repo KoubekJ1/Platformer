@@ -42,6 +42,7 @@ public class Enemy extends Character {
     }
 
     public void kill() {
+        this.setCollision(false);
         playAnimation("kill");
         deathTimer = new Timer(sprite.getAnimationTimeLeft(), e -> {
             if (e.getSource() == deathTimer) {
