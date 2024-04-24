@@ -104,8 +104,13 @@ public abstract class Character {
         return false;
     }
 
-    public Character collision(Character character) {
-        return null;
+    public boolean collision(Character character) {
+        if (this.posX + this.getSizeX() < character.posX) return false;
+        if (this.posX > character.posX + character.getSizeX()) return false;
+        if (this.posY + this.getSizeY() < character.posY) return false;
+        if (this.posY > character.posY + character.getSizeY()) return false;
+
+        return true;
     }
 
     public float getVelocityX() {
