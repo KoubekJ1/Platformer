@@ -78,6 +78,11 @@ public class GameplayJPanel extends JPanel {
         Block[][] blocks = renderInfo.getBlocks();
         for (int i = 0; i < blocks.length; i++) {
             for (int j = 0; j < blocks[0].length; j++) {
+                Point2D destinationPoint = new Point2D.Float();
+                currentTransform.transform(new Point2D.Float(i * baseBlockSize, j * baseBlockSize), destinationPoint);
+                if ((destinationPoint.getX() + baseBlockSize < 0 || destinationPoint.getX() > WindowManager.getResolution()[0] * (defaultTransform.getScaleX())) || (destinationPoint.getY() + baseBlockSize < 0 || destinationPoint.getY() > WindowManager.getResolution()[1] * (defaultTransform.getScaleY()))) {
+                    continue;
+                }
                 if (blocks[i][j] == null) continue;
                 renderTile(g2D, blocks[i][j].getCurrentImage(baseBlockSize), i, j);
             }
@@ -102,15 +107,6 @@ public class GameplayJPanel extends JPanel {
     }
 
     private void renderTile(Graphics2D graphics2D, BufferedImage image, float x, float y) {
-        Point2D destinationPoint = new Point2D.Float();
-
-        currentTransform.transform(new Point2D.Float(x * baseBlockSize, y * baseBlockSize), destinationPoint);
-
-        // Tile is off the screen horizontally (Left)        (Right)                                                                                        // Tile is out of bounds vertically (up)         (down)
-        if ((destinationPoint.getX() + baseBlockSize < 0 || destinationPoint.getX() > WindowManager.getResolution()[0] * (defaultTransform.getScaleX())) || (destinationPoint.getY() + baseBlockSize < 0 || destinationPoint.getY() > WindowManager.getResolution()[1] * (defaultTransform.getScaleY()))) {
-            return;
-        }
-
         graphics2D.drawImage(image, (int) (x * baseBlockSize), (int) (y * baseBlockSize), null, null);
     }
 }
