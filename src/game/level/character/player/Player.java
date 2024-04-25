@@ -1,8 +1,6 @@
 package game.level.character.player;
 
 import game.ProgramManager;
-import game.level.Block;
-import game.level.Level;
 import game.level.character.Character;
 import game.level.character.enemy.Enemy;
 import game.level.character.player.camera.Camera;
@@ -10,8 +8,8 @@ import renderer.Animation;
 import renderer.Sprite;
 import util.InputManager;
 
+import javax.swing.*;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -49,6 +47,7 @@ public class Player extends Character {
         animations.put("static", new Animation(PLAYER_TEXTURES_DIRECTORY + "small/static.png"));
         animations.put("air", new Animation(PLAYER_TEXTURES_DIRECTORY + "small/air.png"));
         animations.put("turn", new Animation(PLAYER_TEXTURES_DIRECTORY + "small/turn.png"));
+        animations.put("kill", new Animation(PLAYER_TEXTURES_DIRECTORY + "small/kill.png"));
 
         sprite = new Sprite(animations, 1, 1);
     }
@@ -137,7 +136,7 @@ public class Player extends Character {
                 enemy.damage();
                 jump();
             } else {
-
+                this.damage();
             }
         }
 
@@ -168,12 +167,15 @@ public class Player extends Character {
 
     @Override
     protected void damage() {
-
+        kill();
     }
 
     @Override
     protected void kill() {
-
+        sprite.playAnimation("kill");
+        JOptionPane.showConfirmDialog(null, "You are dead!", "Game Over", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE);
+        ProgramManager.endLevel();
+        Thread.currentThread().stop();
     }
 
     private void applyGravity(float dt) {

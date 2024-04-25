@@ -33,6 +33,12 @@ public class ProgramManager {
         ProgramManager.level.start();
     }
 
+    public static void endLevel() {
+        level.stop();
+        level = null;
+        WindowManager.switchCard("main-menu");
+    }
+
     public static Level getLevel() {
         return level;
     }

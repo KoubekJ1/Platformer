@@ -58,6 +58,10 @@ public class Level implements Serializable, ActionListener {
         gameTimer.start();
     }
 
+    public void stop() {
+        gameTimer.stop();
+    }
+
     public void update() {
         renderInfo = new RenderInfo(Color.CYAN, players.getFirst().getCamera(), blocks, players, enemies);
         if (ProgramManager.isDebug()) {
