@@ -125,15 +125,6 @@ public class Player extends Character {
         if (velocityY != 0) sprite.playAnimation("air");
         //endregion
 
-        //region Out of bounds check
-        if (posX + velocityX < 0 || Math.ceil(posX) + velocityX > ProgramManager.getLevel().getLevelSizeX() - 1) {
-            velocityX = 0;
-        }
-        if (posY + velocityY < 0 || Math.ceil(posY) + getSize()[1] + velocityY > ProgramManager.getLevel().getLevelSizeY() - 1) {
-            velocityY = 0;
-        }
-        //endregion
-
         if (rightBlockCollisionCheck()) {
             velocityX = 0;
         }

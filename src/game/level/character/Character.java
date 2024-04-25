@@ -30,6 +30,9 @@ public abstract class Character {
         
         characterUpdate(dt);
 
+        if (isOutOfBoundsX()) velocityX = 0;
+        if (isOutOfBoundsY()) velocityY = 0;
+
         posX += velocityX;
         posY += velocityY;
     }
@@ -50,9 +53,11 @@ public abstract class Character {
             }
             if (Math.ceil(posY + i) >= ProgramManager.getLevel().getLevelSizeY()) break;
             Block block1 = ProgramManager.getLevel().getBlock((int) posX, (int) (posY + sprite.getHeight() + i));
-            int roundingFactor = 0;
-            if ((int) posX == (int) Math.ceil(posX)) roundingFactor = -1;
-            Block block2 = ProgramManager.getLevel().getBlock((int) (posX + sprite.getWidth()), (int) (posY + sprite.getHeight() + roundingFactor + i));
+            int roundingFactorX = 0;
+            int roundingFactorY = 0;
+            if ((int) posX == (int) Math.ceil(posX)) roundingFactorX = -1;
+            if ((int) posY == (int) Math.ceil(posY)) roundingFactorY = -1;
+            Block block2 = ProgramManager.getLevel().getBlock((int) (posX + sprite.getWidth() + roundingFactorX), (int) (posY + sprite.getHeight() + i));
             if ((block1 != null && block1.isCollision()) || (block2 != null && block2.isCollision())) {
                 posY = (float) Math.floor(posY + i);
                 return true;
@@ -68,9 +73,9 @@ public abstract class Character {
             }
             if (Math.floor(posY + i) <= 0) break;
             Block block1 = ProgramManager.getLevel().getBlock((int) posX, (int) (posY + i));
-            int roundingFactor = 0;
-            if ((int) posX == (int) Math.ceil(posX)) roundingFactor = -1;
-            Block block2 = ProgramManager.getLevel().getBlock((int) (posX + sprite.getWidth()), (int) (posY + roundingFactor + i));
+            int roundingFactorX = 0;
+            if ((int) posX == (int) Math.ceil(posX)) roundingFactorX = -1;
+            Block block2 = ProgramManager.getLevel().getBlock((int) (posX + sprite.getWidth() + roundingFactorX), (int) (posY + i));
             if ((block1 != null && block1.isCollision()) || (block2 != null && block2.isCollision())) {
                 posY = (float) Math.ceil(posY + i);
                 return true;
@@ -86,9 +91,11 @@ public abstract class Character {
             }
             if (Math.ceil(posX + i) >= ProgramManager.getLevel().getLevelSizeX()) break;
             Block block1 = ProgramManager.getLevel().getBlock((int) (posX + sprite.getWidth() + i), (int) posY);
-            int roundingFactor = 0;
-            if ((int) posY == (int) Math.ceil(posY)) roundingFactor = -1;
-            Block block2 = ProgramManager.getLevel().getBlock((int) (posX + sprite.getWidth() + i), (int) (posY + sprite.getHeight() + roundingFactor));
+            int roundingFactorX = 0;
+            int roundingFactorY = 0;
+            if ((int) posX == (int) Math.ceil(posX)) roundingFactorX = -1;
+            if ((int) posY == (int) Math.ceil(posY)) roundingFactorY = -1;
+            Block block2 = ProgramManager.getLevel().getBlock((int) (posX + sprite.getWidth() + roundingFactorX + i), (int) (posY + sprite.getHeight() + roundingFactorY));
             if ((block1 != null && block1.isCollision()) || (block2 != null && block2.isCollision())) {
                 posX = (float) Math.floor(posX + i);
                 return true;
@@ -104,9 +111,10 @@ public abstract class Character {
             }
             if (Math.floor(posY + i) <= 0) break;
             Block block1 = ProgramManager.getLevel().getBlock((int) (posX + i), (int) posY);
-            int roundingFactor = 0;
-            if ((int) posY == (int) Math.ceil(posY)) roundingFactor = -1;
-            Block block2 = ProgramManager.getLevel().getBlock((int) (posX + i), (int) (posY + sprite.getHeight() + roundingFactor));
+            int roundingFactorX = 0;
+            int roundingFactorY = 0;
+            if ((int) posY == (int) Math.ceil(posY)) roundingFactorY = -1;
+            Block block2 = ProgramManager.getLevel().getBlock((int) (posX + i), (int) (posY + sprite.getHeight() + roundingFactorY));
             if ((block1 != null && block1.isCollision()) || (block2 != null && block2.isCollision())) {
                 posX = (float) Math.ceil(posX + i);
                 return true;
@@ -130,6 +138,14 @@ public abstract class Character {
         if (this.posY > character.posY + character.getSizeY()) return false;
 
         return true;
+    }
+
+    private boolean isOutOfBoundsX() {
+        return posX + velocityX < 0 || Math.ceil(posX) + velocityX > ProgramManager.getLevel().getLevelSizeX() - 1;
+    }
+
+    private boolean isOutOfBoundsY() {
+        return posY + velocityY < 0 || Math.ceil(posY) + getSizeY() + velocityY > ProgramManager.getLevel().getLevelSizeY() - 1;
     }
 
     public BufferedImage getCurrentImage(float currentBlockSize) {
