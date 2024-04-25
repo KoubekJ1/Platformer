@@ -23,7 +23,7 @@ public class PlayGame extends AbstractAction {
                 testLevel.addBlock(new Block("blocks/brick.png", true), i, j);
             }
         }
-        testLevel.addBlock(new Block("blocks/brick.png", true), 20, 17);
+        testLevel.addBlock(new Block("blocks/brick.png", true), 20, 16);
         testLevel.addBlock(new Block("blocks/brick.png", true), 25, 19);
         testLevel.addBlock(new Block("blocks/brick.png", true), 35, 19);
 
