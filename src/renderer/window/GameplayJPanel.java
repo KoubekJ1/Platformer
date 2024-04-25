@@ -80,8 +80,8 @@ public class GameplayJPanel extends JPanel {
         Block[][] blocks = renderInfo.getBlocks();
         for (int i = 0; i < blocks.length; i++) {
             for (int j = 0; j < blocks[0].length; j++) {
-                if (!isTileVisible(i, j, baseBlockSize, currentTransform)) continue;
                 if (blocks[i][j] == null) continue;
+                if (!isTileVisible(i, j, baseBlockSize, currentTransform)) continue;
                 renderTile(g2D, blocks[i][j].getCurrentImage(baseBlockSize), i, j);
             }
         }
