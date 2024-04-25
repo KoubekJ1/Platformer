@@ -37,10 +37,12 @@ public class Enemy extends Character {
         ai.update(dt);
     }
 
+    @Override
     public void damage() {
         ai.damage();
     }
 
+    @Override
     public void kill() {
         this.setCollision(false);
         playAnimation("kill");

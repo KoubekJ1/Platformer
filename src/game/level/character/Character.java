@@ -39,6 +39,9 @@ public abstract class Character {
 
     protected abstract void characterUpdate(float dt);
 
+    protected abstract void damage();
+    protected abstract void kill();
+
     private void applyGravity(float dt) {
         velocityY += GRAVITY_ACCELERATION * dt;
         if (velocityY > TERMINAL_VELOCITY) {

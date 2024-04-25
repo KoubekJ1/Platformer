@@ -166,6 +166,16 @@ public class Player extends Character {
         //endregion
     }
 
+    @Override
+    protected void damage() {
+
+    }
+
+    @Override
+    protected void kill() {
+
+    }
+
     private void applyGravity(float dt) {
         float gravityEffectiveness = 1;
         if (velocityY < 0 && !(InputManager.isKeyPressed(KeyEvent.VK_W) || InputManager.isKeyPressed(KeyEvent.VK_SPACE) || InputManager.isKeyPressed(KeyEvent.VK_UP))) {
