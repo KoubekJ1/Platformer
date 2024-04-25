@@ -16,10 +16,12 @@ public class PlayGame extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Level testLevel = new Level("1", "1", 1000, 250);
-        for (int i = 0; i < 1000; i++) {
+        Level testLevel = new Level("1", "1", 10000, 50);
+        for (int i = 0; i < 10000; i++) {
             if (i == 10 || i == 11) continue;
-            testLevel.addBlock(new Block("blocks/brick.png", true), i, 20);
+            for (int j = 20; j < 30; j++) {
+                testLevel.addBlock(new Block("blocks/brick.png", true), i, j);
+            }
         }
         testLevel.addBlock(new Block("blocks/brick.png", true), 20, 17);
         testLevel.addBlock(new Block("blocks/brick.png", true), 25, 19);
