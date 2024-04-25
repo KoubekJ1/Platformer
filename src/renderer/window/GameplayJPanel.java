@@ -64,6 +64,7 @@ public class GameplayJPanel extends JPanel {
             if (player.getCurrentImage(baseBlockSize) == null) {
                 throw new IllegalStateException("Player doesn't have an active image!");
             }
+            if (!isTileVisible(player.getPosition()[0], player.getPosition()[1], baseBlockSize, currentTransform)) continue;
             renderTile(g2D, player.getCurrentImage(baseBlockSize), player.getPosition()[0], player.getPosition()[1]);
         }
 
@@ -72,17 +73,14 @@ public class GameplayJPanel extends JPanel {
             if (enemy.getCurrentImage(baseBlockSize) == null) {
                 throw new IllegalStateException("Enemy doesn't have an active image!");
             }
+            if (!isTileVisible(enemy.getPosition()[0], enemy.getPosition()[1], baseBlockSize, currentTransform)) continue;
             renderTile(g2D, enemy.getCurrentImage(baseBlockSize), enemy.getPosition()[0], enemy.getPosition()[1]);
         }
 
         Block[][] blocks = renderInfo.getBlocks();
         for (int i = 0; i < blocks.length; i++) {
             for (int j = 0; j < blocks[0].length; j++) {
-                Point2D destinationPoint = new Point2D.Float();
-                currentTransform.transform(new Point2D.Float(i * baseBlockSize, j * baseBlockSize), destinationPoint);
-                if ((destinationPoint.getX() + baseBlockSize < 0 || destinationPoint.getX() > WindowManager.getResolution()[0] * (defaultTransform.getScaleX())) || (destinationPoint.getY() + baseBlockSize < 0 || destinationPoint.getY() > WindowManager.getResolution()[1] * (defaultTransform.getScaleY()))) {
-                    continue;
-                }
+                if (!isTileVisible(i, j, baseBlockSize, currentTransform)) continue;
                 if (blocks[i][j] == null) continue;
                 renderTile(g2D, blocks[i][j].getCurrentImage(baseBlockSize), i, j);
             }
@@ -108,5 +106,15 @@ public class GameplayJPanel extends JPanel {
 
     private void renderTile(Graphics2D graphics2D, BufferedImage image, float x, float y) {
         graphics2D.drawImage(image, (int) (x * baseBlockSize), (int) (y * baseBlockSize), null, null);
+    }
+
+    private boolean isTileVisible(float x, float y, float blockSize, AffineTransform transform) {
+        Point2D destinationPoint = new Point2D.Float();
+        transform.transform(new Point2D.Float(x * blockSize, y * blockSize), destinationPoint);
+        if ((destinationPoint.getX() + blockSize < 0 || destinationPoint.getX() > WindowManager.getResolution()[0] * (defaultTransform.getScaleX())) || (destinationPoint.getY() + blockSize < 0 || destinationPoint.getY() > WindowManager.getResolution()[1] * (defaultTransform.getScaleY()))) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
