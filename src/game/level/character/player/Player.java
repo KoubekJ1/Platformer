@@ -173,7 +173,7 @@ public class Player extends Character {
     @Override
     protected void kill() {
         sprite.playAnimation("kill");
-        JOptionPane.showConfirmDialog(null, "You are dead!", "Game Over", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null, "You are dead!", "Game Over", JOptionPane.PLAIN_MESSAGE);
         ProgramManager.endLevel();
         Thread.currentThread().stop();
     }
