@@ -10,6 +10,7 @@ public class Asset {
     private AssetType assetType;
 
     private Object asset;
+    private AssetType type;
 
     private Object getAsset() {
         return asset;
@@ -30,6 +31,16 @@ public class Asset {
             case POWERUP -> new Powerup();
             case SPRITE -> new Sprite();
             case ANIMATION -> new Animation();
+        };
+    }
+
+    public Class getAssetClass() {
+        return switch (type) {
+            case BLOCK -> Block.class;
+            case ENEMY -> Enemy.class;
+            case POWERUP -> Powerup.class;
+            case SPRITE -> Sprite.class;
+            case ANIMATION -> Animation.class;
         };
     }
 }
