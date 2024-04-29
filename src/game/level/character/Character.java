@@ -2,11 +2,14 @@ package game.level.character;
 
 import game.ProgramManager;
 import game.level.Block;
+import game.level.Level;
+import game.level.character.player.Player;
 import renderer.Sprite;
 import util.InputManager;
 
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.util.LinkedList;
 
 public abstract class Character {
     public static final int GRAVITY_ACCELERATION = 1;
@@ -55,15 +58,15 @@ public abstract class Character {
                 i = velocityY;
             }
             if (Math.ceil(posY + i) >= ProgramManager.getLevel().getLevelSizeY()) break;
-            Block block1 = ProgramManager.getLevel().getBlock((int) posX, (int) (posY + sprite.getHeight() + i));
-            int roundingFactorX = 0;
-            int roundingFactorY = 0;
-            if ((int) posX == (int) Math.ceil(posX)) roundingFactorX = -1;
-            if ((int) posY == (int) Math.ceil(posY)) roundingFactorY = -1;
-            Block block2 = ProgramManager.getLevel().getBlock((int) (posX + sprite.getWidth() + roundingFactorX), (int) (posY + sprite.getHeight() + i));
-            if ((block1 != null && block1.isCollision()) || (block2 != null && block2.isCollision())) {
-                posY = (float) Math.floor(posY + i);
-                return true;
+            LinkedList<Block> blocks = new LinkedList<>();
+            for (float j = 0; j <= sprite.getWidth(); j++) {
+                blocks.add(ProgramManager.getLevel().getBlock((int) (posX + j), (int) (posY + sprite.getHeight() + i)));
+            }
+            for (Block block : blocks) {
+                if (block != null && block.isCollision()) {
+                    posY = (float) Math.floor(posY + i);
+                    return true;
+                }
             }
         }
         return false;
@@ -74,14 +77,16 @@ public abstract class Character {
             if (i <= velocityY) {
                 i = velocityY;
             }
-            if (Math.floor(posY + i) <= 0) break;
-            Block block1 = ProgramManager.getLevel().getBlock((int) posX, (int) (posY + i));
-            int roundingFactorX = 0;
-            if ((int) posX == (int) Math.ceil(posX)) roundingFactorX = -1;
-            Block block2 = ProgramManager.getLevel().getBlock((int) (posX + sprite.getWidth() + roundingFactorX), (int) (posY + i));
-            if ((block1 != null && block1.isCollision()) || (block2 != null && block2.isCollision())) {
-                posY = (float) Math.ceil(posY + i);
-                return true;
+            if (Math.floor(posY + i) < 0) break;
+            LinkedList<Block> blocks = new LinkedList<>();
+            for (float j = 0; j <= sprite.getWidth(); j++) {
+                blocks.add(ProgramManager.getLevel().getBlock((int) (posX + j), (int) (posY + i)));
+            }
+            for (Block block : blocks) {
+                if (block != null && block.isCollision()) {
+                    posY = (float) Math.ceil(posY + i);
+                    return true;
+                }
             }
         }
         return false;
@@ -93,15 +98,15 @@ public abstract class Character {
                 i = velocityX;
             }
             if (Math.ceil(posX + i) >= ProgramManager.getLevel().getLevelSizeX()) break;
-            Block block1 = ProgramManager.getLevel().getBlock((int) (posX + sprite.getWidth() + i), (int) posY);
-            int roundingFactorX = 0;
-            int roundingFactorY = 0;
-            if ((int) posX == (int) Math.ceil(posX)) roundingFactorX = -1;
-            if ((int) posY == (int) Math.ceil(posY)) roundingFactorY = -1;
-            Block block2 = ProgramManager.getLevel().getBlock((int) (posX + sprite.getWidth() + roundingFactorX + i), (int) (posY + sprite.getHeight() + roundingFactorY));
-            if ((block1 != null && block1.isCollision()) || (block2 != null && block2.isCollision())) {
-                posX = (float) Math.floor(posX + i);
-                return true;
+            LinkedList<Block> blocks = new LinkedList<>();
+            for (float j = 0; j < sprite.getHeight(); j++) {
+                blocks.add(ProgramManager.getLevel().getBlock((int) (posX + sprite.getWidth() + i), (int) (posY + j)));
+            }
+            for (Block block : blocks) {
+                if (block != null && block.isCollision()) {
+                    posX = (float) Math.floor(posX + i);
+                    return true;
+                }
             }
         }
         return false;
@@ -112,15 +117,16 @@ public abstract class Character {
             if (i <= velocityX) {
                 i = velocityX;
             }
-            if (Math.floor(posY + i) <= 0) break;
-            Block block1 = ProgramManager.getLevel().getBlock((int) (posX + i), (int) posY);
-            int roundingFactorX = 0;
-            int roundingFactorY = 0;
-            if ((int) posY == (int) Math.ceil(posY)) roundingFactorY = -1;
-            Block block2 = ProgramManager.getLevel().getBlock((int) (posX + i), (int) (posY + sprite.getHeight() + roundingFactorY));
-            if ((block1 != null && block1.isCollision()) || (block2 != null && block2.isCollision())) {
-                posX = (float) Math.ceil(posX + i);
-                return true;
+            if (Math.floor(posX + i) < 0) break;
+            LinkedList<Block> blocks = new LinkedList<>();
+            for (float j = 0; j < sprite.getHeight(); j++) {
+                blocks.add(ProgramManager.getLevel().getBlock((int) (posX + i), (int) (posY + j)));
+            }
+            for (Block block : blocks) {
+                if (block != null && block.isCollision()) {
+                    posX = (float) Math.ceil(posX + i);
+                    return true;
+                }
             }
         }
         return false;
