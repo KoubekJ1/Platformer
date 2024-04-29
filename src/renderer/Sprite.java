@@ -16,6 +16,9 @@ public class Sprite {
     private HashMap<BufferedImage, BufferedImage> mirroredImages = new HashMap<>();
     private HashMap<BufferedImage, BufferedImage> scaledImages = new HashMap<>();
 
+    public Sprite() {
+    }
+
     public Sprite(String image, float width, float height) {
         this.width = width;
         this.height = height;

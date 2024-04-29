@@ -18,6 +18,9 @@ public class Enemy extends Character {
     private EnemyBehavior ai;
     private Timer deathTimer;
 
+    public Enemy() {
+    }
+
     public Enemy(Sprite sprite, EnemyBehavior ai, int posX, int posY) {
         this.sprite = sprite;
         this.ai = ai;

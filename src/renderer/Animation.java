@@ -15,6 +15,9 @@ public class Animation implements ActionListener {
     private int currentImage;
     private Timer animationTimer;
 
+    public Animation() {
+    }
+
     public Animation(String image) {
         images = new ArrayList<>();
         images.add(image);
