@@ -1,4 +1,4 @@
-package util;
+package util.asseteditor;
 
 import javax.swing.*;
 import java.awt.*;

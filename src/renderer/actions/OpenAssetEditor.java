@@ -1,6 +1,6 @@
 package renderer.actions;
 
-import util.AssetEditor;
+import util.asseteditor.AssetEditor;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
