@@ -6,11 +6,17 @@ import game.level.character.enemy.Enemy;
 import renderer.Animation;
 import renderer.Sprite;
 
+import java.util.HashMap;
+
 public class Asset {
-    private AssetType assetType;
+    private AssetType type;
 
     private Object asset;
-    private AssetType type;
+
+    private String name;
+    private String id;
+    private Sprite sprite;
+    private HashMap<String, Animation> animations;
 
     private Object getAsset() {
         return asset;
@@ -20,8 +26,8 @@ public class Asset {
         this.asset = asset;
     }
 
-    public AssetType getAssetType() {
-        return assetType;
+    public AssetType getType() {
+        return type;
     }
 
     public static Object getNewAsset(AssetType type) {
@@ -42,5 +48,13 @@ public class Asset {
             case SPRITE -> Sprite.class;
             case ANIMATION -> Animation.class;
         };
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
