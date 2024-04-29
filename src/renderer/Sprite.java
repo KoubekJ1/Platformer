@@ -16,7 +16,7 @@ public class Sprite {
     private HashMap<BufferedImage, BufferedImage> mirroredImages = new HashMap<>();
     private HashMap<BufferedImage, BufferedImage> scaledImages = new HashMap<>();
 
-    public Sprite(String image, int width, int height) {
+    public Sprite(String image, float width, float height) {
         this.width = width;
         this.height = height;
         animations = new HashMap<>();
@@ -24,7 +24,7 @@ public class Sprite {
         animations.get("static").play();
     }
 
-    public Sprite(HashMap<String, Animation> animations, int width, int height) {
+    public Sprite(HashMap<String, Animation> animations, float width, float height) {
         this.animations = animations;
         this.width = width;
         this.height = height;
