@@ -156,7 +156,7 @@ public class Player extends DynamicObject {
 
     @Override
     protected void damage() {
-        kill();
+        powerupState.damage();
     }
 
     @Override
