@@ -1,24 +1,27 @@
 package renderer;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.HashMap;
+import javax.swing.Timer;
 
-public class Sprite implements Serializable {
+public class Sprite implements ActionListener, Serializable {
     private HashMap<String, Animation> animations;
     private Animation currentAnimation;
     private float width;
     private float height;
     private boolean mirrored;
+    private boolean blip;
+
+    private Timer blipTimer;
 
     private float lastBlockSize = 0;
     private HashMap<BufferedImage, BufferedImage> mirroredImages = new HashMap<>();
     private HashMap<BufferedImage, BufferedImage> scaledImages = new HashMap<>();
-
-    public Sprite() {
-    }
 
     public Sprite(String image, float width, float height) {
         this.width = width;
@@ -26,12 +29,16 @@ public class Sprite implements Serializable {
         animations = new HashMap<>();
         animations.put("static", new Animation(image));
         animations.get("static").play();
+        this.blip = false;
+        this.blipTimer = new Timer(100, this);
     }
 
     public Sprite(HashMap<String, Animation> animations, float width, float height) {
         this.animations = animations;
         this.width = width;
         this.height = height;
+        this.blip = false;
+        this.blipTimer = new Timer(100, this);
     }
 
     public void playAnimation(String animation) {
@@ -54,6 +61,7 @@ public class Sprite implements Serializable {
     }
 
     public BufferedImage getCurrentImage(float currentBlockSize) {
+        if (blip) return null;
         if (currentAnimation == null) {
             playAnimation("static");
         }
@@ -100,6 +108,16 @@ public class Sprite implements Serializable {
         return finalImage;
     }
 
+    public void blip() {
+        blipTimer.start();
+        blip = true;
+    }
+
+    public void stopBlipping() {
+        blipTimer.stop();
+        blip = false;
+    }
+
     public float getWidth() {
         return width;
     }
@@ -118,5 +136,12 @@ public class Sprite implements Serializable {
 
     public int getAnimationTimeLeft() {
         return currentAnimation.getTimeLeft();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == blipTimer) {
+            blip = !blip;
+        }
     }
 }

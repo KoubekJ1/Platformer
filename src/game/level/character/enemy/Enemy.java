@@ -62,10 +62,12 @@ public class Enemy extends DynamicObject {
         playAnimation("kill");
         deathTimer = new Timer(sprite.getAnimationTimeLeft(), e -> {
             if (e.getSource() == deathTimer) {
+                sprite.stopBlipping();
                 removeFromLevel();
             }
         });
         deathTimer.start();
+        sprite.blip();
     }
 
     private void removeFromLevel() {

@@ -61,9 +61,6 @@ public class GameplayJPanel extends JPanel {
 
         // Rendering the player(s)
         for (DynamicObject dynamicObject : renderInfo.getDynamicObjects()) {
-            if (dynamicObject.getCurrentImage(baseBlockSize) == null) {
-                throw new IllegalStateException("Player doesn't have an active image!");
-            }
             if (!isTileVisible(dynamicObject.getPosX(), dynamicObject.getPosY(), baseBlockSize, currentTransform)) continue;
             renderTile(g2D, dynamicObject.getCurrentImage(baseBlockSize), dynamicObject.getPosX(), dynamicObject.getPosY());
         }
