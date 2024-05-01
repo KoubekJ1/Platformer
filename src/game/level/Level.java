@@ -23,12 +23,14 @@ public class Level implements Serializable, ActionListener {
     private String levelID;
     private String levelName;
 
-    private LinkedList<DynamicObject> dynamicObjects = new LinkedList<>();
+    private LinkedList<DynamicObject> dynamicObjects;
+    private LinkedList<DynamicObject> dynamicObjectsForRemoval;
 
     private LinkedList<Player> players;
     private Block[][] blocks;
     private LinkedList<Enemy> enemies;
     private LinkedList<Powerup> powerups;
+
 
     private Timer gameTimer;
 
@@ -43,6 +45,7 @@ public class Level implements Serializable, ActionListener {
         this.levelName = levelName;
 
         this.dynamicObjects = new LinkedList<>();
+        this.dynamicObjectsForRemoval = new LinkedList<>();
 
         this.players = new LinkedList<>();
         addObject(new Player());
@@ -65,8 +68,7 @@ public class Level implements Serializable, ActionListener {
     }
 
     public void removeObject(DynamicObject object) {
-        this.dynamicObjects.remove(object);
-        getCorrespondingDynamicObjectLinkedList(object).remove(object);
+        dynamicObjectsForRemoval.add(object);
     }
 
     private LinkedList getCorrespondingDynamicObjectLinkedList(DynamicObject object) {
@@ -97,6 +99,11 @@ public class Level implements Serializable, ActionListener {
             object.update(dt);
         }
         Renderer.render(renderInfo);
+
+        for (DynamicObject dynamicObject : dynamicObjectsForRemoval) {
+            this.dynamicObjects.remove(dynamicObject);
+            getCorrespondingDynamicObjectLinkedList(dynamicObject).remove(dynamicObject);
+        }
     }
 
     public Block getBlock(int x, int y) {
