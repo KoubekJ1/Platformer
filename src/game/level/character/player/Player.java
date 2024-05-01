@@ -4,7 +4,7 @@ import game.ProgramManager;
 import game.level.character.DynamicObject;
 import game.level.character.enemy.Enemy;
 import game.level.character.player.camera.Camera;
-import game.level.character.player.powerups.PowerupState;
+import game.level.character.player.powerups.states.PowerupState;
 import renderer.Animation;
 import renderer.Sprite;
 import util.InputManager;

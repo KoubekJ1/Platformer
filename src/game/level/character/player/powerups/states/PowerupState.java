@@ -1,4 +1,4 @@
-package game.level.character.player.powerups;
+package game.level.character.player.powerups.states;
 
 import game.level.character.player.Player;
 
