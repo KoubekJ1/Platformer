@@ -2,6 +2,7 @@ package util;
 
 import game.level.Block;
 import game.level.Level;
+import game.level.character.enemy.Enemy;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -49,6 +50,17 @@ public abstract class AssetManager {
         fileInputStream.close();
 
         return level;
+    }
+
+    public static Enemy getEnemy(String path) throws IOException, ClassNotFoundException {
+        FileInputStream fileInputStream = new FileInputStream(path);
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        Enemy enemy = (Enemy) objectInputStream.readObject();
+
+        objectInputStream.close();
+        fileInputStream.close();
+
+        return enemy;
     }
 
     public static Block getBlock(String path) throws IOException, ClassNotFoundException {
