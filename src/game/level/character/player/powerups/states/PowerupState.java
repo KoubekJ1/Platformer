@@ -4,7 +4,7 @@ import game.level.character.player.Player;
 
 public abstract class PowerupState {
 
-    private Player parentPlayer;
+    protected Player parentPlayer;
 
     public PowerupState(Player parentPlayer) {
         this.parentPlayer = parentPlayer;
