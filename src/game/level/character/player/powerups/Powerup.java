@@ -62,7 +62,7 @@ public class Powerup extends DynamicObject implements Serializable {
     }
 
     @Override
-    protected void kill() {
+    public void kill() {
         ProgramManager.getLevel().removeObject(this);
     }
 

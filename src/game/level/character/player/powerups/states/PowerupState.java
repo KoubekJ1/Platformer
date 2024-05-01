@@ -1,10 +1,12 @@
 package game.level.character.player.powerups.states;
 
 import game.level.character.player.Player;
+import renderer.Sprite;
 
 public abstract class PowerupState {
 
     protected Player parentPlayer;
+    protected static final String PLAYER_TEXTURES_DIRECTORY = "characters/player/";
 
     public PowerupState(Player parentPlayer) {
         this.parentPlayer = parentPlayer;
@@ -12,5 +14,5 @@ public abstract class PowerupState {
 
     public abstract void damage();
 
-    public abstract void getSprite();
+    public abstract Sprite getSprite();
 }
