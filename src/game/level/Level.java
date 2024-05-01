@@ -17,7 +17,7 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.LinkedList;
 
-public class Level implements Serializable, ActionListener {
+public class Level implements Serializable/*, ActionListener*/ {
     private static final String LEVELS_DIRECTORY = "assets/levels/";
 
     private String levelID;
@@ -31,8 +31,8 @@ public class Level implements Serializable, ActionListener {
     private LinkedList<Enemy> enemies;
     private LinkedList<Powerup> powerups;
 
-
-    private Timer gameTimer;
+    //private Timer gameTimer;
+    private UpdateThread updateThread;
 
     private RenderInfo renderInfo;
 
@@ -54,8 +54,10 @@ public class Level implements Serializable, ActionListener {
         this.powerups = new LinkedList<>();
 
         // Setting the timer delay to half of the refresh rate seems to produce the expected amount of frames per second, weird fix
-        this.gameTimer = new Timer(500/WindowManager.getRefreshRate(), this);
-        this.gameTimer.setInitialDelay(0);
+        //this.gameTimer = new Timer(500/WindowManager.getRefreshRate(), this);
+        //this.gameTimer.setInitialDelay(0);
+
+        this.updateThread = new UpdateThread();
     }
 
     public void addBlock(Block block, int x, int y) {
@@ -82,11 +84,13 @@ public class Level implements Serializable, ActionListener {
     }
 
     public void start() {
-        gameTimer.start();
+        //gameTimer.start();
+        updateThread.start();
     }
 
     public void stop() {
-        gameTimer.stop();
+        //gameTimer.stop();
+        updateThread.interrupt();
     }
 
     public void update() {
@@ -104,6 +108,10 @@ public class Level implements Serializable, ActionListener {
             this.dynamicObjects.remove(dynamicObject);
             getCorrespondingDynamicObjectLinkedList(dynamicObject).remove(dynamicObject);
         }
+
+        endTime = Time.getTime();
+        dt = endTime - beginTime;
+        beginTime = endTime;
     }
 
     public Block getBlock(int x, int y) {
@@ -141,7 +149,7 @@ public class Level implements Serializable, ActionListener {
         fileOutputStream.close();
     }
 
-    @Override
+    /*@Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == gameTimer) {
             update();
@@ -149,5 +157,5 @@ public class Level implements Serializable, ActionListener {
             dt = endTime - beginTime;
             beginTime = endTime;
         }
-    }
+    }*/
 }
