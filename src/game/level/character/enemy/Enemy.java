@@ -113,4 +113,14 @@ public class Enemy extends DynamicObject {
 
         return goomba;
     }
+
+    @Override
+    protected String getAssetDirectory() {
+        return "enemies";
+    }
+
+    @Override
+    protected String getAssetExtension() {
+        return ".enemy";
+    }
 }

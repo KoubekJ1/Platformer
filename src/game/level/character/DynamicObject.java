@@ -221,7 +221,7 @@ public abstract class DynamicObject implements Serializable {
     }
 
     public void serialize() throws IOException {
-        FileOutputStream fileOutputStream = new FileOutputStream("assets/enemies/" + id + ".enemy");
+        FileOutputStream fileOutputStream = new FileOutputStream("assets/" + getAssetDirectory() + "/" + id + getAssetExtension());
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
         objectOutputStream.writeObject(this);
 
@@ -230,6 +230,9 @@ public abstract class DynamicObject implements Serializable {
         fileOutputStream.flush();
         fileOutputStream.close();
     }
+
+    protected abstract String getAssetDirectory();
+    protected abstract String getAssetExtension();
 
     @Override
     public String toString() {

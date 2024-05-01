@@ -217,4 +217,14 @@ public class Player extends DynamicObject {
     public float[] getSize() {
         return new float[]{sprite.getWidth(), sprite.getHeight()};
     }
+
+    @Override
+    protected String getAssetDirectory() {
+        return "players";
+    }
+
+    @Override
+    protected String getAssetExtension() {
+        return ".player";
+    }
 }

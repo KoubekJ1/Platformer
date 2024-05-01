@@ -2,7 +2,11 @@ package game.level.character;
 
 import game.ProgramManager;
 
-public class Powerup extends DynamicObject {
+import java.io.Serializable;
+
+public class Powerup extends DynamicObject implements Serializable {
+
+    private static final String POWERUP_TEXTURES_PATH = "powerups/";
 
     private static final float POWERUP_SPEED = 1;
 
@@ -44,5 +48,15 @@ public class Powerup extends DynamicObject {
     @Override
     protected void kill() {
         ProgramManager.getLevel().removeObject(this);
+    }
+
+    @Override
+    protected String getAssetDirectory() {
+        return "powerups";
+    }
+
+    @Override
+    protected String getAssetExtension() {
+        return ".powerup";
     }
 }
