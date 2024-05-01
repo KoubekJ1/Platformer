@@ -1,5 +1,7 @@
 package game.level.character;
 
+import game.ProgramManager;
+
 public class Powerup extends DynamicObject {
 
     @Override
@@ -14,6 +16,6 @@ public class Powerup extends DynamicObject {
 
     @Override
     protected void kill() {
-        
+        ProgramManager.getLevel().removeObject(this);
     }
 }
