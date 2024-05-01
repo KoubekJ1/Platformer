@@ -6,9 +6,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Animation implements ActionListener {
+public class Animation implements ActionListener, Serializable {
     private ArrayList<String> images;
     private int[] imageOrder;
     private boolean loop;

@@ -3,9 +3,10 @@ package renderer;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Sprite {
+public class Sprite implements Serializable {
     private HashMap<String, Animation> animations;
     private Animation currentAnimation;
     private float width;

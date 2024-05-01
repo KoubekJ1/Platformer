@@ -17,10 +17,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Enemy extends Character implements Serializable {
-
-    private String id;
-    private String name;
+public class Enemy extends Character {
 
     private EnemyBehavior ai;
     private Timer deathTimer;
@@ -122,16 +119,5 @@ public class Enemy extends Character implements Serializable {
         goomba.setPosY(y);
 
         return goomba;
-    }
-
-    public void serialize() throws IOException {
-        FileOutputStream fileOutputStream = new FileOutputStream("assets/enemies/" + id + ".enemy");
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-        objectOutputStream.writeObject(this);
-
-        objectOutputStream.flush();
-        objectOutputStream.close();
-        fileOutputStream.flush();
-        fileOutputStream.close();
     }
 }

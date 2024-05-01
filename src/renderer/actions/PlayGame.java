@@ -4,9 +4,11 @@ import game.ProgramManager;
 import game.level.Block;
 import game.level.Level;
 import game.level.character.enemy.Enemy;
+import util.AssetManager;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 
 public class PlayGame extends AbstractAction {
 
@@ -28,6 +30,11 @@ public class PlayGame extends AbstractAction {
         testLevel.addBlock(new Block("blocks/brick.png", true), 35, 19);
 
         testLevel.addEnemy(Enemy.getGoomba(30, 19));
+        /*try {
+            testLevel.addEnemy(AssetManager.getEnemy("assets/enemies/goomba.enemy"));
+        } catch (IOException | ClassNotFoundException ex) {
+            throw new RuntimeException(ex);
+        }*/
 
         ProgramManager.play(testLevel);
     }

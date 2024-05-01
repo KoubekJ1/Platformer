@@ -9,14 +9,21 @@ import util.InputManager;
 
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.LinkedList;
 
-public abstract class Character {
+public abstract class Character implements Serializable {
     public static final int GRAVITY_ACCELERATION = 1;
     private static final float TERMINAL_VELOCITY = 50;
     public static final String CHARACTER_TEXTURES_PATH = "assets/textures/characters/";
 
     protected Sprite sprite;
+
+    protected String id;
+    protected String name;
 
     protected float posX;
     protected float posY;
@@ -215,6 +222,17 @@ public abstract class Character {
 
     public void setPosY(float posY) {
         this.posY = posY;
+    }
+
+    public void serialize() throws IOException {
+        FileOutputStream fileOutputStream = new FileOutputStream("assets/enemies/" + id + ".enemy");
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(this);
+
+        objectOutputStream.flush();
+        objectOutputStream.close();
+        fileOutputStream.flush();
+        fileOutputStream.close();
     }
 
     @Override
