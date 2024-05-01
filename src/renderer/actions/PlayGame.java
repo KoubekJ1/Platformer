@@ -3,6 +3,7 @@ package renderer.actions;
 import game.ProgramManager;
 import game.level.Block;
 import game.level.Level;
+import game.level.character.Powerup;
 import game.level.character.enemy.Enemy;
 import util.AssetManager;
 
@@ -30,6 +31,7 @@ public class PlayGame extends AbstractAction {
         testLevel.addBlock(new Block("blocks/brick.png", true), 35, 19);
 
         testLevel.addObject(Enemy.getGoomba(30, 19));
+        testLevel.addObject(Powerup.getMushroom(32, 19));
         /*try {
             Enemy goomba = AssetManager.getEnemy("assets/enemies/goomba.enemy");
             goomba.setPosX(30);
