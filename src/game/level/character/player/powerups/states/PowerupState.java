@@ -3,7 +3,9 @@ package game.level.character.player.powerups.states;
 import game.level.character.player.Player;
 import renderer.Sprite;
 
-public abstract class PowerupState {
+import java.io.Serializable;
+
+public abstract class PowerupState implements Serializable {
 
     protected Player parentPlayer;
     protected static final String PLAYER_TEXTURES_DIRECTORY = "characters/player/";

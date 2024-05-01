@@ -16,7 +16,7 @@ public class Powerup extends DynamicObject implements Serializable {
     private static final float POWERUP_SPEED = 1;
 
     private boolean direction;
-    PickUpable pickUpable;
+    private PickUpable pickUpable;
 
     public Powerup(String name, String id, Sprite sprite, PickUpable pickUpable) {
         this.name = name;
@@ -81,8 +81,17 @@ public class Powerup extends DynamicObject implements Serializable {
         return ".powerup";
     }
 
+    public PowerupState getPowerupState(Player player) {
+        return pickUpable.getPowerupState(player);
+    }
+
     public static Powerup getMushroom(int x, int y) {
-        Powerup mushroom = new Powerup("Mushroom", "mushroom", new Sprite(POWERUP_TEXTURES_PATH + "mushroom.png", 1, 1), Mushroom::new);
+        Powerup mushroom = new Powerup("Mushroom", "mushroom", new Sprite(POWERUP_TEXTURES_PATH + "mushroom.png", 1, 1), new PickUpable() {
+            @Override
+            public PowerupState getPowerupState(Player player) {
+                return new Mushroom(player);
+            }
+        });
         try {
             mushroom.serialize();
         } catch (IOException e) {
