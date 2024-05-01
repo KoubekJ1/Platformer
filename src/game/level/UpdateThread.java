@@ -17,7 +17,7 @@ public class UpdateThread extends Thread {
                 endTime = Time.getTime();
                 dt = endTime - beginTime;
                 beginTime = endTime;
-                sleep(17);
+                sleep(16);
             }
         } catch (Exception e) {
             e.printStackTrace();
