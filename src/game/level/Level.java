@@ -36,9 +36,9 @@ public class Level implements Serializable/*, ActionListener*/ {
 
     private RenderInfo renderInfo;
 
-    float beginTime = Time.getTime();
+    /*float beginTime = Time.getTime();
     float endTime = Time.getTime();
-    float dt = 0;
+    float dt = 0;*/
 
     public Level(String levelID, String levelName, int sizeX, int sizeY) {
         this.levelID = levelID;
@@ -93,7 +93,7 @@ public class Level implements Serializable/*, ActionListener*/ {
         updateThread.interrupt();
     }
 
-    public void update() {
+    public void update(float dt) {
         //LinkedList<DynamicObject> dynamicObjects = (LinkedList<DynamicObject>) Stream.concat(Stream.concat(players.stream(), enemies.stream()), powerups.stream()).toList();
         renderInfo = new RenderInfo(Color.CYAN, players.getFirst().getCamera(), blocks, dynamicObjects);
         if (ProgramManager.isDebug()) {
@@ -109,9 +109,9 @@ public class Level implements Serializable/*, ActionListener*/ {
             getCorrespondingDynamicObjectLinkedList(dynamicObject).remove(dynamicObject);
         }
 
-        endTime = Time.getTime();
+        /*endTime = Time.getTime();
         dt = endTime - beginTime;
-        beginTime = endTime;
+        beginTime = endTime;*/
     }
 
     public Block getBlock(int x, int y) {
