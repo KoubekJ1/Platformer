@@ -224,6 +224,10 @@ public class Player extends DynamicObject {
         this.powerupState = powerupState;
     }
 
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
+    }
+
     @Override
     protected String getAssetDirectory() {
         return "players";
