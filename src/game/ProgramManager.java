@@ -23,10 +23,10 @@ public class ProgramManager {
         WindowManager.showWindow();
 
         // Creates the menu screen
-        JButton[] menuButtons = new JButton[3];
+        JButton[] menuButtons = new JButton[2];
         menuButtons[0] = new JButton(new PlayGame());
         menuButtons[1] = new JButton(new Quit());
-        if (ProgramManager.isDebug()) menuButtons[2] = new JButton(new OpenAssetEditor());
+        //if (ProgramManager.isDebug()) menuButtons[2] = new JButton(new OpenAssetEditor());
         WindowManager.createMenuCard(menuButtons, "main-menu");
         WindowManager.switchCard("main-menu");
     }
