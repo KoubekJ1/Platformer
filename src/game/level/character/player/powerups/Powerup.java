@@ -1,6 +1,7 @@
 package game.level.character.player.powerups;
 
 import game.ProgramManager;
+import game.level.Level;
 import game.level.character.DynamicObject;
 import game.level.character.player.Player;
 import game.level.character.player.powerups.states.Mushroom;
@@ -81,7 +82,8 @@ public class Powerup extends DynamicObject implements Serializable {
         return ".powerup";
     }
 
-    public PowerupState getPowerupState(Player player) {
+    public PowerupState collectPowerup(Player player) {
+        ProgramManager.getLevel().removeObject(this);
         return pickUpable.getPowerupState(player);
     }
 
