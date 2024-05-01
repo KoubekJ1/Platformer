@@ -1,7 +1,9 @@
 package game.level.character;
 
 import game.ProgramManager;
+import renderer.Sprite;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 public class Powerup extends DynamicObject implements Serializable {
@@ -12,8 +14,21 @@ public class Powerup extends DynamicObject implements Serializable {
 
     private boolean direction;
 
-    public Powerup() {
+    public Powerup(String name, String id, Sprite sprite) {
+        this.name = name;
+        this.id = id;
         this.direction = true;
+        this.sprite = sprite;
+    }
+
+    public Powerup(String name, String id, Sprite sprite, int x, int y) {
+        this.name = name;
+        this.id = id;
+        this.direction = true;
+        this.sprite = sprite;
+
+        this.posX = x;
+        this.posY = y;
     }
 
     @Override
@@ -58,5 +73,19 @@ public class Powerup extends DynamicObject implements Serializable {
     @Override
     protected String getAssetExtension() {
         return ".powerup";
+    }
+
+    public static Powerup getMushroom(int x, int y) {
+        Powerup mushroom = new Powerup("Mushroom", "mushroom", new Sprite(POWERUP_TEXTURES_PATH + "mushroom.png", 1, 1));
+        try {
+            mushroom.serialize();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        mushroom.setPosX(x);
+        mushroom.setPosY(y);
+
+        return mushroom;
     }
 }
