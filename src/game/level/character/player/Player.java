@@ -4,15 +4,13 @@ import game.ProgramManager;
 import game.level.character.DynamicObject;
 import game.level.character.enemy.Enemy;
 import game.level.character.player.camera.Camera;
+import game.level.character.player.powerups.states.Mushroom;
 import game.level.character.player.powerups.states.PowerupState;
-import renderer.Animation;
 import renderer.Sprite;
 import util.InputManager;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Player extends DynamicObject {
 
@@ -37,21 +35,10 @@ public class Player extends DynamicObject {
         velocityY = 0;
 
         camera = new Camera(this);
-        HashMap<String, Animation> animations = new HashMap<>();
-        ArrayList<String> images = new ArrayList<>();
 
-        images.add(PLAYER_TEXTURES_DIRECTORY + "small/run1.png");
-        images.add(PLAYER_TEXTURES_DIRECTORY + "small/run2.png");
-        images.add(PLAYER_TEXTURES_DIRECTORY + "small/run3.png");
+        powerupState = new Mushroom(this);
 
-        animations.put("running", new Animation(images, 80, true));
-        animations.put("sprinting", new Animation(images, 40, true));
-        animations.put("static", new Animation(PLAYER_TEXTURES_DIRECTORY + "small/static.png"));
-        animations.put("air", new Animation(PLAYER_TEXTURES_DIRECTORY + "small/air.png"));
-        animations.put("turn", new Animation(PLAYER_TEXTURES_DIRECTORY + "small/turn.png"));
-        animations.put("kill", new Animation(PLAYER_TEXTURES_DIRECTORY + "small/kill.png"));
-
-        sprite = new Sprite(animations, 1, 1);
+        sprite = powerupState.getSprite();
     }
 
     @Override
@@ -173,7 +160,7 @@ public class Player extends DynamicObject {
     }
 
     @Override
-    protected void kill() {
+    public void kill() {
         sprite.playAnimation("kill");
         JOptionPane.showMessageDialog(null, "You are dead!", "Game Over", JOptionPane.PLAIN_MESSAGE);
         ProgramManager.endLevel();

@@ -46,7 +46,7 @@ public abstract class DynamicObject implements Serializable {
     protected abstract void objectUpdate(float dt);
 
     protected abstract void damage();
-    protected abstract void kill();
+    public abstract void kill();
 
     private void applyGravity(float dt) {
         velocityY += GRAVITY_ACCELERATION * dt;

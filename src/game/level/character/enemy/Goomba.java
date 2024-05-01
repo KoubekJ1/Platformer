@@ -1,8 +1,5 @@
 package game.level.character.enemy;
 
-import game.ProgramManager;
-import game.level.Block;
-
 public class Goomba extends EnemyBehavior {
     private static final float SPEED = 1;
     private boolean direction;
