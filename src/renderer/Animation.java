@@ -64,7 +64,6 @@ public class Animation implements ActionListener, Serializable {
     public static Animation getKillAnimation(String texturePath) {
         ArrayList<String> killTextures = new ArrayList<>();
         killTextures.add(texturePath);
-        killTextures.add("void.png");
         Animation killAnimation = new Animation(killTextures, new int[8], 100, false);
 
         return killAnimation;
