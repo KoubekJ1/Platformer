@@ -136,6 +136,7 @@ public class Player extends DynamicObject implements Serializable {
         for (Powerup powerup : ProgramManager.getLevel().getPowerups()) {
             if (!this.collision(powerup)) continue;
             this.setPowerupState(powerup.collectPowerup(this));
+            enableInvulnerability();
         }
 
         updateCamera();
@@ -165,9 +166,8 @@ public class Player extends DynamicObject implements Serializable {
 
     @Override
     protected void damage() {
-        invulnerabilityTimer.start();
         powerupState.damage();
-        sprite.blip();
+        enableInvulnerability();
     }
 
     @Override
@@ -176,6 +176,11 @@ public class Player extends DynamicObject implements Serializable {
         JOptionPane.showMessageDialog(null, "You are dead!", "Game Over", JOptionPane.PLAIN_MESSAGE);
         ProgramManager.endLevel();
         Thread.currentThread().stop();
+    }
+
+    private void enableInvulnerability() {
+        invulnerabilityTimer.start();
+        sprite.blip();
     }
 
     private void applyGravity(float dt) {
