@@ -8,8 +8,9 @@ public class BlipTimer implements ActionListener {
 
     private static BlipTimer blipTimer = new BlipTimer();
 
-    public boolean isBlip() {
-        return blip;
+    public static boolean isBlip() {
+        if (!blipTimer.timer.isRunning()) blipTimer.timer.start();
+        return blipTimer.blip;
     }
 
     private boolean blip = true;
