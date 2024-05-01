@@ -29,12 +29,15 @@ public class PlayGame extends AbstractAction {
         testLevel.addBlock(new Block("blocks/brick.png", true), 25, 19);
         testLevel.addBlock(new Block("blocks/brick.png", true), 35, 19);
 
-        testLevel.addEnemy(Enemy.getGoomba(30, 19));
-        /*try {
-            testLevel.addEnemy(AssetManager.getEnemy("assets/enemies/goomba.enemy"));
+        //testLevel.addEnemy(Enemy.getGoomba(30, 19));
+        try {
+            Enemy goomba = AssetManager.getEnemy("assets/enemies/goomba.enemy");
+            goomba.setPosX(30);
+            goomba.setPosY(19);
+            testLevel.addEnemy(goomba);
         } catch (IOException | ClassNotFoundException ex) {
             throw new RuntimeException(ex);
-        }*/
+        }
 
         ProgramManager.play(testLevel);
     }
