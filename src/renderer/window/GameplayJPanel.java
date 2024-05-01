@@ -72,8 +72,8 @@ public class GameplayJPanel extends JPanel {
             if (enemy.getCurrentImage(baseBlockSize) == null) {
                 throw new IllegalStateException("Enemy doesn't have an active image!");
             }
-            if (!isTileVisible(enemy.getPosition()[0], enemy.getPosition()[1], baseBlockSize, currentTransform)) continue;
-            renderTile(g2D, enemy.getCurrentImage(baseBlockSize), enemy.getPosition()[0], enemy.getPosition()[1]);
+            if (!isTileVisible(enemy.getPosX(), enemy.getPosY(), baseBlockSize, currentTransform)) continue;
+            renderTile(g2D, enemy.getCurrentImage(baseBlockSize), enemy.getPosX(), enemy.getPosY());
         }
 
         Block[][] blocks = renderInfo.getBlocks();
