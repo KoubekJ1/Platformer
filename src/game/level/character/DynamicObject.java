@@ -34,7 +34,7 @@ public abstract class DynamicObject implements Serializable {
             velocityY = 0;
         }
         
-        characterUpdate(dt);
+        objectUpdate(dt);
 
         if (isOutOfBoundsX()) velocityX = 0;
         if (isOutOfBoundsY()) velocityY = 0;
@@ -43,7 +43,7 @@ public abstract class DynamicObject implements Serializable {
         posY += velocityY;
     }
 
-    protected abstract void characterUpdate(float dt);
+    protected abstract void objectUpdate(float dt);
 
     protected abstract void damage();
     protected abstract void kill();

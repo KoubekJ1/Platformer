@@ -47,7 +47,7 @@ public class Enemy extends DynamicObject {
     }
 
     @Override
-    public void characterUpdate(float dt) {
+    public void objectUpdate(float dt) {
         ai.update(dt);
     }
 

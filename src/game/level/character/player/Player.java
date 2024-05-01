@@ -53,7 +53,7 @@ public class Player extends DynamicObject {
     }
 
     @Override
-    public void characterUpdate(float dt) {
+    public void objectUpdate(float dt) {
         if (InputManager.isKeyPressed(KeyEvent.VK_W) || InputManager.isKeyPressed(KeyEvent.VK_SPACE) || InputManager.isKeyPressed(KeyEvent.VK_UP)) {
             if (velocityY == 0) jump();
         } else {
