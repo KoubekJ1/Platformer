@@ -10,6 +10,10 @@ public abstract class PowerupState {
 
     public PowerupState(Player parentPlayer) {
         this.parentPlayer = parentPlayer;
+        if (parentPlayer.getSprite() != null) {
+            float sizeDifference = parentPlayer.getSize()[1] - getSprite().getHeight();
+            parentPlayer.setPosY(parentPlayer.getPosY() + sizeDifference);
+        }
         parentPlayer.setSprite(getSprite());
     }
 
