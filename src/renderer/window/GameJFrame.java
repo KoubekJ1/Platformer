@@ -25,7 +25,7 @@ public class GameJFrame extends JFrame implements KeyListener {
         this.setMinimumSize(new Dimension(800, 600));
         this.setLocationRelativeTo(null);
         this.addKeyListener(this);
-        this.requestFocus();
+        this.setFocusable(true);
     }
 
     public void createMenuCard(JButton[] buttons, String card) {
@@ -66,6 +66,19 @@ public class GameJFrame extends JFrame implements KeyListener {
         return gameplayCardInitialized;
     }
 
+    public void toggleFullscreen() {
+        if (this.isUndecorated()) {
+            this.dispose();
+            this.setUndecorated(false);
+            this.setVisible(true);
+        } else {
+            this.dispose();
+            this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            this.setUndecorated(true);
+            this.setVisible(true);
+        }
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -74,6 +87,9 @@ public class GameJFrame extends JFrame implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         InputManager.pressKey(e.getKeyCode());
+        if (e.getKeyCode() == KeyEvent.VK_F11) {
+            toggleFullscreen();
+        }
     }
 
     @Override
