@@ -91,14 +91,9 @@ public class Enemy extends Character {
         movementTextures.add("characters/enemies/goomba/move2.png");
         Animation movementAnimation = new Animation(movementTextures, 160, true);
 
-        ArrayList<String> killTextures = new ArrayList<>();
-        killTextures.add("characters/enemies/goomba/kill.png");
-        killTextures.add("void.png");
-        Animation killAnimation = new Animation(killTextures, new int[]{0, 1, 0, 1, 0, 1, 0, 1}, 100, false);
-
         animations.put("static", staticAnimation);
         animations.put("move", movementAnimation);
-        animations.put("kill", killAnimation);
+        animations.put("kill", Animation.getKillAnimation("characters/enemies/goomba/kill.png"));
         return new Enemy(new Sprite(animations, 1, 1), new Goomba(), x, y);
     }
 }
