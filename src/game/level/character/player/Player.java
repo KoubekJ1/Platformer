@@ -220,6 +220,10 @@ public class Player extends DynamicObject {
         return new float[]{sprite.getWidth(), sprite.getHeight()};
     }
 
+    public void setPowerupState(PowerupState powerupState) {
+        this.powerupState = powerupState;
+    }
+
     @Override
     protected String getAssetDirectory() {
         return "players";
