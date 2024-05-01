@@ -8,8 +8,11 @@ import game.level.character.player.powerups.states.Mushroom;
 import game.level.character.player.powerups.states.PowerupState;
 import renderer.Sprite;
 import util.InputManager;
+import util.Time;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 public class Player extends DynamicObject {
@@ -27,6 +30,7 @@ public class Player extends DynamicObject {
 
     private Camera camera;
     private PowerupState powerupState;
+    private Timer invulnerabilityTimer;
 
     public Player() {
         posX = 0;
@@ -35,10 +39,13 @@ public class Player extends DynamicObject {
         velocityY = 0;
 
         camera = new Camera(this);
-
         powerupState = new Mushroom(this);
-
-        sprite = powerupState.getSprite();
+        invulnerabilityTimer = new Timer(2000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                invulnerabilityTimer.stop();
+            }
+        });
     }
 
     @Override
@@ -125,7 +132,7 @@ public class Player extends DynamicObject {
                 enemy.damage();
                 jump();
             } else {
-                this.damage();
+                if (!invulnerabilityTimer.isRunning()) this.damage();
             }
         }
 
@@ -156,6 +163,7 @@ public class Player extends DynamicObject {
 
     @Override
     protected void damage() {
+        invulnerabilityTimer.start();
         powerupState.damage();
     }
 
