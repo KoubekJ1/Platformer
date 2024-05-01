@@ -10,10 +10,17 @@ import util.InputManager;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Enemy extends Character {
+public class Enemy extends Character implements Serializable {
+
+    private String id;
+    private String name;
 
     private EnemyBehavior ai;
     private Timer deathTimer;
@@ -21,7 +28,17 @@ public class Enemy extends Character {
     public Enemy() {
     }
 
-    public Enemy(Sprite sprite, EnemyBehavior ai, int posX, int posY) {
+    public Enemy(String name, String id, Sprite sprite, EnemyBehavior ai) {
+        this.sprite = sprite;
+        this.ai = ai;
+        ai.setParentEnemy(this);
+        this.posX = 0;
+        this.posY = 0;
+        velocityX = 0;
+        velocityY = 0;
+    }
+
+    public Enemy(String name, String id, Sprite sprite, EnemyBehavior ai, int posX, int posY) {
         this.sprite = sprite;
         this.ai = ai;
         ai.setParentEnemy(this);
@@ -73,10 +90,6 @@ public class Enemy extends Character {
         return new float[]{sprite.getWidth(), sprite.getHeight()};
     }
 
-    public float[] getPosition() {
-        return new float[]{posX, posY};
-    }
-
     public boolean isDead() {
         if (deathTimer == null) return false;
         return deathTimer.isRunning();
@@ -94,6 +107,27 @@ public class Enemy extends Character {
         animations.put("static", staticAnimation);
         animations.put("move", movementAnimation);
         animations.put("kill", Animation.getKillAnimation("characters/enemies/goomba/kill.png"));
-        return new Enemy(new Sprite(animations, 1, 1), new Goomba(), x, y);
+
+        Enemy goomba = new Enemy("Goomba", "goomba", new Sprite(animations, 1, 1), new Goomba());
+        try {
+            goomba.serialize();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        goomba.setPosX(x);
+        goomba.setPosY(y);
+
+        return goomba;
+    }
+
+    public void serialize() throws IOException {
+        FileOutputStream fileOutputStream = new FileOutputStream("assets/enemies/" + id + ".enemy");
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(this);
+
+        objectOutputStream.flush();
+        objectOutputStream.close();
+        fileOutputStream.flush();
+        fileOutputStream.close();
     }
 }

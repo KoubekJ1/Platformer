@@ -1,6 +1,8 @@
 package game.level.character.enemy;
 
-public abstract class EnemyBehavior {
+import java.io.Serializable;
+
+public abstract class EnemyBehavior implements Serializable {
     protected Enemy parentEnemy;
 
     public abstract void update(float dt);
