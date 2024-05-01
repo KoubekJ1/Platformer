@@ -1,6 +1,7 @@
-package game.level.character;
+package game.level.character.player.powerups;
 
 import game.ProgramManager;
+import game.level.character.DynamicObject;
 import renderer.Sprite;
 
 import java.io.IOException;

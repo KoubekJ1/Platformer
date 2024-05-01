@@ -2,7 +2,7 @@ package game.level;
 
 import game.ProgramManager;
 import game.level.character.DynamicObject;
-import game.level.character.Powerup;
+import game.level.character.player.powerups.Powerup;
 import game.level.character.enemy.Enemy;
 import game.level.character.player.Player;
 import renderer.RenderInfo;
@@ -16,7 +16,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.LinkedList;
-import java.util.stream.Stream;
 
 public class Level implements Serializable, ActionListener {
     private static final String LEVELS_DIRECTORY = "assets/levels/";

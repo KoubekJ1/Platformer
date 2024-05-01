@@ -2,10 +2,7 @@ package renderer;
 
 import game.level.Block;
 import game.level.character.DynamicObject;
-import game.level.character.Powerup;
 import game.level.character.player.camera.Camera;
-import game.level.character.player.Player;
-import game.level.character.enemy.Enemy;
 
 import java.awt.*;
 import java.util.LinkedList;

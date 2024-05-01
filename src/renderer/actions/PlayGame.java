@@ -3,13 +3,11 @@ package renderer.actions;
 import game.ProgramManager;
 import game.level.Block;
 import game.level.Level;
-import game.level.character.Powerup;
+import game.level.character.player.powerups.Powerup;
 import game.level.character.enemy.Enemy;
-import util.AssetManager;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.io.IOException;
 
 public class PlayGame extends AbstractAction {
 
