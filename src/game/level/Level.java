@@ -62,12 +62,22 @@ public class Level implements Serializable, ActionListener {
 
     public void addObject(DynamicObject object) {
         this.dynamicObjects.add(object);
+        getCorrespondingDynamicObjectLinkedList(object).add(object);
+    }
+
+    public void removeObject(DynamicObject object) {
+        this.dynamicObjects.remove(object);
+        getCorrespondingDynamicObjectLinkedList(object).remove(object);
+    }
+
+    private LinkedList getCorrespondingDynamicObjectLinkedList(DynamicObject object) {
         String objectClass[] = object.getClass().toString().split("\\.");
-        switch (objectClass[objectClass.length - 1]) {
-            case "Player" -> players.add((Player) object);
-            case "Enemy" -> enemies.add((Enemy) object);
-            case "Powerup" -> powerups.add((Powerup) object);
-        }
+        return switch (objectClass[objectClass.length - 1]) {
+            case "Player" -> players;
+            case "Enemy" -> enemies;
+            case "Powerup" -> powerups;
+            default -> throw new IllegalArgumentException("Invalid object!");
+        };
     }
 
     public void start() {

@@ -69,7 +69,7 @@ public class Enemy extends DynamicObject {
     }
 
     private void removeFromLevel() {
-        ProgramManager.getLevel().getEnemies().remove(this);
+        ProgramManager.getLevel().removeObject(this);
     }
 
     public void setWidth(float width) {
