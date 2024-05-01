@@ -94,7 +94,6 @@ public class Level implements Serializable/*, ActionListener*/ {
     }
 
     public void update(float dt) {
-        //LinkedList<DynamicObject> dynamicObjects = (LinkedList<DynamicObject>) Stream.concat(Stream.concat(players.stream(), enemies.stream()), powerups.stream()).toList();
         renderInfo = new RenderInfo(Color.CYAN, players.getFirst().getCamera(), blocks, dynamicObjects);
         if (ProgramManager.isDebug()) {
             renderInfo.setFrameRate(1/dt);
@@ -102,13 +101,14 @@ public class Level implements Serializable/*, ActionListener*/ {
         for (DynamicObject object : dynamicObjects) {
             object.update(dt);
         }
-        Renderer.render(renderInfo);
 
         for (DynamicObject dynamicObject : dynamicObjectsForRemoval) {
             this.dynamicObjects.remove(dynamicObject);
             getCorrespondingDynamicObjectLinkedList(dynamicObject).remove(dynamicObject);
         }
+        dynamicObjectsForRemoval.clear();
 
+        Renderer.render(renderInfo);
         /*endTime = Time.getTime();
         dt = endTime - beginTime;
         beginTime = endTime;*/
