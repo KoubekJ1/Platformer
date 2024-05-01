@@ -29,6 +29,8 @@ public class Enemy extends Character implements Serializable {
     }
 
     public Enemy(String name, String id, Sprite sprite, EnemyBehavior ai) {
+        this.name = name;
+        this.id = id;
         this.sprite = sprite;
         this.ai = ai;
         ai.setParentEnemy(this);
@@ -39,6 +41,8 @@ public class Enemy extends Character implements Serializable {
     }
 
     public Enemy(String name, String id, Sprite sprite, EnemyBehavior ai, int posX, int posY) {
+        this.name = name;
+        this.id = id;
         this.sprite = sprite;
         this.ai = ai;
         ai.setParentEnemy(this);
