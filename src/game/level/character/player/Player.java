@@ -40,11 +40,9 @@ public class Player extends DynamicObject {
 
         camera = new Camera(this);
         powerupState = new Mushroom(this);
-        invulnerabilityTimer = new Timer(2000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                invulnerabilityTimer.stop();
-            }
+        invulnerabilityTimer = new Timer(2000, e -> {
+            invulnerabilityTimer.stop();
+            sprite.stopBlipping();
         });
     }
 
@@ -165,6 +163,7 @@ public class Player extends DynamicObject {
     protected void damage() {
         invulnerabilityTimer.start();
         powerupState.damage();
+        sprite.blip();
     }
 
     @Override
