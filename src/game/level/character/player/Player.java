@@ -24,6 +24,7 @@ public class Player extends DynamicObject implements Serializable {
     private static final float MAX_RUNNING_SPEED = 0.15f;
     private static final float MAX_SPRINTING_SPEED = 0.25f;
     private static final float ACCELERATION = 1;
+    private static final int INVULNERABILITY_DURATION = 2000;
     //private static final float SPRINTING_ACCELERATION = 3;
     //private static final int DRAG_SLOWDOWN = 5;
 
@@ -39,7 +40,7 @@ public class Player extends DynamicObject implements Serializable {
 
         camera = new Camera(this);
         powerupState = new Mushroom(this);
-        invulnerabilityTimer = new Timer(2000, e -> {
+        invulnerabilityTimer = new Timer(INVULNERABILITY_DURATION, e -> {
             invulnerabilityTimer.stop();
             sprite.stopBlipping();
         });
