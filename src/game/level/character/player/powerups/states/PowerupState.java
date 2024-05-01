@@ -10,6 +10,7 @@ public abstract class PowerupState {
 
     public PowerupState(Player parentPlayer) {
         this.parentPlayer = parentPlayer;
+        parentPlayer.setSprite(getSprite());
     }
 
     public abstract void damage();
