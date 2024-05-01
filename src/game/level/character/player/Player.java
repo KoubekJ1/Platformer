@@ -219,6 +219,10 @@ public class Player extends DynamicObject {
         this.powerupState = powerupState;
     }
 
+    public Sprite getSprite() {
+        return this.sprite;
+    }
+
     public void setSprite(Sprite sprite) {
         this.sprite = sprite;
     }
