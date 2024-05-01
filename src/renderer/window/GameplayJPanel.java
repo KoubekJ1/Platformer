@@ -32,7 +32,7 @@ public class GameplayJPanel extends JPanel {
     }
 
     private void updateBaseBlockSize() {
-        baseBlockSize = this.getHeight() / 20.0f;
+        baseBlockSize = Math.round(this.getHeight() / 20.0f);
     }
 
     public void render(RenderInfo renderInfo) {
