@@ -2,6 +2,9 @@ package game.level.character.player.powerups;
 
 import game.ProgramManager;
 import game.level.character.DynamicObject;
+import game.level.character.player.Player;
+import game.level.character.player.powerups.states.Mushroom;
+import game.level.character.player.powerups.states.PowerupState;
 import renderer.Sprite;
 
 import java.io.IOException;
@@ -10,23 +13,25 @@ import java.io.Serializable;
 public class Powerup extends DynamicObject implements Serializable {
 
     private static final String POWERUP_TEXTURES_PATH = "powerups/";
-
     private static final float POWERUP_SPEED = 1;
 
     private boolean direction;
+    PickUpable pickUpable;
 
-    public Powerup(String name, String id, Sprite sprite) {
+    public Powerup(String name, String id, Sprite sprite, PickUpable pickUpable) {
         this.name = name;
         this.id = id;
         this.direction = true;
         this.sprite = sprite;
+        this.pickUpable = pickUpable;
     }
 
-    public Powerup(String name, String id, Sprite sprite, int x, int y) {
+    public Powerup(String name, String id, Sprite sprite, PickUpable pickUpable, int x, int y) {
         this.name = name;
         this.id = id;
         this.direction = true;
         this.sprite = sprite;
+        this.pickUpable = pickUpable;
 
         this.posX = x;
         this.posY = y;
@@ -77,7 +82,7 @@ public class Powerup extends DynamicObject implements Serializable {
     }
 
     public static Powerup getMushroom(int x, int y) {
-        Powerup mushroom = new Powerup("Mushroom", "mushroom", new Sprite(POWERUP_TEXTURES_PATH + "mushroom.png", 1, 1));
+        Powerup mushroom = new Powerup("Mushroom", "mushroom", new Sprite(POWERUP_TEXTURES_PATH + "mushroom.png", 1, 1), Mushroom::new);
         try {
             mushroom.serialize();
         } catch (IOException e) {
