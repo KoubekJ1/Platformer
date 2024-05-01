@@ -4,18 +4,17 @@ import game.ProgramManager;
 import game.level.character.DynamicObject;
 import game.level.character.enemy.Enemy;
 import game.level.character.player.camera.Camera;
+import game.level.character.player.powerups.Powerup;
 import game.level.character.player.powerups.states.Mushroom;
 import game.level.character.player.powerups.states.PowerupState;
 import renderer.Sprite;
 import util.InputManager;
-import util.Time;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.Serializable;
 
-public class Player extends DynamicObject {
+public class Player extends DynamicObject implements Serializable {
 
     private static final String PLAYER_TEXTURES_DIRECTORY = "characters/player/";
 
@@ -132,6 +131,11 @@ public class Player extends DynamicObject {
             } else {
                 if (!invulnerabilityTimer.isRunning()) this.damage();
             }
+        }
+
+        for (Powerup powerup : ProgramManager.getLevel().getPowerups()) {
+            if (!this.collision(powerup)) continue;
+            this.setPowerupState(powerup.collectPowerup(this));
         }
 
         updateCamera();
