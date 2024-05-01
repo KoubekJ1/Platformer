@@ -210,10 +210,6 @@ public class Player extends DynamicObject {
         return camera;
     }
 
-    public float[] getPosition() {
-        return new float[]{posX, posY};
-    }
-
     public float[] getVelocity() {
         return new float[]{velocityX, velocityY};
     }

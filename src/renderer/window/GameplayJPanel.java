@@ -2,6 +2,7 @@ package renderer.window;
 
 import game.ProgramManager;
 import game.level.Block;
+import game.level.character.DynamicObject;
 import game.level.character.enemy.Enemy;
 import game.level.character.player.Player;
 import renderer.RenderInfo;
@@ -59,21 +60,12 @@ public class GameplayJPanel extends JPanel {
         g2D.setTransform(currentTransform);
 
         // Rendering the player(s)
-        for (Player player : renderInfo.getPlayers()) {
-            if (player.getCurrentImage(baseBlockSize) == null) {
+        for (DynamicObject dynamicObject : renderInfo.getDynamicObjects()) {
+            if (dynamicObject.getCurrentImage(baseBlockSize) == null) {
                 throw new IllegalStateException("Player doesn't have an active image!");
             }
-            if (!isTileVisible(player.getPosition()[0], player.getPosition()[1], baseBlockSize, currentTransform)) continue;
-            renderTile(g2D, player.getCurrentImage(baseBlockSize), player.getPosition()[0], player.getPosition()[1]);
-        }
-
-        // Rendering the enemies
-        for (Enemy enemy : renderInfo.getEnemies()) {
-            if (enemy.getCurrentImage(baseBlockSize) == null) {
-                throw new IllegalStateException("Enemy doesn't have an active image!");
-            }
-            if (!isTileVisible(enemy.getPosX(), enemy.getPosY(), baseBlockSize, currentTransform)) continue;
-            renderTile(g2D, enemy.getCurrentImage(baseBlockSize), enemy.getPosX(), enemy.getPosY());
+            if (!isTileVisible(dynamicObject.getPosX(), dynamicObject.getPosY(), baseBlockSize, currentTransform)) continue;
+            renderTile(g2D, dynamicObject.getCurrentImage(baseBlockSize), dynamicObject.getPosX(), dynamicObject.getPosY());
         }
 
         Block[][] blocks = renderInfo.getBlocks();
@@ -90,9 +82,9 @@ public class GameplayJPanel extends JPanel {
             g2D.setFont(new Font("Segoe UI", Font.PLAIN, 20));
             g2D.setColor(Color.BLACK);
             g2D.drawString("FPS: " + renderInfo.getFrameRate(), 0, 20);
-            float[] position = renderInfo.getPlayers().getFirst().getPosition();
-            g2D.drawString("Player position: " + position[0] + ", " + position[1], 0, 40);
-            float[] velocity = renderInfo.getPlayers().getFirst().getVelocity();
+            Player player = ProgramManager.getLevel().getPlayers().getFirst();
+            g2D.drawString("Player position: " + player.getPosX() + ", " + player.getPosY(), 0, 40);
+            float[] velocity = player.getVelocity();
             g2D.drawString("Player velocity: " + velocity[0] + ", " + velocity[1], 0, 60);
             AffineTransform playerCamera = renderInfo.getCamera().getTransform();
             g2D.drawString("Camera position: " + playerCamera.getTranslateX() + ", " + playerCamera.getTranslateY(), 0, 80);

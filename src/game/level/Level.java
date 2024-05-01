@@ -1,6 +1,8 @@
 package game.level;
 
 import game.ProgramManager;
+import game.level.character.DynamicObject;
+import game.level.character.Powerup;
 import game.level.character.enemy.Enemy;
 import game.level.character.player.Player;
 import renderer.RenderInfo;
@@ -14,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.LinkedList;
+import java.util.stream.Stream;
 
 public class Level implements Serializable, ActionListener {
     private static final String LEVELS_DIRECTORY = "assets/levels/";
@@ -21,9 +24,12 @@ public class Level implements Serializable, ActionListener {
     private String levelID;
     private String levelName;
 
+    private LinkedList<DynamicObject> dynamicObjects = new LinkedList<>();
+
     private LinkedList<Player> players;
     private Block[][] blocks;
     private LinkedList<Enemy> enemies;
+    private LinkedList<Powerup> powerups;
 
     private Timer gameTimer;
 
@@ -36,10 +42,14 @@ public class Level implements Serializable, ActionListener {
     public Level(String levelID, String levelName, int sizeX, int sizeY) {
         this.levelID = levelID;
         this.levelName = levelName;
+
+        this.dynamicObjects = new LinkedList<>();
+
         this.players = new LinkedList<>();
-        players.add(new Player());
+        addObject(new Player());
         this.blocks = new Block[sizeX][sizeY];
         this.enemies = new LinkedList<>();
+        this.powerups = new LinkedList<>();
 
         // Setting the timer delay to half of the refresh rate seems to produce the expected amount of frames per second, weird fix
         this.gameTimer = new Timer(500/WindowManager.getRefreshRate(), this);
@@ -50,8 +60,14 @@ public class Level implements Serializable, ActionListener {
         blocks[x][y] = block;
     }
 
-    public void addEnemy(Enemy enemy) {
-        enemies.add(enemy);
+    public void addObject(DynamicObject object) {
+        this.dynamicObjects.add(object);
+        String objectClass[] = object.getClass().toString().split("\\.");
+        switch (objectClass[objectClass.length - 1]) {
+            case "Player" -> players.add((Player) object);
+            case "Enemy" -> enemies.add((Enemy) object);
+            case "Powerup" -> powerups.add((Powerup) object);
+        }
     }
 
     public void start() {
@@ -63,7 +79,8 @@ public class Level implements Serializable, ActionListener {
     }
 
     public void update() {
-        renderInfo = new RenderInfo(Color.CYAN, players.getFirst().getCamera(), blocks, players, enemies);
+        //LinkedList<DynamicObject> dynamicObjects = (LinkedList<DynamicObject>) Stream.concat(Stream.concat(players.stream(), enemies.stream()), powerups.stream()).toList();
+        renderInfo = new RenderInfo(Color.CYAN, players.getFirst().getCamera(), blocks, dynamicObjects);
         if (ProgramManager.isDebug()) {
             renderInfo.setFrameRate(1/dt);
         }
@@ -90,6 +107,14 @@ public class Level implements Serializable, ActionListener {
 
     public LinkedList<Enemy> getEnemies() {
         return enemies;
+    }
+
+    public LinkedList<Player> getPlayers() {
+        return players;
+    }
+
+    public LinkedList<Powerup> getPowerups() {
+        return powerups;
     }
 
     public void serialize() throws IOException {

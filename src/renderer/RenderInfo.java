@@ -1,6 +1,8 @@
 package renderer;
 
 import game.level.Block;
+import game.level.character.DynamicObject;
+import game.level.character.Powerup;
 import game.level.character.player.camera.Camera;
 import game.level.character.player.Player;
 import game.level.character.enemy.Enemy;
@@ -12,17 +14,15 @@ public class RenderInfo {
     private Color background;
     private Camera camera;
     private Block[][] blocks;
-    private LinkedList<Player> players;
-    private LinkedList<Enemy> enemies;
+    private LinkedList<DynamicObject> dynamicObjects;
 
     private float frameRate = 0;
 
-    public RenderInfo(Color background, Camera camera, Block[][] blocks, LinkedList<Player> players, LinkedList<Enemy> enemies) {
+    public RenderInfo(Color background, Camera camera, Block[][] blocks, LinkedList<DynamicObject> dynamicObjects) {
         this.background = background;
         this.camera = camera;
         this.blocks = blocks;
-        this.players = players;
-        this.enemies = enemies;
+        this.dynamicObjects = dynamicObjects;
     }
 
     public Color getBackground() {
@@ -49,20 +49,12 @@ public class RenderInfo {
         this.blocks = blocks;
     }
 
-    public LinkedList<Player> getPlayers() {
-        return players;
+    public LinkedList<DynamicObject> getDynamicObjects() {
+        return dynamicObjects;
     }
 
-    public void setPlayers(LinkedList<Player> players) {
-        this.players = players;
-    }
-
-    public LinkedList<Enemy> getEnemies() {
-        return enemies;
-    }
-
-    public void setEnemies(LinkedList<Enemy> enemies) {
-        this.enemies = enemies;
+    public void setDynamicObjects(LinkedList<DynamicObject> dynamicObjects) {
+        this.dynamicObjects = dynamicObjects;
     }
 
     public float getFrameRate() {
