@@ -1,7 +1,7 @@
 package game.level.character.player;
 
 import game.ProgramManager;
-import game.level.character.Character;
+import game.level.character.DynamicObject;
 import game.level.character.enemy.Enemy;
 import game.level.character.player.camera.Camera;
 import renderer.Animation;
@@ -13,7 +13,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Player extends Character {
+public class Player extends DynamicObject {
 
     private static final String PLAYER_TEXTURES_DIRECTORY = "characters/player/";
 

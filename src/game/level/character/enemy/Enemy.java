@@ -1,23 +1,16 @@
 package game.level.character.enemy;
 
 import game.ProgramManager;
-import game.level.Block;
-import game.level.character.Character;
+import game.level.character.DynamicObject;
 import renderer.Animation;
 import renderer.Sprite;
-import util.InputManager;
 
 import javax.swing.*;
-import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Enemy extends Character {
+public class Enemy extends DynamicObject {
 
     private EnemyBehavior ai;
     private Timer deathTimer;

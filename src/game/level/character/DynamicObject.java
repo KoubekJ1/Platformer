@@ -2,12 +2,8 @@ package game.level.character;
 
 import game.ProgramManager;
 import game.level.Block;
-import game.level.Level;
-import game.level.character.player.Player;
 import renderer.Sprite;
-import util.InputManager;
 
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -15,7 +11,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.LinkedList;
 
-public abstract class Character implements Serializable {
+public abstract class DynamicObject implements Serializable {
     public static final int GRAVITY_ACCELERATION = 1;
     private static final float TERMINAL_VELOCITY = 50;
     public static final String CHARACTER_TEXTURES_PATH = "assets/textures/characters/";
@@ -139,19 +135,19 @@ public abstract class Character implements Serializable {
         return false;
     }
 
-    public boolean collision(Character character) {
+    public boolean collision(DynamicObject dynamicObject) {
         if (this.sprite == null) {
             return false;
         }
-        if (character.sprite == null) {
+        if (dynamicObject.sprite == null) {
             return false;
         }
-        if (!this.hasCollision || !character.hasCollision) return false;
+        if (!this.hasCollision || !dynamicObject.hasCollision) return false;
 
-        if (this.posX + this.getSizeX() < character.posX) return false;
-        if (this.posX > character.posX + character.getSizeX()) return false;
-        if (this.posY + this.getSizeY() < character.posY) return false;
-        if (this.posY > character.posY + character.getSizeY()) return false;
+        if (this.posX + this.getSizeX() < dynamicObject.posX) return false;
+        if (this.posX > dynamicObject.posX + dynamicObject.getSizeX()) return false;
+        if (this.posY + this.getSizeY() < dynamicObject.posY) return false;
+        if (this.posY > dynamicObject.posY + dynamicObject.getSizeY()) return false;
 
         return true;
     }
