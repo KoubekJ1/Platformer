@@ -39,11 +39,12 @@ public class Player extends DynamicObject implements Serializable {
         velocityY = 0;
 
         camera = new Camera(this);
-        powerupState = new Mushroom(this);
         invulnerabilityTimer = new Timer(INVULNERABILITY_DURATION, e -> {
             invulnerabilityTimer.stop();
             sprite.stopBlipping();
         });
+        powerupState = new Mushroom(this);
+
     }
 
     @Override
@@ -137,7 +138,6 @@ public class Player extends DynamicObject implements Serializable {
         for (Powerup powerup : ProgramManager.getLevel().getPowerups()) {
             if (!this.collision(powerup)) continue;
             this.setPowerupState(powerup.collectPowerup(this));
-            enableInvulnerability();
         }
 
         updateCamera();
@@ -168,7 +168,6 @@ public class Player extends DynamicObject implements Serializable {
     @Override
     protected void damage() {
         powerupState.damage();
-        enableInvulnerability();
     }
 
     @Override
@@ -179,7 +178,7 @@ public class Player extends DynamicObject implements Serializable {
         Thread.currentThread().stop();
     }
 
-    private void enableInvulnerability() {
+    public void enableInvulnerability() {
         invulnerabilityTimer.start();
         sprite.blip();
     }

@@ -17,6 +17,7 @@ public abstract class PowerupState implements Serializable {
             parentPlayer.setPosY(parentPlayer.getPosY() + sizeDifference);
         }
         parentPlayer.setSprite(getSprite());
+        parentPlayer.enableInvulnerability();
     }
 
     public abstract void damage();
