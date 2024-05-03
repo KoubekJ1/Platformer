@@ -11,12 +11,15 @@ import java.util.HashMap;
 
 public class Fireball extends Projectile {
 
+    private static final float SPEED = 10;
+    private static final float JUMP_VELOCITY = 0.2f;
+
     public Fireball(float x, float y, int direction) {
-        super(x, y, 5, 0.2f, false, true, direction);
+        super(x, y, SPEED, JUMP_VELOCITY, false, true, direction);
     }
 
     public Fireball(float x, float y, boolean direction) {
-        super(x, y, 5, 0.2f, false, true, direction);
+        super(x, y, SPEED, JUMP_VELOCITY, false, true, direction);
     }
 
     @Override
