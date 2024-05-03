@@ -124,6 +124,11 @@ public class Player extends DynamicObject implements Serializable {
         if (leftBlockCollisionCheck()) {
             velocityX = 0;
         }
+
+        if (InputManager.isKeyPressed(KeyEvent.VK_E) || InputManager.isKeyPressed(KeyEvent.VK_ENTER)) {
+            powerupState.ability();
+        }
+
         for (Enemy enemy : ProgramManager.getLevel().getEnemies()) {
             if (!this.collision(enemy)) continue;
             if (this.velocityY > 0) {
