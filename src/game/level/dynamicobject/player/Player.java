@@ -5,6 +5,7 @@ import game.level.dynamicobject.DynamicObject;
 import game.level.dynamicobject.enemy.Enemy;
 import game.level.dynamicobject.player.camera.Camera;
 import game.level.dynamicobject.player.powerups.Powerup;
+import game.level.dynamicobject.player.powerups.states.Fire;
 import game.level.dynamicobject.player.powerups.states.Mushroom;
 import game.level.dynamicobject.player.powerups.states.PowerupState;
 import util.InputManager;
@@ -42,7 +43,7 @@ public class Player extends DynamicObject implements Serializable {
             invulnerabilityTimer.stop();
             sprite.stopBlipping();
         });
-        powerupState = new Mushroom(this);
+        powerupState = new Fire(this);
 
     }
 
