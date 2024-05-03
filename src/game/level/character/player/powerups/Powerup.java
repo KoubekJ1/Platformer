@@ -17,22 +17,25 @@ public class Powerup extends DynamicObject implements Serializable {
     private static final float POWERUP_SPEED = 1;
 
     private boolean direction;
+    private boolean isStatic;
     private PickUpable pickUpable;
 
-    public Powerup(String name, String id, Sprite sprite, PickUpable pickUpable) {
+    public Powerup(String name, String id, Sprite sprite, boolean isStatic, PickUpable pickUpable) {
         this.name = name;
         this.id = id;
         this.direction = true;
         this.sprite = sprite;
         this.pickUpable = pickUpable;
+        this.isStatic = isStatic;
     }
 
-    public Powerup(String name, String id, Sprite sprite, PickUpable pickUpable, int x, int y) {
+    public Powerup(String name, String id, Sprite sprite, PickUpable pickUpable, boolean isStatic, int x, int y) {
         this.name = name;
         this.id = id;
         this.direction = true;
         this.sprite = sprite;
         this.pickUpable = pickUpable;
+        this.isStatic = isStatic;
 
         this.posX = x;
         this.posY = y;
@@ -40,6 +43,7 @@ public class Powerup extends DynamicObject implements Serializable {
 
     @Override
     protected void objectUpdate(float dt) {
+        if (isStatic) return;
         if (rightBlockCollisionCheck()) {
             switchDirection();
         }
@@ -88,7 +92,7 @@ public class Powerup extends DynamicObject implements Serializable {
     }
 
     public static Powerup getMushroom(int x, int y) {
-        Powerup mushroom = new Powerup("Mushroom", "mushroom", new Sprite(POWERUP_TEXTURES_PATH + "mushroom.png", 1, 1), new PickUpable() {
+        Powerup mushroom = new Powerup("Mushroom", "mushroom", new Sprite(POWERUP_TEXTURES_PATH + "mushroom.png", 1, 1), false, new PickUpable() {
             @Override
             public PowerupState getPowerupState(Player player) {
                 return new Mushroom(player);
