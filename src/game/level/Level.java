@@ -20,6 +20,7 @@ public class Level implements Serializable/*, ActionListener*/ {
     private String levelName;
 
     private LinkedList<DynamicObject> dynamicObjects;
+    private LinkedList<DynamicObject> dynamicObjectsToAdd;
     private LinkedList<DynamicObject> dynamicObjectsForRemoval;
 
     private LinkedList<Player> players;
@@ -42,6 +43,7 @@ public class Level implements Serializable/*, ActionListener*/ {
         this.levelName = levelName;
 
         this.dynamicObjects = new LinkedList<>();
+        this.dynamicObjectsToAdd = new LinkedList<>();
         this.dynamicObjectsForRemoval = new LinkedList<>();
 
         this.players = new LinkedList<>();
@@ -63,8 +65,9 @@ public class Level implements Serializable/*, ActionListener*/ {
     }
 
     public void addObject(DynamicObject object) {
-        this.dynamicObjects.add(object);
-        getCorrespondingDynamicObjectLinkedList(object).add(object);
+        dynamicObjectsToAdd.add(object);
+        //this.dynamicObjects.add(object);
+        //getCorrespondingDynamicObjectLinkedList(object).add(object);
     }
 
     public void removeObject(DynamicObject object) {
@@ -92,18 +95,22 @@ public class Level implements Serializable/*, ActionListener*/ {
     }
 
     public void update(float dt) {
-        renderInfo = new RenderInfo(Color.CYAN, players.getFirst().getCamera(), blocks, dynamicObjects);
-        if (ProgramManager.isDebug()) {
-            renderInfo.setFrameRate(1/dt);
-        }
         for (DynamicObject object : dynamicObjects) {
             object.update(dt);
+        }
+
+        for (DynamicObject dynamicObject : dynamicObjectsToAdd) {
+            this.dynamicObjects.add(dynamicObject);
+            getCorrespondingDynamicObjectLinkedList(dynamicObject).add(dynamicObject);
         }
 
         for (DynamicObject dynamicObject : dynamicObjectsForRemoval) {
             this.dynamicObjects.remove(dynamicObject);
             getCorrespondingDynamicObjectLinkedList(dynamicObject).remove(dynamicObject);
         }
+
+        dynamicObjectsToAdd.clear();
+        dynamicObjectsForRemoval.clear();
 
         for (Projectile projectile : projectiles) {
             for (Enemy enemy : enemies) {
@@ -113,12 +120,13 @@ public class Level implements Serializable/*, ActionListener*/ {
                 }
             }
         }
-        dynamicObjectsForRemoval.clear();
 
+
+        renderInfo = new RenderInfo(Color.CYAN, players.getFirst().getCamera(), blocks, dynamicObjects);
+        if (ProgramManager.isDebug()) {
+            renderInfo.setFrameRate(1/dt);
+        }
         Renderer.render(renderInfo);
-        /*endTime = Time.getTime();
-        dt = endTime - beginTime;
-        beginTime = endTime;*/
     }
 
     public Block getBlock(int x, int y) {
