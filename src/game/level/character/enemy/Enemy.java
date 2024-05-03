@@ -74,18 +74,6 @@ public class Enemy extends DynamicObject {
         ProgramManager.getLevel().removeObject(this);
     }
 
-    public void setWidth(float width) {
-        sprite.setWidth(width);
-    }
-
-    public void setHeight(float height) {
-        sprite.setHeight(height);
-    }
-
-    public float[] getSize() {
-        return new float[]{sprite.getWidth(), sprite.getHeight()};
-    }
-
     public boolean isDead() {
         if (deathTimer == null) return false;
         return deathTimer.isRunning();

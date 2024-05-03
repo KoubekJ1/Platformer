@@ -227,14 +227,6 @@ public class Player extends DynamicObject implements Serializable {
         this.powerupState = powerupState;
     }
 
-    public Sprite getSprite() {
-        return this.sprite;
-    }
-
-    public void setSprite(Sprite sprite) {
-        this.sprite = sprite;
-    }
-
     @Override
     protected String getAssetDirectory() {
         return "players";

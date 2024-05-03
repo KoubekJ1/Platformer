@@ -220,6 +220,14 @@ public abstract class DynamicObject implements Serializable {
         this.posY = posY;
     }
 
+    public Sprite getSprite() {
+        return sprite;
+    }
+
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
+    }
+
     public void serialize() throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream("assets/" + getAssetDirectory() + "/" + id + getAssetExtension());
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
