@@ -22,7 +22,7 @@ public class Fire extends PowerupState {
 
     @Override
     public void ability() {
-        Fireball fireball = new Fireball(parentPlayer.getPosX(), parentPlayer.getPosY());
+        Fireball fireball = new Fireball(parentPlayer.getPosX(), parentPlayer.getPosY(), !parentPlayer.getSprite().isMirrored());
         ProgramManager.getLevel().addObject(fireball);
     }
 
