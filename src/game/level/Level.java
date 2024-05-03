@@ -2,6 +2,7 @@ package game.level;
 
 import game.ProgramManager;
 import game.level.dynamicobject.DynamicObject;
+import game.level.dynamicobject.Projectile;
 import game.level.dynamicobject.player.powerups.Powerup;
 import game.level.dynamicobject.enemy.Enemy;
 import game.level.dynamicobject.player.Player;
@@ -25,6 +26,7 @@ public class Level implements Serializable/*, ActionListener*/ {
     private Block[][] blocks;
     private LinkedList<Enemy> enemies;
     private LinkedList<Powerup> powerups;
+    private LinkedList<Projectile> projectiles;
 
     //private Timer gameTimer;
     private UpdateThread updateThread;
@@ -74,6 +76,7 @@ public class Level implements Serializable/*, ActionListener*/ {
             case "Player" -> players;
             case "Enemy" -> enemies;
             case "Powerup" -> powerups;
+            case "Projectile" -> projectiles;
             default -> throw new IllegalArgumentException("Invalid object!");
         };
     }
@@ -100,6 +103,15 @@ public class Level implements Serializable/*, ActionListener*/ {
         for (DynamicObject dynamicObject : dynamicObjectsForRemoval) {
             this.dynamicObjects.remove(dynamicObject);
             getCorrespondingDynamicObjectLinkedList(dynamicObject).remove(dynamicObject);
+        }
+
+        for (Projectile projectile : projectiles) {
+            for (Enemy enemy : enemies) {
+                if (projectile.collision(enemy)) {
+                    enemy.damage();
+                    removeObject(projectile);
+                }
+            }
         }
         dynamicObjectsForRemoval.clear();
 
