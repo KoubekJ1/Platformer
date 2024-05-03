@@ -32,6 +32,7 @@ public class Fire extends PowerupState {
         Fireball fireball = new Fireball(parentPlayer.getPosX(), parentPlayer.getPosY(), !parentPlayer.getSprite().isMirrored());
         ProgramManager.getLevel().addObject(fireball);
         abilityTimer.start();
+        parentPlayer.getSprite().playAnimation("throw");
     }
 
     @Override
@@ -49,6 +50,7 @@ public class Fire extends PowerupState {
         animations.put("air", new Animation(PLAYER_TEXTURES_DIRECTORY + "fire/air.png"));
         animations.put("turn", new Animation(PLAYER_TEXTURES_DIRECTORY + "fire/turn.png"));
         animations.put("kill", new Animation(PLAYER_TEXTURES_DIRECTORY + "fire/kill.png"));
+        animations.put("throw", new Animation(PLAYER_TEXTURES_DIRECTORY + "fire/throw.png"));
 
         return new Sprite(animations, 1, 2);
     }
