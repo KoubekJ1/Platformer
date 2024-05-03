@@ -1,4 +1,4 @@
-package game.level.character.enemy;
+package game.level.dynamicobject.enemy;
 
 import java.io.Serializable;
 

@@ -1,19 +1,14 @@
 package game.level;
 
 import game.ProgramManager;
-import game.level.character.DynamicObject;
-import game.level.character.player.powerups.Powerup;
-import game.level.character.enemy.Enemy;
-import game.level.character.player.Player;
+import game.level.dynamicobject.DynamicObject;
+import game.level.dynamicobject.player.powerups.Powerup;
+import game.level.dynamicobject.enemy.Enemy;
+import game.level.dynamicobject.player.Player;
 import renderer.RenderInfo;
 import renderer.Renderer;
-import renderer.window.WindowManager;
-import util.Time;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.LinkedList;
 

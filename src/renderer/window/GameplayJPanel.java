@@ -2,9 +2,8 @@ package renderer.window;
 
 import game.ProgramManager;
 import game.level.Block;
-import game.level.character.DynamicObject;
-import game.level.character.enemy.Enemy;
-import game.level.character.player.Player;
+import game.level.dynamicobject.DynamicObject;
+import game.level.dynamicobject.player.Player;
 import renderer.RenderInfo;
 import renderer.Renderer;
 

@@ -1,8 +1,8 @@
-package game.level.character.player.powerups.states;
+package game.level.dynamicobject.player.powerups.states;
 
 import game.ProgramManager;
-import game.level.character.player.Player;
-import game.level.character.player.powerups.Fireball;
+import game.level.dynamicobject.player.Player;
+import game.level.dynamicobject.player.powerups.Fireball;
 import renderer.Animation;
 import renderer.Sprite;
 

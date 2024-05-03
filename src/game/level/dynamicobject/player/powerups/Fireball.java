@@ -1,7 +1,7 @@
-package game.level.character.player.powerups;
+package game.level.dynamicobject.player.powerups;
 
 import game.ProgramManager;
-import game.level.character.DynamicObject;
+import game.level.dynamicobject.DynamicObject;
 import renderer.Animation;
 import renderer.Sprite;
 

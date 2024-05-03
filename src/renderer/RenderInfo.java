@@ -1,8 +1,8 @@
 package renderer;
 
 import game.level.Block;
-import game.level.character.DynamicObject;
-import game.level.character.player.camera.Camera;
+import game.level.dynamicobject.DynamicObject;
+import game.level.dynamicobject.player.camera.Camera;
 
 import java.awt.*;
 import java.util.LinkedList;

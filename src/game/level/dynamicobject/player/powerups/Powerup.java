@@ -1,11 +1,10 @@
-package game.level.character.player.powerups;
+package game.level.dynamicobject.player.powerups;
 
 import game.ProgramManager;
-import game.level.Level;
-import game.level.character.DynamicObject;
-import game.level.character.player.Player;
-import game.level.character.player.powerups.states.Mushroom;
-import game.level.character.player.powerups.states.PowerupState;
+import game.level.dynamicobject.DynamicObject;
+import game.level.dynamicobject.player.Player;
+import game.level.dynamicobject.player.powerups.states.Mushroom;
+import game.level.dynamicobject.player.powerups.states.PowerupState;
 import renderer.Sprite;
 
 import java.io.IOException;

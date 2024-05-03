@@ -1,7 +1,7 @@
-package game.level.character.enemy;
+package game.level.dynamicobject.enemy;
 
 import game.ProgramManager;
-import game.level.character.DynamicObject;
+import game.level.dynamicobject.DynamicObject;
 import renderer.Animation;
 import renderer.Sprite;
 

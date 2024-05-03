@@ -1,4 +1,4 @@
-package game.level.character;
+package game.level.dynamicobject;
 
 import game.ProgramManager;
 import game.level.Block;

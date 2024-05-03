@@ -1,6 +1,6 @@
-package game.level.character.player.camera;
+package game.level.dynamicobject.player.camera;
 
-import game.level.character.player.Player;
+import game.level.dynamicobject.player.Player;
 
 import java.awt.geom.AffineTransform;
 

@@ -3,8 +3,8 @@ package renderer.actions;
 import game.ProgramManager;
 import game.level.Block;
 import game.level.Level;
-import game.level.character.player.powerups.Powerup;
-import game.level.character.enemy.Enemy;
+import game.level.dynamicobject.player.powerups.Powerup;
+import game.level.dynamicobject.enemy.Enemy;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

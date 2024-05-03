@@ -2,7 +2,7 @@ package util;
 
 import game.level.Block;
 import game.level.Level;
-import game.level.character.enemy.Enemy;
+import game.level.dynamicobject.enemy.Enemy;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

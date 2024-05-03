@@ -1,6 +1,6 @@
-package game.level.character.player.powerups.states;
+package game.level.dynamicobject.player.powerups.states;
 
-import game.level.character.player.Player;
+import game.level.dynamicobject.player.Player;
 import renderer.Sprite;
 
 import java.io.Serializable;

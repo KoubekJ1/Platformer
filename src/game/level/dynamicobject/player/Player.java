@@ -1,13 +1,12 @@
-package game.level.character.player;
+package game.level.dynamicobject.player;
 
 import game.ProgramManager;
-import game.level.character.DynamicObject;
-import game.level.character.enemy.Enemy;
-import game.level.character.player.camera.Camera;
-import game.level.character.player.powerups.Powerup;
-import game.level.character.player.powerups.states.Mushroom;
-import game.level.character.player.powerups.states.PowerupState;
-import renderer.Sprite;
+import game.level.dynamicobject.DynamicObject;
+import game.level.dynamicobject.enemy.Enemy;
+import game.level.dynamicobject.player.camera.Camera;
+import game.level.dynamicobject.player.powerups.Powerup;
+import game.level.dynamicobject.player.powerups.states.Mushroom;
+import game.level.dynamicobject.player.powerups.states.PowerupState;
 import util.InputManager;
 
 import javax.swing.*;

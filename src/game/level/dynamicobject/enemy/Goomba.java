@@ -1,4 +1,4 @@
-package game.level.character.enemy;
+package game.level.dynamicobject.enemy;
 
 public class Goomba extends EnemyBehavior {
     private static final float SPEED = 1;
