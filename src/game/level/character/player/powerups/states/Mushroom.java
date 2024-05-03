@@ -19,6 +19,11 @@ public class Mushroom extends PowerupState {
     }
 
     @Override
+    public void ability() {
+
+    }
+
+    @Override
     public Sprite getSprite() {
         HashMap<String, Animation> animations = new HashMap<>();
         ArrayList<String> images = new ArrayList<>();

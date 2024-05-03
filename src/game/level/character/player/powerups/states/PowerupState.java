@@ -22,5 +22,7 @@ public abstract class PowerupState implements Serializable {
 
     public abstract void damage();
 
+    public abstract void ability();
+
     public abstract Sprite getSprite();
 }
