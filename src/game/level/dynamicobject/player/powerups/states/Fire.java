@@ -6,13 +6,19 @@ import game.level.dynamicobject.player.powerups.Fireball;
 import renderer.Animation;
 import renderer.Sprite;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Fire extends PowerupState {
 
+    private Timer abilityTimer;
+
     public Fire(Player parentPlayer) {
         super(parentPlayer);
+        this.abilityTimer = new Timer(500, e -> abilityTimer.stop());
     }
 
     @Override
@@ -22,8 +28,10 @@ public class Fire extends PowerupState {
 
     @Override
     public void ability() {
+        if (abilityTimer.isRunning()) return;
         Fireball fireball = new Fireball(parentPlayer.getPosX(), parentPlayer.getPosY(), !parentPlayer.getSprite().isMirrored());
         ProgramManager.getLevel().addObject(fireball);
+        abilityTimer.start();
     }
 
     @Override
