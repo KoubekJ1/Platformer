@@ -70,6 +70,11 @@ public class Enemy extends DynamicObject {
         sprite.blip();
     }
 
+    @Override
+    public String getObjectCategory() {
+        return "enemy";
+    }
+
     private void removeFromLevel() {
         ProgramManager.getLevel().removeObject(this);
     }

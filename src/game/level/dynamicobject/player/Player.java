@@ -199,6 +199,11 @@ public class Player extends DynamicObject implements Serializable {
         }
     }
 
+    @Override
+    public String getObjectCategory() {
+        return "player";
+    }
+
     private void jump() {
         velocityY = -JUMP_VELOCITY;
     }

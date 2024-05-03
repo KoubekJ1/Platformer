@@ -239,6 +239,8 @@ public abstract class DynamicObject implements Serializable {
         fileOutputStream.close();
     }
 
+    public abstract String getObjectCategory();
+
     protected abstract String getAssetDirectory();
     protected abstract String getAssetExtension();
 

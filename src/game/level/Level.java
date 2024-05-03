@@ -49,6 +49,7 @@ public class Level implements Serializable/*, ActionListener*/ {
         this.blocks = new Block[sizeX][sizeY];
         this.enemies = new LinkedList<>();
         this.powerups = new LinkedList<>();
+        this.projectiles = new LinkedList<>();
 
         // Setting the timer delay to half of the refresh rate seems to produce the expected amount of frames per second, weird fix
         //this.gameTimer = new Timer(500/WindowManager.getRefreshRate(), this);
@@ -71,13 +72,12 @@ public class Level implements Serializable/*, ActionListener*/ {
     }
 
     private LinkedList getCorrespondingDynamicObjectLinkedList(DynamicObject object) {
-        String objectClass[] = object.getClass().toString().split("\\.");
-        return switch (objectClass[objectClass.length - 1]) {
-            case "Player" -> players;
-            case "Enemy" -> enemies;
-            case "Powerup" -> powerups;
-            case "Projectile" -> projectiles;
-            default -> throw new IllegalArgumentException("Invalid object!");
+        return switch (object.getObjectCategory()) {
+            case "player" -> players;
+            case "enemy" -> enemies;
+            case "powerup" -> powerups;
+            case "projectile" -> projectiles;
+            default -> throw new IllegalArgumentException("Invalid object: " + object.getObjectCategory());
         };
     }
 

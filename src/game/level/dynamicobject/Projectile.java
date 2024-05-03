@@ -49,6 +49,11 @@ public abstract class Projectile extends DynamicObject {
     }
 
     @Override
+    public String getObjectCategory() {
+        return "projectile";
+    }
+
+    @Override
     protected String getAssetDirectory() {
         return null;
     }

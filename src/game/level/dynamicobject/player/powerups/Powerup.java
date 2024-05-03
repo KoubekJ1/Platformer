@@ -76,6 +76,11 @@ public class Powerup extends DynamicObject implements Serializable {
     }
 
     @Override
+    public String getObjectCategory() {
+        return "powerup";
+    }
+
+    @Override
     protected String getAssetDirectory() {
         return "powerups";
     }
