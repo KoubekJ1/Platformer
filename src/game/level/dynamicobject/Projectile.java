@@ -9,9 +9,10 @@ public abstract class Projectile extends DynamicObject {
     private float jumpVelocity;
     private boolean bounces;
 
-    public Projectile(float x, float y, float jumpVelocity, boolean jumpsOnSpawn, boolean bounces) {
+    public Projectile(float x, float y, float speed, float jumpVelocity, boolean jumpsOnSpawn, boolean bounces) {
         this.setPosX(x);
         this.setPosY(y);
+        this.speed = speed;
         this.jumpVelocity = jumpVelocity;
         this.bounces = bounces;
 
@@ -27,7 +28,7 @@ public abstract class Projectile extends DynamicObject {
 
     @Override
     protected void objectUpdate(float dt) {
-        if ( velocityY == 0) jump();
+        if (bounces && velocityY == 0) jump();
         velocityX = speed * dt;
         if (leftBlockCollisionCheck()) kill();
         if (rightBlockCollisionCheck()) kill();

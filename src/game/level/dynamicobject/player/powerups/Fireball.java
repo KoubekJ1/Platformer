@@ -2,22 +2,21 @@ package game.level.dynamicobject.player.powerups;
 
 import game.ProgramManager;
 import game.level.dynamicobject.DynamicObject;
+import game.level.dynamicobject.Projectile;
 import renderer.Animation;
 import renderer.Sprite;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Fireball extends DynamicObject {
-
-    private static final float SPEED  = 5;
-    private static final float JUMP_VELOCITY  = 1;
+public class Fireball extends Projectile {
 
     public Fireball(float x, float y) {
-        this.setPosX(x);
-        this.setPosY(y);
+        super(x, y, 5, 1, false, true);
+    }
 
-        // Just in case there's somehow no animation playing to prevent errors
+    @Override
+    protected Sprite getProjectileSprite() {
         Animation staticAnimation = new Animation("projectiles/fireball/1.png");
 
         ArrayList<String> moveImages = new ArrayList<>();
@@ -31,39 +30,7 @@ public class Fireball extends DynamicObject {
         animations.put("static", staticAnimation);
         animations.put("move", move);
 
-        sprite = new Sprite(animations, 1, 1);
-        sprite.playAnimation("move");
-    }
-
-    @Override
-    protected void objectUpdate(float dt) {
-        if (velocityY == 0) jump();
-        velocityX = SPEED * dt;
-        if (leftBlockCollisionCheck()) kill();
-        if (rightBlockCollisionCheck()) kill();
-    }
-
-    private void jump() {
-        velocityY = JUMP_VELOCITY;
-    }
-
-    @Override
-    protected void damage() {
-        kill();
-    }
-
-    @Override
-    public void kill() {
-        ProgramManager.getLevel().removeObject(this);
-    }
-
-    @Override
-    protected String getAssetDirectory() {
-        return null;
-    }
-
-    @Override
-    protected String getAssetExtension() {
-        return null;
+        Sprite projectileSprite = new Sprite(animations, 1, 1);
+        return projectileSprite;
     }
 }
