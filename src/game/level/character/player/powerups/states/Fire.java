@@ -1,5 +1,6 @@
 package game.level.character.player.powerups.states;
 
+import game.ProgramManager;
 import game.level.character.player.Player;
 import game.level.character.player.powerups.Fireball;
 import renderer.Animation;
@@ -22,6 +23,7 @@ public class Fire extends PowerupState {
     @Override
     public void ability() {
         Fireball fireball = new Fireball(parentPlayer.getPosX(), parentPlayer.getPosY());
+        ProgramManager.getLevel().addObject(fireball);
     }
 
     @Override
