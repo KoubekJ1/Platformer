@@ -35,7 +35,7 @@ public abstract class Projectile extends DynamicObject {
     }
 
     private void jump() {
-        velocityY = jumpVelocity;
+        velocityY = -jumpVelocity;
     }
 
     @Override
