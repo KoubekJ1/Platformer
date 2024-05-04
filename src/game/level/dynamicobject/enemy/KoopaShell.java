@@ -7,7 +7,6 @@ public class KoopaShell extends EnemyBehavior {
     private boolean moving;
 
     public KoopaShell() {
-        parentEnemy.setSizeY(1);
         this.direction = true;
         this.moving = false;
     }
@@ -20,7 +19,11 @@ public class KoopaShell extends EnemyBehavior {
 
     @Override
     public void update(float dt) {
-        if (!moving) return;
+        parentEnemy.playAnimation("shell");
+        if (!moving) {
+            parentEnemy.setVelocityX(0);
+            return;
+        }
         if (parentEnemy.isDead()) return;
         if (parentEnemy.rightBlockCollisionCheck()) {
             switchDirection();
@@ -29,7 +32,6 @@ public class KoopaShell extends EnemyBehavior {
             switchDirection();
         }
         parentEnemy.setVelocityX(SPEED * dt * getDirection());
-        parentEnemy.playAnimation("move");
     }
 
     @Override

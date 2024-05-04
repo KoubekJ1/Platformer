@@ -128,7 +128,7 @@ public class Enemy extends DynamicObject {
 
         animations.put("static", staticAnimation);
         animations.put("move", movementAnimation);
-        animations.put("shell", new Animation("\"characters/enemies/koopa/shell.png\""));
+        animations.put("shell", new Animation("characters/enemies/koopa/shell.png"));
         animations.put("kill", Animation.getKillAnimation("characters/enemies/koopa/shell.png"));
 
         Enemy koopa = new Enemy("Koopa", "koopa", new Sprite(animations, 1, 2), new Koopa());
