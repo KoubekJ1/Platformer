@@ -193,7 +193,11 @@ public abstract class DynamicObject implements Serializable {
     }
 
     public void setSizeY(float sizeY) {
-        sprite.setHeight(sizeY);
+        if (getSprite() != null) {
+            sprite.setHeight(sizeY);
+            float sizeDifference = getSizeY() - sizeY;
+            setPosY(getPosY() + sizeDifference);
+        }
     }
 
     public boolean hasCollision() {
@@ -225,6 +229,10 @@ public abstract class DynamicObject implements Serializable {
     }
 
     public void setSprite(Sprite sprite) {
+        if (getSprite() != null) {
+            float sizeDifference = getSizeY() - sprite.getHeight();
+            setPosY(getPosY() + sizeDifference);
+        }
         this.sprite = sprite;
     }
 

@@ -8,6 +8,7 @@ import game.level.dynamicobject.player.powerups.Powerup;
 import game.level.dynamicobject.player.powerups.states.Fire;
 import game.level.dynamicobject.player.powerups.states.Mushroom;
 import game.level.dynamicobject.player.powerups.states.PowerupState;
+import game.level.dynamicobject.player.powerups.states.Small;
 import util.InputManager;
 
 import javax.swing.*;
@@ -43,7 +44,7 @@ public class Player extends DynamicObject implements Serializable {
             invulnerabilityTimer.stop();
             sprite.stopBlipping();
         });
-        powerupState = new Fire(this);
+        powerupState = new Small(this);
 
     }
 
