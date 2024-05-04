@@ -23,7 +23,7 @@ public class Fire extends PowerupState {
 
     @Override
     public void damage() {
-        parentPlayer.setPowerupState(new Small(parentPlayer));
+        parentPlayer.setPowerupState(new Mushroom(parentPlayer));
     }
 
     @Override
