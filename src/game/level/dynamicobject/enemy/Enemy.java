@@ -84,6 +84,14 @@ public class Enemy extends DynamicObject {
         return deathTimer.isRunning();
     }
 
+    public EnemyBehavior getAi() {
+        return ai;
+    }
+
+    public void setAi(EnemyBehavior ai) {
+        this.ai = ai;
+    }
+
     public static Enemy getGoomba(int x, int y) {
         HashMap<String, Animation> animations = new HashMap<>();
         Animation staticAnimation = new Animation("characters/enemies/goomba/static.png");
