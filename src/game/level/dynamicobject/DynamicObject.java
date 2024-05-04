@@ -194,9 +194,9 @@ public abstract class DynamicObject implements Serializable {
 
     public void setSizeY(float sizeY) {
         if (getSprite() != null) {
-            sprite.setHeight(sizeY);
             float sizeDifference = getSizeY() - sizeY;
             setPosY(getPosY() + sizeDifference);
+            sprite.setHeight(sizeY);
         }
     }
 
