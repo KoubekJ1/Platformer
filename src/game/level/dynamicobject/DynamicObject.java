@@ -193,7 +193,7 @@ public abstract class DynamicObject implements Serializable {
     }
 
     public void setSizeY(float sizeY) {
-        sprite.setWidth(sizeY);
+        sprite.setHeight(sizeY);
     }
 
     public boolean hasCollision() {
