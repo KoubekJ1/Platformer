@@ -10,6 +10,7 @@ public class Koopa extends EnemyBehavior {
 
     public Koopa(boolean direction) {
         this.direction = direction;
+        parentEnemy.getSprite().setMirrored(!direction);
     }
 
     @Override
@@ -17,9 +18,11 @@ public class Koopa extends EnemyBehavior {
         if (parentEnemy.isDead()) return;
         if (parentEnemy.rightBlockCollisionCheck()) {
             switchDirection();
+            parentEnemy.getSprite().setMirrored(!direction);
         }
         if (parentEnemy.leftBlockCollisionCheck()) {
             switchDirection();
+            parentEnemy.getSprite().setMirrored(!direction);
         }
         parentEnemy.setVelocityX(SPEED * dt * getDirection());
         parentEnemy.playAnimation("move");
