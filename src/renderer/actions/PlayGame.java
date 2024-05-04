@@ -31,7 +31,7 @@ public class PlayGame extends AbstractAction {
         testLevel.addBlock(new Block("blocks/brick.png", true), 55, 19);
 
         testLevel.addObject(Enemy.getGoomba(30, 19));
-        testLevel.addObject(Enemy.getKoopa(40, 19));
+        testLevel.addObject(Enemy.getKoopa(40, 18));
         testLevel.addObject(Powerup.getMushroom(52, 19));
         /*try {
             Enemy goomba = AssetManager.getEnemy("assets/enemies/goomba.enemy");
