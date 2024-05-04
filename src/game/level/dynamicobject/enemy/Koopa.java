@@ -31,6 +31,7 @@ public class Koopa extends EnemyBehavior {
         EnemyBehavior shell = new KoopaShell();
         shell.setParentEnemy(parentEnemy);
         parentEnemy.setAi(shell);
+        parentEnemy.setSizeY(1);
     }
 
     private int getDirection() {
