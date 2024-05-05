@@ -64,6 +64,7 @@ public class Enemy extends DynamicObject {
             if (e.getSource() == deathTimer) {
                 sprite.stopBlipping();
                 removeFromLevel();
+                deathTimer.stop();
             }
         });
         deathTimer.start();
@@ -151,5 +152,18 @@ public class Enemy extends DynamicObject {
     @Override
     protected String getAssetExtension() {
         return ".enemy";
+    }
+
+    @Override
+    public String toString() {
+        return "Enemy{" +
+                "ai=" + ai +
+                ", id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", posX=" + posX +
+                ", posY=" + posY +
+                ", velocityX=" + velocityX +
+                ", velocityY=" + velocityY +
+                '}';
     }
 }
