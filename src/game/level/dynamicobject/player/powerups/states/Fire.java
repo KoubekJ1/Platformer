@@ -3,16 +3,21 @@ package game.level.dynamicobject.player.powerups.states;
 import game.ProgramManager;
 import game.level.dynamicobject.player.Player;
 import game.level.dynamicobject.player.powerups.Fireball;
+import game.level.dynamicobject.player.powerups.PickUpable;
+import game.level.dynamicobject.player.powerups.Powerup;
 import renderer.Animation;
 import renderer.Sprite;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Fire extends PowerupState {
+
+    private static final String POWERUP_TEXTURES_PATH = "powerups/";
 
     private Timer abilityTimer;
 
@@ -53,5 +58,32 @@ public class Fire extends PowerupState {
         animations.put("throw", new Animation(PLAYER_TEXTURES_DIRECTORY + "fire/throw.png"));
 
         return new Sprite(animations, 1, 2);
+    }
+
+    public static Powerup getFireflower(int x, int y) {
+        ArrayList<String> fireflowerImages = new ArrayList<>();
+        for (int i = 1; i <= 4; i++) {
+            fireflowerImages.add(POWERUP_TEXTURES_PATH + "fireflower/" + i + ".png");
+        }
+        Animation fireflowerAnimation = new Animation(fireflowerImages, 50, true);
+        HashMap<String, Animation> fireFlowerAnimations = new HashMap<>();
+        fireFlowerAnimations.put("static", fireflowerAnimation);
+        Sprite fireflowerSprite = new Sprite(fireFlowerAnimations, 1, 1);
+        Powerup fireflower = new Powerup("Fireflower", "fireflower", fireflowerSprite, true, new PickUpable() {
+            @Override
+            public PowerupState getPowerupState(Player player) {
+                return new Fire(player);
+            }
+        });
+        try {
+            fireflower.serialize();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        fireflower.setPosX(x);
+        fireflower.setPosY(y);
+
+        return fireflower;
     }
 }

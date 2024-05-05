@@ -1,13 +1,18 @@
 package game.level.dynamicobject.player.powerups.states;
 
 import game.level.dynamicobject.player.Player;
+import game.level.dynamicobject.player.powerups.PickUpable;
+import game.level.dynamicobject.player.powerups.Powerup;
 import renderer.Animation;
 import renderer.Sprite;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Mushroom extends PowerupState {
+
+    private static final String POWERUP_TEXTURES_PATH = "powerups/";
 
     public Mushroom(Player parentPlayer) {
         super(parentPlayer);
@@ -40,5 +45,24 @@ public class Mushroom extends PowerupState {
         animations.put("kill", new Animation(PLAYER_TEXTURES_DIRECTORY + "large/kill.png"));
 
         return new Sprite(animations, 1, 2);
+    }
+
+    public static Powerup getMushroom(int x, int y) {
+        Powerup mushroom = new Powerup("Mushroom", "mushroom", new Sprite(POWERUP_TEXTURES_PATH + "mushroom.png", 1, 1), false, new PickUpable() {
+            @Override
+            public PowerupState getPowerupState(Player player) {
+                return new Mushroom(player);
+            }
+        });
+        try {
+            mushroom.serialize();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        mushroom.setPosX(x);
+        mushroom.setPosY(y);
+
+        return mushroom;
     }
 }

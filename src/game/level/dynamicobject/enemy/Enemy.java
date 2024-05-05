@@ -93,57 +93,6 @@ public class Enemy extends DynamicObject {
         this.ai = ai;
     }
 
-    public static Enemy getGoomba(int x, int y) {
-        HashMap<String, Animation> animations = new HashMap<>();
-        Animation staticAnimation = new Animation("characters/enemies/goomba/static.png");
-
-        ArrayList<String> movementTextures = new ArrayList<>();
-        movementTextures.add("characters/enemies/goomba/move1.png");
-        movementTextures.add("characters/enemies/goomba/move2.png");
-        Animation movementAnimation = new Animation(movementTextures, 160, true);
-
-        animations.put("static", staticAnimation);
-        animations.put("move", movementAnimation);
-        animations.put("kill", Animation.getKillAnimation("characters/enemies/goomba/kill.png"));
-
-        Enemy goomba = new Enemy("Goomba", "goomba", new Sprite(animations, 1, 1), new Goomba());
-        try {
-            goomba.serialize();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        goomba.setPosX(x);
-        goomba.setPosY(y);
-
-        return goomba;
-    }
-
-    public static Enemy getKoopa(int x, int y) {
-        HashMap<String, Animation> animations = new HashMap<>();
-        Animation staticAnimation = new Animation("characters/enemies/koopa/static.png");
-
-        ArrayList<String> movementTextures = new ArrayList<>();
-        movementTextures.add("characters/enemies/koopa/move1.png");
-        movementTextures.add("characters/enemies/koopa/move2.png");
-        Animation movementAnimation = new Animation(movementTextures, 160, true);
-
-        animations.put("static", staticAnimation);
-        animations.put("move", movementAnimation);
-        animations.put("shell", new Animation("characters/enemies/koopa/shell.png"));
-        animations.put("kill", Animation.getKillAnimation("characters/enemies/koopa/shell.png"));
-
-        Enemy koopa = new Enemy("Koopa", "koopa", new Sprite(animations, 1, 2), new Koopa());
-        try {
-            koopa.serialize();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        koopa.setPosX(x);
-        koopa.setPosY(y);
-
-        return koopa;
-    }
-
     @Override
     protected String getAssetDirectory() {
         return "enemies";

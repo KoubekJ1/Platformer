@@ -3,8 +3,12 @@ package renderer.actions;
 import game.ProgramManager;
 import game.level.Block;
 import game.level.Level;
+import game.level.dynamicobject.enemy.Goomba;
+import game.level.dynamicobject.enemy.Koopa;
 import game.level.dynamicobject.player.powerups.Powerup;
 import game.level.dynamicobject.enemy.Enemy;
+import game.level.dynamicobject.player.powerups.states.Fire;
+import game.level.dynamicobject.player.powerups.states.Mushroom;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -31,11 +35,11 @@ public class PlayGame extends AbstractAction {
         testLevel.addBlock(new Block("blocks/brick.png", true), 55, 19);
         testLevel.addBlock(new Block("blocks/brick.png", true), 65, 19);
 
-        testLevel.addObject(Enemy.getGoomba(30, 19));
-        testLevel.addObject(Enemy.getGoomba(44, 19));
-        testLevel.addObject(Enemy.getKoopa(40, 18));
-        testLevel.addObject(Powerup.getMushroom(52, 19));
-        testLevel.addObject(Powerup.getFireflower(62, 19));
+        testLevel.addObject(Goomba.getGoomba(30, 19));
+        testLevel.addObject(Goomba.getGoomba(44, 19));
+        testLevel.addObject(Koopa.getKoopa(40, 18));
+        testLevel.addObject(Mushroom.getMushroom(52, 19));
+        testLevel.addObject(Fire.getFireflower(62, 19));
         /*try {
             Enemy goomba = AssetManager.getEnemy("assets/enemies/goomba.enemy");
             goomba.setPosX(30);
