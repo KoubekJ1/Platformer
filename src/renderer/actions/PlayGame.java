@@ -29,11 +29,13 @@ public class PlayGame extends AbstractAction {
         testLevel.addBlock(new Block("blocks/brick.png", true), 35, 19);
         testLevel.addBlock(new Block("blocks/brick.png", true), 45, 19);
         testLevel.addBlock(new Block("blocks/brick.png", true), 55, 19);
+        testLevel.addBlock(new Block("blocks/brick.png", true), 65, 19);
 
         testLevel.addObject(Enemy.getGoomba(30, 19));
         testLevel.addObject(Enemy.getGoomba(44, 19));
         testLevel.addObject(Enemy.getKoopa(40, 18));
         testLevel.addObject(Powerup.getMushroom(52, 19));
+        testLevel.addObject(Powerup.getFireflower(62, 19));
         /*try {
             Enemy goomba = AssetManager.getEnemy("assets/enemies/goomba.enemy");
             goomba.setPosX(30);
