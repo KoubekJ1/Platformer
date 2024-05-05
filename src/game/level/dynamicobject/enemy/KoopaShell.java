@@ -1,5 +1,7 @@
 package game.level.dynamicobject.enemy;
 
+import game.ProgramManager;
+
 public class KoopaShell extends EnemyBehavior {
 
     private static final float SPEED = 5;
@@ -32,6 +34,13 @@ public class KoopaShell extends EnemyBehavior {
             switchDirection();
         }
         parentEnemy.setVelocityX(SPEED * dt * getDirection());
+
+        for (Enemy enemy : ProgramManager.getLevel().getEnemies()) {
+            if (parentEnemy.collision(enemy)) {
+                enemy.kill();
+            }
+        }
+
     }
 
     @Override
