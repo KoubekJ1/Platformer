@@ -26,14 +26,22 @@ public abstract class DynamicObject implements Serializable {
     protected float velocityX;
     protected float velocityY;
 
-    private boolean hasCollision = true;
+    private boolean hasCollision;
+    private boolean gravity;
+
+    public DynamicObject() {
+        gravity = true;
+        hasCollision = true;
+    }
 
     public void update(float dt) {
-        applyGravity(dt);
-        if (checkGroundCollision()) {
-            velocityY = 0;
+        if (gravity) {
+            applyGravity(dt);
+            if (checkGroundCollision()) {
+                velocityY = 0;
+            }
         }
-        
+
         objectUpdate(dt);
 
         if (isOutOfBoundsX()) velocityX = 0;
@@ -227,6 +235,10 @@ public abstract class DynamicObject implements Serializable {
 
     public Sprite getSprite() {
         return sprite;
+    }
+
+    public void setGravity(boolean gravity) {
+        this.gravity = gravity;
     }
 
     public void setSprite(Sprite sprite) {
