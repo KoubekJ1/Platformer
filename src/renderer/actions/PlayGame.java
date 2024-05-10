@@ -36,12 +36,12 @@ public class PlayGame extends AbstractAction {
         testLevel.addBlock(new Block("blocks/brick.png", true), 55, 19);
         testLevel.addBlock(new Block("blocks/brick.png", true), 65, 19);
 
-        testLevel.addBlock(new Block("blocks/pipe/ul.png", true), 75, 18);
-        testLevel.addBlock(new Block("blocks/pipe/ur.png", true), 76, 18);
-        testLevel.addBlock(new Block("blocks/pipe/ll.png", true), 75, 19);
-        testLevel.addBlock(new Block("blocks/pipe/lr.png", true), 76, 19);
+        testLevel.addBlock(new Block("blocks/pipe/ul.png", true), 5, 18);
+        testLevel.addBlock(new Block("blocks/pipe/ur.png", true), 6, 18);
+        testLevel.addBlock(new Block("blocks/pipe/ll.png", true), 5, 19);
+        testLevel.addBlock(new Block("blocks/pipe/lr.png", true), 6, 19);
 
-        testLevel.addObject(Piranha.getPiranha(75.5f, 15));
+        testLevel.addObject(Piranha.getPiranha(5.5f, 18));
 
         testLevel.addObject(Goomba.getGoomba(30, 19));
         testLevel.addObject(Goomba.getGoomba(44, 19));
