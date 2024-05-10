@@ -10,7 +10,7 @@ import javax.swing.Timer;
 
 public class Piranha extends EnemyBehavior {
 
-    private static float SPEED = 2;
+    private static float SPEED = 1.5f;
 
     private Timer activityTimer;
 
@@ -35,12 +35,12 @@ public class Piranha extends EnemyBehavior {
             return;
         }
         parentEnemy.setVelocityY(SPEED * dt * getDirection());
-        if (distanceTraveled + Math.abs(parentEnemy.getVelocityY()) >= parentEnemy.getSizeY()) {
-            System.out.println("Stop condition met");
+        distanceTraveled += parentEnemy.getVelocityY();
+        if (Math.abs(distanceTraveled) >= parentEnemy.getSizeY()) {
             moving = false;
-            parentEnemy.setVelocityY(parentEnemy.getSizeY() - distanceTraveled);
+            parentEnemy.setVelocityY(0);
+            parentEnemy.setPosY(parentEnemy.getPosY() - distanceTraveled - parentEnemy.getSizeY() * getDirection() * -1);
         }
-        distanceTraveled += Math.abs(parentEnemy.getVelocityY());
     }
 
     private int getDirection() {
