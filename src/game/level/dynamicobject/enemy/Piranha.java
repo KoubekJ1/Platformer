@@ -69,6 +69,7 @@ public class Piranha extends EnemyBehavior {
         animations.put("static", piranhaAnimation);
 
         Enemy piranha = new Enemy("Piranha", "piranha", new Sprite(animations, 1, 2), new Piranha());
+        piranha.setGravity(false);
         try {
             piranha.serialize();
         } catch (IOException e) {
