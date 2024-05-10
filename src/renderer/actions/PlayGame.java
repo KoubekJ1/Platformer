@@ -5,6 +5,7 @@ import game.level.Block;
 import game.level.Level;
 import game.level.dynamicobject.enemy.Goomba;
 import game.level.dynamicobject.enemy.Koopa;
+import game.level.dynamicobject.enemy.Piranha;
 import game.level.dynamicobject.player.powerups.Powerup;
 import game.level.dynamicobject.enemy.Enemy;
 import game.level.dynamicobject.player.powerups.states.Fire;
@@ -34,6 +35,13 @@ public class PlayGame extends AbstractAction {
         testLevel.addBlock(new Block("blocks/brick.png", true), 45, 19);
         testLevel.addBlock(new Block("blocks/brick.png", true), 55, 19);
         testLevel.addBlock(new Block("blocks/brick.png", true), 65, 19);
+
+        testLevel.addBlock(new Block("blocks/pipe/ul.png", true), 75, 18);
+        testLevel.addBlock(new Block("blocks/pipe/ur.png", true), 76, 18);
+        testLevel.addBlock(new Block("blocks/pipe/ll.png", true), 75, 19);
+        testLevel.addBlock(new Block("blocks/pipe/lr.png", true), 76, 19);
+
+        testLevel.addObject(Piranha.getPiranha(75.5f, 15));
 
         testLevel.addObject(Goomba.getGoomba(30, 19));
         testLevel.addObject(Goomba.getGoomba(44, 19));
