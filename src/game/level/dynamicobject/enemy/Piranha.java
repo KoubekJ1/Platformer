@@ -3,14 +3,54 @@ package game.level.dynamicobject.enemy;
 import renderer.Animation;
 import renderer.Sprite;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.swing.Timer;
 
 public class Piranha extends EnemyBehavior {
+
+    private static float SPEED = 1;
+
+    private Timer activityTimer;
+
+    private boolean direction;
+    private boolean moving;
+    private float distanceTraveled;
+
+    public Piranha() {
+        this.activityTimer = new Timer(5000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                moving = true;
+                distanceTraveled = 0;
+                switchDirection();
+            }
+        });
+    }
+
     @Override
     public void update(float dt) {
+        if (!moving) return;
+        parentEnemy.setVelocityY(SPEED * dt);
+        if (distanceTraveled + parentEnemy.getVelocityY() >= parentEnemy.getSizeY()) {
+            moving = false;
+            parentEnemy.setVelocityY(parentEnemy.getSizeY() - distanceTraveled);
+        }
+    }
 
+    private int getDirection() {
+        if (direction) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+
+    private void switchDirection() {
+        direction = !direction;
     }
 
     @Override
