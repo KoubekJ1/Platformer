@@ -1,12 +1,10 @@
 package game.level;
 
-import game.ProgramManager;
 import game.level.dynamicobject.DynamicObject;
 import game.level.dynamicobject.Projectile;
 import game.level.dynamicobject.player.powerups.Powerup;
 import game.level.dynamicobject.enemy.Enemy;
 import game.level.dynamicobject.player.Player;
-import renderer.RenderInfo;
 import renderer.Renderer;
 
 import java.awt.*;
@@ -35,10 +33,10 @@ public class Level implements Serializable/*, ActionListener*/ {
 
     private long score;
 
+    private float fps;
+
     //private Timer gameTimer;
     private UpdateThread updateThread;
-
-    private RenderInfo renderInfo;
 
     /*float beginTime = Time.getTime();
     float endTime = Time.getTime();
@@ -128,11 +126,13 @@ public class Level implements Serializable/*, ActionListener*/ {
         }
 
 
-        renderInfo = new RenderInfo(background, players.getFirst().getCamera(), blocks, dynamicObjects);
+        /*renderInfo = new RenderInfo(background, players.getFirst().getCamera(), blocks, dynamicObjects);
         if (ProgramManager.isDebug()) {
             renderInfo.setFrameRate(1/dt);
-        }
-        Renderer.render(renderInfo);
+        }*/
+
+        this.fps = 1/dt;
+        Renderer.render();
     }
 
     public void addScore(int score) {
@@ -147,12 +147,24 @@ public class Level implements Serializable/*, ActionListener*/ {
         return blocks[x][y];
     }
 
+    public float getFps() {
+        return fps;
+    }
+
+    public LinkedList<DynamicObject> getDynamicObjects() {
+        return this.dynamicObjects;
+    }
+
     public int getLevelSizeX() {
         return blocks.length;
     }
 
     public int getLevelSizeY() {
         return blocks[0].length;
+    }
+
+    public Color getBackground() {
+        return background;
     }
 
     public LinkedList<Enemy> getEnemies() {
