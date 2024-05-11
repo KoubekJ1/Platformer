@@ -189,17 +189,6 @@ public class Player extends DynamicObject implements Serializable {
         sprite.blip();
     }
 
-    private void applyGravity(float dt) {
-        float gravityEffectiveness = 1;
-        if (velocityY < 0 && !(InputManager.isKeyPressed(KeyEvent.VK_W) || InputManager.isKeyPressed(KeyEvent.VK_SPACE) || InputManager.isKeyPressed(KeyEvent.VK_UP))) {
-            gravityEffectiveness = 3f;
-        }
-        velocityY += GRAVITY_ACCELERATION * dt * gravityEffectiveness;
-        if (velocityY > TERMINAL_VELOCITY) {
-            velocityY = TERMINAL_VELOCITY;
-        }
-    }
-
     @Override
     public String getObjectCategory() {
         return "player";
