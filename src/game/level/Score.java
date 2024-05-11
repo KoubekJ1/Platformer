@@ -19,7 +19,6 @@ public class Score {
     public void increaseMultiplier(Player player) {
         if (!multiplier.containsKey(player)) {
             multiplier.put(player, 0);
-            return;
         }
         int nextMultiplier = multiplier.get(player) + 1;
         if (nextMultiplier >= MULTIPLIER_PROGRESSION.length) return;
