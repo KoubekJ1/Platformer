@@ -31,7 +31,7 @@ public class Level implements Serializable/*, ActionListener*/ {
 
     private Color background;
 
-    private long score;
+    private Score score;
 
     private float fps;
 
@@ -57,7 +57,7 @@ public class Level implements Serializable/*, ActionListener*/ {
         this.powerups = new LinkedList<>();
         this.projectiles = new LinkedList<>();
 
-        this.score = 0;
+        this.score = new Score();
 
         this.background = background;
 
@@ -135,11 +135,7 @@ public class Level implements Serializable/*, ActionListener*/ {
         Renderer.render();
     }
 
-    public void addScore(int score) {
-        this.score += score;
-    }
-
-    public long getScore() {
+    public Score getScore() {
         return score;
     }
 
