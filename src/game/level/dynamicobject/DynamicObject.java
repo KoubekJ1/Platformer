@@ -37,7 +37,7 @@ public abstract class DynamicObject implements Serializable {
     public void update(float dt) {
         if (gravity) {
             applyGravity(dt);
-            if (checkGroundCollision()) {
+            if (groundCollisionCheck()) {
                 velocityY = 0;
             }
         }
@@ -63,7 +63,7 @@ public abstract class DynamicObject implements Serializable {
         }
     }
 
-    private boolean checkGroundCollision() {
+    private boolean groundCollisionCheck() {
         for (float i = 0; i < velocityY + 1 && velocityY > 0; i++) {
             if (i >= velocityY) {
                 i = velocityY;
