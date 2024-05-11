@@ -1,6 +1,7 @@
 package game.level.dynamicobject.player;
 
 import game.ProgramManager;
+import game.level.Score;
 import game.level.dynamicobject.DynamicObject;
 import game.level.dynamicobject.enemy.Enemy;
 import game.level.dynamicobject.player.camera.Camera;
@@ -45,7 +46,6 @@ public class Player extends DynamicObject implements Serializable {
             sprite.stopBlipping();
         });
         powerupState = new Small(this);
-
     }
 
     @Override
@@ -136,6 +136,8 @@ public class Player extends DynamicObject implements Serializable {
             if (this.velocityY > 0) {
                 enemy.damage();
                 jump();
+                ProgramManager.getLevel().getScore().addScore(Score.ENEMY_DAMAGE_SCORE * ProgramManager.getLevel().getScore().getMultiplier(this));
+                ProgramManager.getLevel().getScore().increaseMultiplier(this);
             } else {
                 if (!invulnerabilityTimer.isRunning()) this.damage();
             }
@@ -225,6 +227,15 @@ public class Player extends DynamicObject implements Serializable {
 
     public void setPowerupState(PowerupState powerupState) {
         this.powerupState = powerupState;
+    }
+
+    @Override
+    protected boolean groundCollisionCheck() {
+        boolean isCollision = super.groundCollisionCheck();
+        if (isCollision) {
+            ProgramManager.getLevel().getScore().resetMultiplier(this);
+        }
+        return isCollision;
     }
 
     @Override
