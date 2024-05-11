@@ -63,7 +63,7 @@ public abstract class DynamicObject implements Serializable {
         }
     }
 
-    private boolean groundCollisionCheck() {
+    protected boolean groundCollisionCheck() {
         for (float i = 0; i < velocityY + 1 && velocityY > 0; i++) {
             if (i >= velocityY) {
                 i = velocityY;
