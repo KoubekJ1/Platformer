@@ -26,6 +26,10 @@ public class Score {
         multiplier.put(player, nextMultiplier);
     }
 
+    public void resetMultiplier(Player player) {
+        multiplier.put(player, 0);
+    }
+
     public int getMultiplier(Player player) {
         if (!multiplier.containsKey(player)) {
             multiplier.put(player, 0);
