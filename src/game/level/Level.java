@@ -164,6 +164,14 @@ public class Level implements Serializable/*, ActionListener*/ {
         fileOutputStream.close();
     }
 
+    @Override
+    public String toString() {
+        return "Level{" +
+                "levelID='" + levelID + '\'' +
+                ", levelName='" + levelName + '\'' +
+                '}';
+    }
+
     /*@Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == gameTimer) {
