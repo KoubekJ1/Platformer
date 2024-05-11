@@ -13,6 +13,9 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.text.AttributedCharacterIterator;
 
 public class GameplayJPanel extends JPanel {
     private Level level;
@@ -78,8 +81,22 @@ public class GameplayJPanel extends JPanel {
             }
         }
 
+        // HUD
+        g2D.setTransform(defaultTransform);
+        g2D.setColor(Color.WHITE);
+        // region "borrowed" code - Source: https://stackoverflow.com/questions/5652344/how-can-i-use-a-custom-font-in-java
+        /*try {
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("assets")));
+        } catch (IOException | FontFormatException e) {
+            //Handle exception
+        }*/
+        // endregion
+        g2D.setFont(new Font("Segoe UI", Font.PLAIN, (int) baseBlockSize));
+        g2D.drawString("Score", baseBlockSize, baseBlockSize);
+        g2D.drawString(String.valueOf(level.getScore()), baseBlockSize, 2 * baseBlockSize);
+
         if (ProgramManager.isDebug()) {
-            g2D.setTransform(defaultTransform);
             g2D.setFont(new Font("Segoe UI", Font.PLAIN, 20));
             g2D.setColor(Color.BLACK);
             g2D.drawString("FPS: " + level.getFps(), 0, 20);
