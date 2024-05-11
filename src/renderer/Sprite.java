@@ -70,6 +70,7 @@ public class Sprite implements Serializable {
         if (!mirrored) {
             return getProperlySizedImage(image, currentBlockSize);
         } else {
+            // region "borrowed" code - Source: https://stackoverflow.com/questions/23457754/how-to-flip-bufferedimage-in-java
             if (mirroredImages.containsKey(image)) {
                 return getProperlySizedImage(mirroredImages.get(image), currentBlockSize);
             }
@@ -83,6 +84,7 @@ public class Sprite implements Serializable {
             mirroredImageG2D.transform(affineTransform);
             mirroredImageG2D.drawImage(image, 0, 0, null);
             mirroredImageG2D.dispose();
+            // endregion
 
             mirroredImages.put(image, mirroredImage);
             return getProperlySizedImage(mirroredImage, currentBlockSize);
