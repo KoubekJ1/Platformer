@@ -44,4 +44,9 @@ public class Score {
     public long getScore() {
         return score;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(score);
+    }
 }
