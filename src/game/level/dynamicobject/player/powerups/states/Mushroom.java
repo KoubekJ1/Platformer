@@ -54,11 +54,6 @@ public class Mushroom extends PowerupState {
                 return new Mushroom(player);
             }
         });
-        try {
-            mushroom.serialize();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
 
         mushroom.setPosX(x);
         mushroom.setPosY(y);

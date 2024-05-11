@@ -63,11 +63,7 @@ public class Goomba extends EnemyBehavior {
         animations.put("kill", Animation.getKillAnimation("characters/enemies/goomba/kill.png"));
 
         Enemy goomba = new Enemy("Goomba", "goomba", new Sprite(animations, 1, 1), new Goomba());
-        try {
-            goomba.serialize();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
         goomba.setPosX(x);
         goomba.setPosY(y);
 

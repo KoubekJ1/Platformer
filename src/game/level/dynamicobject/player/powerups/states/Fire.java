@@ -75,11 +75,6 @@ public class Fire extends PowerupState {
                 return new Fire(player);
             }
         });
-        try {
-            fireflower.serialize();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
 
         fireflower.setPosX(x);
         fireflower.setPosY(y);

@@ -68,11 +68,7 @@ public class Koopa extends EnemyBehavior {
         animations.put("kill", Animation.getKillAnimation("characters/enemies/koopa/shell.png"));
 
         Enemy koopa = new Enemy("Koopa", "koopa", new Sprite(animations, 1, 2), new Koopa());
-        try {
-            koopa.serialize();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
         koopa.setPosX(x);
         koopa.setPosY(y);
 
