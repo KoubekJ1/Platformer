@@ -5,6 +5,7 @@ import game.level.dynamicobject.player.Player;
 import java.util.HashMap;
 
 public class Score {
+    private static final int ENEMY_DAMAGE_SCORE = 100;
     private static final int[] MULTIPLIER_PROGRESSION = new int[]{1, 2, 4, 5, 8, 10, 20, 40, 50, 80};
 
     private long score;
