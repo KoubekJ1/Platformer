@@ -29,6 +29,10 @@ public class Level implements Serializable/*, ActionListener*/ {
     private LinkedList<Powerup> powerups;
     private LinkedList<Projectile> projectiles;
 
+    private Color background;
+
+    private long score;
+
     //private Timer gameTimer;
     private UpdateThread updateThread;
 
@@ -38,7 +42,7 @@ public class Level implements Serializable/*, ActionListener*/ {
     float endTime = Time.getTime();
     float dt = 0;*/
 
-    public Level(String levelID, String levelName, int sizeX, int sizeY) {
+    public Level(String levelID, String levelName, int sizeX, int sizeY, Color background) {
         this.levelID = levelID;
         this.levelName = levelName;
 
@@ -53,9 +57,9 @@ public class Level implements Serializable/*, ActionListener*/ {
         this.powerups = new LinkedList<>();
         this.projectiles = new LinkedList<>();
 
-        // Setting the timer delay to half of the refresh rate seems to produce the expected amount of frames per second, weird fix
-        //this.gameTimer = new Timer(500/WindowManager.getRefreshRate(), this);
-        //this.gameTimer.setInitialDelay(0);
+        this.score = 0;
+
+        this.background = background;
 
         this.updateThread = new UpdateThread();
     }
@@ -122,11 +126,19 @@ public class Level implements Serializable/*, ActionListener*/ {
         }
 
 
-        renderInfo = new RenderInfo(Color.CYAN, players.getFirst().getCamera(), blocks, dynamicObjects);
+        renderInfo = new RenderInfo(background, players.getFirst().getCamera(), blocks, dynamicObjects);
         if (ProgramManager.isDebug()) {
             renderInfo.setFrameRate(1/dt);
         }
         Renderer.render(renderInfo);
+    }
+
+    public void addScore(int score) {
+        this.score += score;
+    }
+
+    public long getScore() {
+        return score;
     }
 
     public Block getBlock(int x, int y) {

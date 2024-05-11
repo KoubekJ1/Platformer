@@ -12,6 +12,7 @@ import game.level.dynamicobject.player.powerups.states.Fire;
 import game.level.dynamicobject.player.powerups.states.Mushroom;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class PlayGame extends AbstractAction {
@@ -22,7 +23,7 @@ public class PlayGame extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Level testLevel = new Level("1", "1", 10000, 100);
+        Level testLevel = new Level("1", "1", 10000, 100, Color.CYAN);
         for (int i = 0; i < 10000; i++) {
             if (i == 10 || i == 11) continue;
             for (int j = 20; j < 100; j++) {
