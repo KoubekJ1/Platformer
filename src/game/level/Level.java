@@ -16,6 +16,8 @@ import java.util.LinkedList;
 public class Level implements Serializable/*, ActionListener*/ {
     private static final String LEVELS_DIRECTORY = "assets/levels/";
 
+    public static final Color SKY_COLOR = new Color(135, 206, 235);
+
     private String levelID;
     private String levelName;
 

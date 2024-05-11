@@ -23,7 +23,7 @@ public class PlayGame extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Level testLevel = new Level("1", "1", 10000, 100, Color.CYAN);
+        Level testLevel = new Level("1", "1", 10000, 100, Level.SKY_COLOR);
         for (int i = 0; i < 10000; i++) {
             if (i == 10 || i == 11) continue;
             for (int j = 20; j < 100; j++) {
