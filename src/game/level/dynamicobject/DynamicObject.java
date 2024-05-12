@@ -96,6 +96,7 @@ public abstract class DynamicObject implements Serializable {
             for (Block block : blocks) {
                 if (block != null && block.isCollision()) {
                     posY = (float) Math.ceil(posY + i);
+                    block.hit();
                     return true;
                 }
             }
