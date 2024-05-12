@@ -1,5 +1,6 @@
 package game.level;
 
+import game.level.dynamicobject.DynamicObject;
 import renderer.Sprite;
 import util.AssetManager;
 
@@ -17,9 +18,6 @@ public class Block implements Serializable, Cloneable {
 
     private Sprite sprite;
     private boolean collision;
-
-    public Block() {
-    }
 
     public Block(String texture, boolean collision) {
         this.sprite = new Sprite(texture, 1, 1);
