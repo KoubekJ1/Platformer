@@ -1,6 +1,6 @@
 package util;
 
-import game.level.Block;
+import game.level.blocks.Block;
 import game.level.Level;
 import game.level.dynamicobject.enemy.Enemy;
 

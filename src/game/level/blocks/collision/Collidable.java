@@ -1,4 +1,4 @@
-package game.level;
+package game.level.blocks.collision;
 
 @FunctionalInterface
 public interface Collidable {

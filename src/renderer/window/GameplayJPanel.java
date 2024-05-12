@@ -1,7 +1,7 @@
 package renderer.window;
 
 import game.ProgramManager;
-import game.level.Block;
+import game.level.blocks.Block;
 import game.level.Level;
 import game.level.dynamicobject.DynamicObject;
 import game.level.dynamicobject.player.Player;
@@ -13,9 +13,6 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.text.AttributedCharacterIterator;
 
 public class GameplayJPanel extends JPanel {
     private Level level;

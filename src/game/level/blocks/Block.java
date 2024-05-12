@@ -1,8 +1,7 @@
-package game.level;
+package game.level.blocks;
 
-import game.level.dynamicobject.DynamicObject;
+import game.level.blocks.collision.Collidable;
 import renderer.Sprite;
-import util.AssetManager;
 
 import java.awt.image.BufferedImage;
 import java.io.FileOutputStream;

@@ -1,5 +1,6 @@
 package game.level;
 
+import game.level.blocks.Block;
 import game.level.dynamicobject.DynamicObject;
 import game.level.dynamicobject.Projectile;
 import game.level.dynamicobject.player.powerups.Powerup;

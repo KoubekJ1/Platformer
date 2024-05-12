@@ -1,7 +1,7 @@
 package game.level.dynamicobject;
 
 import game.ProgramManager;
-import game.level.Block;
+import game.level.blocks.Block;
 import renderer.Sprite;
 
 import java.awt.image.BufferedImage;
