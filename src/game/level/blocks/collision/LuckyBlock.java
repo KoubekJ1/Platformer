@@ -20,8 +20,10 @@ public class LuckyBlock implements Collidable {
     @Override
     public void hit(int blockX, int blockY) {
         content.setPosX(blockX);
-        content.setPosX(blockY - 1);
+        content.setPosY(blockY - 1);
         ProgramManager.getLevel().addObject(content);
+        content = null;
+        ProgramManager.getLevel().addBlock(new Block("blocks/luckyblock/empty.png", true), blockX, blockY);
     }
 
     public static Block getLuckyBlock(DynamicObject content) {
