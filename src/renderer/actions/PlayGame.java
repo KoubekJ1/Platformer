@@ -3,8 +3,8 @@ package renderer.actions;
 import game.ProgramManager;
 import game.level.blocks.Block;
 import game.level.blocks.collision.Break;
-import game.level.blocks.collision.Collidable;
 import game.level.Level;
+import game.level.blocks.collision.LuckyBlock;
 import game.level.dynamicobject.enemy.Goomba;
 import game.level.dynamicobject.enemy.Koopa;
 import game.level.dynamicobject.enemy.Piranha;
@@ -30,6 +30,7 @@ public class PlayGame extends AbstractAction {
             }
         }
         testLevel.addBlock(new Block("blocks/brick.png", true, new Break()), 20, 16);
+        testLevel.addBlock(LuckyBlock.getLuckyBlock(Mushroom.getMushroom(0, 0)), 15, 16);
         testLevel.addBlock(new Block("blocks/brick.png", true), 25, 19);
         testLevel.addBlock(new Block("blocks/brick.png", true), 35, 19);
         testLevel.addBlock(new Block("blocks/brick.png", true), 45, 19);
