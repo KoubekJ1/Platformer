@@ -57,7 +57,7 @@ public class Piranha extends EnemyBehavior {
 
     @Override
     public void damage() {
-
+        parentEnemy.kill();
     }
 
     public static Enemy getPiranha(float x, float y) {
@@ -66,7 +66,9 @@ public class Piranha extends EnemyBehavior {
         piranhaImages.add("characters/enemies/piranha/1.png");
         piranhaImages.add("characters/enemies/piranha/2.png");
         Animation piranhaAnimation = new Animation(piranhaImages, 150, true);
+        Animation kill = Animation.getKillAnimation("characters/enemies/piranha/1.png");
         animations.put("static", piranhaAnimation);
+        animations.put("kill", kill);
 
         Enemy piranha = new Enemy("Piranha", "piranha", new Sprite(animations, 1, 2), new Piranha());
         piranha.setGravity(false);
