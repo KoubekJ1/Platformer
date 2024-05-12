@@ -145,10 +145,10 @@ public abstract class DynamicObject implements Serializable {
         }
         if (!this.hasCollision || !dynamicObject.hasCollision) return false;
 
-        if (this.posX + this.getSizeX() < dynamicObject.posX) return false;
-        if (this.posX > dynamicObject.posX + dynamicObject.getSizeX()) return false;
-        if (this.posY + this.getSizeY() < dynamicObject.posY) return false;
-        if (this.posY > dynamicObject.posY + dynamicObject.getSizeY()) return false;
+        if (this.posX + this.getSizeX() <= dynamicObject.posX) return false;
+        if (this.posX >= dynamicObject.posX + dynamicObject.getSizeX()) return false;
+        if (this.posY + this.getSizeY() <= dynamicObject.posY) return false;
+        if (this.posY >= dynamicObject.posY + dynamicObject.getSizeY()) return false;
 
         return true;
     }
