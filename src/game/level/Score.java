@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class Score {
     public static final int ENEMY_DAMAGE_SCORE = 100;
-    public static final int KOOPA_DAMAGE_SCORE = 100;
+    public static final int KOOPA_DAMAGE_SCORE = 200;
 
     private static final int[] MULTIPLIER_PROGRESSION = new int[]{1, 2, 4, 5, 8, 10, 20, 40, 50, 80};
 
