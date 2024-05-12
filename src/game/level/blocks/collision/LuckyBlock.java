@@ -32,7 +32,7 @@ public class LuckyBlock implements Collidable {
         animationImages.add("blocks/luckyblock/2.png");
         animationImages.add("blocks/luckyblock/3.png");
 
-        animations.put("static", new Animation(animationImages, 50, true));
+        animations.put("static", new Animation(animationImages, new int[]{0, 1, 2, 1, 0},200, true));
 
         Sprite sprite = new Sprite(animations, 1, 1);
         Block luckyBlock = new Block(sprite, true, new LuckyBlock(content));
