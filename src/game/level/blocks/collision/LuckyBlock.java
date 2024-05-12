@@ -24,7 +24,7 @@ public class LuckyBlock implements Collidable {
         ProgramManager.getLevel().addObject(content);
     }
 
-    public Block getLuckyBlock(DynamicObject content) {
+    public static Block getLuckyBlock(DynamicObject content) {
         HashMap<String, Animation> animations = new HashMap<>();
 
         ArrayList<String> animationImages = new ArrayList<>();
