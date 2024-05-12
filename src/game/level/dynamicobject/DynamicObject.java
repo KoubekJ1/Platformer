@@ -69,11 +69,8 @@ public abstract class DynamicObject implements Serializable {
                 i = velocityY;
             }
             if (Math.ceil(posY + i) >= ProgramManager.getLevel().getLevelSizeY()) break;
-            LinkedList<Block> blocks = new LinkedList<>();
             for (float j = 0; j <= sprite.getWidth(); j++) {
-                blocks.add(ProgramManager.getLevel().getBlock((int) (posX + j), (int) (posY + sprite.getHeight() + i)));
-            }
-            for (Block block : blocks) {
+                Block block = ProgramManager.getLevel().getBlock((int) (posX + j), (int) (posY + sprite.getHeight() + i));
                 if (block != null && block.isCollision()) {
                     posY = (float) Math.floor(posY + i);
                     return true;
@@ -91,9 +88,7 @@ public abstract class DynamicObject implements Serializable {
             if (Math.floor(posY + i) < 0) break;
             LinkedList<Block> blocks = new LinkedList<>();
             for (float j = 0; j <= sprite.getWidth(); j++) {
-                blocks.add(ProgramManager.getLevel().getBlock((int) (posX + j), (int) (posY + i)));
-            }
-            for (Block block : blocks) {
+                Block block = ProgramManager.getLevel().getBlock((int) (posX + j), (int) (posY + i));
                 if (block != null && block.isCollision()) {
                     posY = (float) Math.ceil(posY + i);
                     block.hit();
@@ -110,11 +105,8 @@ public abstract class DynamicObject implements Serializable {
                 i = velocityX;
             }
             if (Math.ceil(posX + i) >= ProgramManager.getLevel().getLevelSizeX()) break;
-            LinkedList<Block> blocks = new LinkedList<>();
             for (float j = 0; j < sprite.getHeight(); j++) {
-                blocks.add(ProgramManager.getLevel().getBlock((int) (posX + sprite.getWidth() + i), (int) (posY + j)));
-            }
-            for (Block block : blocks) {
+                Block block = ProgramManager.getLevel().getBlock((int) (posX + sprite.getWidth() + i), (int) (posY + j));
                 if (block != null && block.isCollision()) {
                     posX = (float) Math.floor(posX + i);
                     return true;
@@ -130,11 +122,8 @@ public abstract class DynamicObject implements Serializable {
                 i = velocityX;
             }
             if (Math.floor(posX + i) < 0) break;
-            LinkedList<Block> blocks = new LinkedList<>();
             for (float j = 0; j < sprite.getHeight(); j++) {
-                blocks.add(ProgramManager.getLevel().getBlock((int) (posX + i), (int) (posY + j)));
-            }
-            for (Block block : blocks) {
+                Block block = ProgramManager.getLevel().getBlock((int) (posX + i), (int) (posY + j));
                 if (block != null && block.isCollision()) {
                     posX = (float) Math.ceil(posX + i);
                     return true;
