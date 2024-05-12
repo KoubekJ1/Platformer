@@ -7,6 +7,7 @@ import game.level.dynamicobject.player.powerups.Powerup;
 import game.level.dynamicobject.enemy.Enemy;
 import game.level.dynamicobject.player.Player;
 import renderer.Renderer;
+import util.InputManager;
 
 import java.awt.*;
 import java.io.*;
@@ -97,6 +98,7 @@ public class Level implements Serializable/*, ActionListener*/ {
     public void stop() {
         //gameTimer.stop();
         updateThread.interrupt();
+        InputManager.resetInputs();
     }
 
     public void update(float dt) {

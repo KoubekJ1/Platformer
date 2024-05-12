@@ -16,4 +16,8 @@ public abstract class InputManager {
     public static boolean isKeyPressed(int button) {
         return keyboardButtonPressed.getOrDefault(button, false);
     }
+
+    public static void resetInputs() {
+        keyboardButtonPressed.clear();
+    }
 }
