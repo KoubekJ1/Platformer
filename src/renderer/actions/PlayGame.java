@@ -2,6 +2,7 @@ package renderer.actions;
 
 import game.ProgramManager;
 import game.level.blocks.Block;
+import game.level.blocks.collision.Break;
 import game.level.blocks.collision.Collidable;
 import game.level.Level;
 import game.level.dynamicobject.enemy.Goomba;
@@ -28,12 +29,7 @@ public class PlayGame extends AbstractAction {
                 testLevel.addBlock(new Block("blocks/brick.png", true), i, j);
             }
         }
-        testLevel.addBlock(new Block("blocks/brick.png", true, new Collidable() {
-            @Override
-            public void hit(int blockX, int blockY) {
-                System.out.println("Block collision: " + blockX + ", " + blockY);
-            }
-        }), 20, 16);
+        testLevel.addBlock(new Block("blocks/brick.png", true, new Break()), 20, 16);
         testLevel.addBlock(new Block("blocks/brick.png", true), 25, 19);
         testLevel.addBlock(new Block("blocks/brick.png", true), 35, 19);
         testLevel.addBlock(new Block("blocks/brick.png", true), 45, 19);
