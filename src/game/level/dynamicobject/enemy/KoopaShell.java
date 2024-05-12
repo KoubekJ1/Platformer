@@ -1,6 +1,7 @@
 package game.level.dynamicobject.enemy;
 
 import game.ProgramManager;
+import game.level.Score;
 
 public class KoopaShell extends EnemyBehavior {
 
@@ -24,6 +25,7 @@ public class KoopaShell extends EnemyBehavior {
         parentEnemy.playAnimation("shell");
         if (!moving) {
             parentEnemy.setVelocityX(0);
+            ProgramManager.getLevel().getScore().resetMultiplier(parentEnemy);
             return;
         }
         if (parentEnemy.isDead()) return;
@@ -38,9 +40,11 @@ public class KoopaShell extends EnemyBehavior {
         for (Enemy enemy : ProgramManager.getLevel().getEnemies()) {
             if (parentEnemy.collision(enemy)) {
                 enemy.kill();
+                int score = Score.KOOPA_DAMAGE_SCORE * ProgramManager.getLevel().getScore().getMultiplier(parentEnemy);
+                ProgramManager.getLevel().getScore().addScore(score);
+                ProgramManager.getLevel().getScore().increaseMultiplier(parentEnemy);
             }
         }
-
     }
 
     @Override
