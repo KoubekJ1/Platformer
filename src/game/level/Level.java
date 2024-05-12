@@ -143,6 +143,10 @@ public class Level implements Serializable/*, ActionListener*/ {
         return blocks[x][y];
     }
 
+    public void removeBlock(int x, int y) {
+        blocks[x][y] = null;
+    }
+
     public float getFps() {
         return fps;
     }
