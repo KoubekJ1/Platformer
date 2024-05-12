@@ -70,12 +70,12 @@ public class Level implements Serializable/*, ActionListener*/ {
     }
 
     public void addObject(DynamicObject object) {
+        if (dynamicObjects.contains(object)) return;
         dynamicObjectsToAdd.add(object);
-        //this.dynamicObjects.add(object);
-        //getCorrespondingDynamicObjectLinkedList(object).add(object);
     }
 
     public void removeObject(DynamicObject object) {
+        if (!dynamicObjects.contains(object)) return;
         dynamicObjectsForRemoval.add(object);
     }
 
