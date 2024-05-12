@@ -31,9 +31,9 @@ public class Block implements Serializable, Cloneable {
         this.collidable = collidable;
     }
 
-    public void hit() {
+    public void hit(int blockX, int blockY) {
         if (collidable == null) return;
-        collidable.hit();
+        collidable.hit(blockX, blockY);
     }
 
     public boolean isCollision() {

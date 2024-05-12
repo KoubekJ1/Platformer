@@ -88,10 +88,12 @@ public abstract class DynamicObject implements Serializable {
             if (Math.floor(posY + i) < 0) break;
             LinkedList<Block> blocks = new LinkedList<>();
             for (float j = 0; j <= sprite.getWidth(); j++) {
-                Block block = ProgramManager.getLevel().getBlock((int) (posX + j), (int) (posY + i));
+                int blockX = (int) (posX + j);
+                int blockY = (int) (posY + i);
+                Block block = ProgramManager.getLevel().getBlock(blockX, blockY);
                 if (block != null && block.isCollision()) {
                     posY = (float) Math.ceil(posY + i);
-                    block.hit();
+                    block.hit(blockX, blockY);
                     return true;
                 }
             }
