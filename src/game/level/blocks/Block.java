@@ -30,6 +30,12 @@ public class Block implements Serializable, Cloneable {
         this.collidable = collidable;
     }
 
+    public Block(Sprite sprite, boolean collision, Collidable collidable) {
+        this.sprite = sprite;
+        this.collision = collision;
+        this.collidable = collidable;
+    }
+
     public void hit(int blockX, int blockY) {
         if (collidable == null) return;
         collidable.hit(blockX, blockY);
