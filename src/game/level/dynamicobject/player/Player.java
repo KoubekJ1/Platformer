@@ -35,6 +35,8 @@ public class Player extends DynamicObject implements Serializable {
     private Timer invulnerabilityTimer;
 
     public Player(int x, int y) {
+        this.posX = x;
+        this.posY = y;
         velocityX = 0;
         velocityY = 0;
 
