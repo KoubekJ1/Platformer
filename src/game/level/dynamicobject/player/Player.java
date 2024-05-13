@@ -34,9 +34,7 @@ public class Player extends DynamicObject implements Serializable {
     private PowerupState powerupState;
     private Timer invulnerabilityTimer;
 
-    public Player() {
-        posX = 0;
-        posY = 0;
+    public Player(int x, int y) {
         velocityX = 0;
         velocityY = 0;
 

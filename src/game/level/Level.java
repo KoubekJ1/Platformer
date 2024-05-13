@@ -44,7 +44,7 @@ public class Level implements Serializable/*, ActionListener*/ {
     float endTime = Time.getTime();
     float dt = 0;*/
 
-    public Level(String levelID, String levelName, int sizeX, int sizeY, Color background) {
+    public Level(String levelID, String levelName, int sizeX, int sizeY, Color background, int playerX, int playerY) {
         this.levelID = levelID;
         this.levelName = levelName;
 
@@ -53,7 +53,7 @@ public class Level implements Serializable/*, ActionListener*/ {
         this.dynamicObjectsForRemoval = new LinkedList<>();
 
         this.players = new LinkedList<>();
-        addObject(new Player());
+        addObject(new Player(playerX, playerY));
         this.blocks = new Block[sizeX][sizeY];
         this.enemies = new LinkedList<>();
         this.powerups = new LinkedList<>();
