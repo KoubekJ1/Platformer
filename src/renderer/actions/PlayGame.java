@@ -26,16 +26,16 @@ public class PlayGame extends AbstractAction {
         for (int i = 0; i < 10000; i++) {
             if (i == 10 || i == 11) continue;
             for (int j = 20; j < 100; j++) {
-                testLevel.addBlock(new Block("blocks/brick.png", true), i, j);
+                testLevel.addBlock(Block.getBrick(), i, j);
             }
         }
-        testLevel.addBlock(new Block("blocks/brick.png", true, new Break()), 20, 16);
+        testLevel.addBlock(Block.getBrick(), 20, 16);
         testLevel.addBlock(LuckyBlock.getLuckyBlock(Mushroom.getMushroom(0, 0)), 15, 16);
-        testLevel.addBlock(new Block("blocks/brick.png", true), 25, 19);
-        testLevel.addBlock(new Block("blocks/brick.png", true), 35, 19);
-        testLevel.addBlock(new Block("blocks/brick.png", true), 45, 19);
-        testLevel.addBlock(new Block("blocks/brick.png", true), 55, 19);
-        testLevel.addBlock(new Block("blocks/brick.png", true), 65, 19);
+        testLevel.addBlock(Block.getBrick(), 25, 19);
+        testLevel.addBlock(Block.getBrick(), 35, 19);
+        testLevel.addBlock(Block.getBrick(), 45, 19);
+        testLevel.addBlock(Block.getBrick(), 55, 19);
+        testLevel.addBlock(Block.getBrick(), 65, 19);
 
         testLevel.addBlock(new Block("blocks/pipe/ul.png", true), 5, 18);
         testLevel.addBlock(new Block("blocks/pipe/ur.png", true), 6, 18);

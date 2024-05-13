@@ -1,5 +1,6 @@
 package game.level.blocks;
 
+import game.level.blocks.collision.Break;
 import game.level.blocks.collision.Collidable;
 import renderer.Sprite;
 
@@ -58,5 +59,9 @@ public class Block implements Serializable, Cloneable {
         objectOutputStream.close();
         fileOutputStream.flush();
         fileOutputStream.close();
+    }
+
+    public static Block getBrick() {
+        return new Block("blocks/brick.png", true, new Break());
     }
 }
