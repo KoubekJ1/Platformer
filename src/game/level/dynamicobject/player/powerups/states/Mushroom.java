@@ -47,6 +47,10 @@ public class Mushroom extends PowerupState {
         return new Sprite(animations, 1, 2);
     }
 
+    public static Powerup getMushroom() {
+        return getMushroom(0, 0);
+    }
+
     public static Powerup getMushroom(int x, int y) {
         Powerup mushroom = new Powerup("Mushroom", "mushroom", new Sprite(POWERUP_TEXTURES_PATH + "mushroom.png", 1, 1), false, new PickUpable() {
             @Override

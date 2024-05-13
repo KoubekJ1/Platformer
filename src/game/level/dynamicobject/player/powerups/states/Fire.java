@@ -60,6 +60,10 @@ public class Fire extends PowerupState {
         return new Sprite(animations, 1, 2);
     }
 
+    public static Powerup getFireflower() {
+        return getFireflower(0, 0);
+    }
+
     public static Powerup getFireflower(int x, int y) {
         ArrayList<String> fireflowerImages = new ArrayList<>();
         for (int i = 1; i <= 4; i++) {
