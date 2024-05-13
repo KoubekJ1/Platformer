@@ -60,6 +60,11 @@ public class Fire extends PowerupState {
         return new Sprite(animations, 1, 2);
     }
 
+    @Override
+    public int getValue() {
+        return 2;
+    }
+
     public static Powerup getFireflower() {
         return getFireflower(0, 0);
     }

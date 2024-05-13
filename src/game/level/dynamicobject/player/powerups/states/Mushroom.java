@@ -47,6 +47,11 @@ public class Mushroom extends PowerupState {
         return new Sprite(animations, 1, 2);
     }
 
+    @Override
+    public int getValue() {
+        return 1;
+    }
+
     public static Powerup getMushroom() {
         return getMushroom(0, 0);
     }

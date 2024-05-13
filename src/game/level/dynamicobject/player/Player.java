@@ -229,6 +229,10 @@ public class Player extends DynamicObject implements Serializable {
         this.powerupState = powerupState;
     }
 
+    public int getPowerupValue() {
+        return this.powerupState.getValue();
+    }
+
     @Override
     protected boolean groundCollisionCheck() {
         boolean isCollision = super.groundCollisionCheck();
