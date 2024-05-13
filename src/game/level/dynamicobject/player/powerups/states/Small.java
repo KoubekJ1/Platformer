@@ -40,4 +40,9 @@ public class Small extends PowerupState {
 
         return new Sprite(animations, 1, 1);
     }
+
+    @Override
+    public int getValue() {
+        return 0;
+    }
 }
