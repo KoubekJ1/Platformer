@@ -26,7 +26,7 @@ public class PlayGame extends AbstractAction {
         for (int i = 0; i < 10000; i++) {
             if (i == 10 || i == 11) continue;
             for (int j = 20; j < 100; j++) {
-                testLevel.addBlock(Block.getBrick(), i, j);
+                testLevel.addBlock(Block.getGround(), i, j);
             }
         }
         testLevel.addBlock(Block.getBrick(), 20, 16);
