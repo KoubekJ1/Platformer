@@ -64,4 +64,8 @@ public class Block implements Serializable, Cloneable {
     public static Block getBrick() {
         return new Block("blocks/brick.png", true, new Break());
     }
+
+    public static Block getGround() {
+        return new Block("blocks/ground.png", true);
+    }
 }
