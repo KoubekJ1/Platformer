@@ -1,5 +1,6 @@
 package game.level.dynamicobject.player.powerups.states;
 
+import game.ProgramManager;
 import game.level.dynamicobject.player.Player;
 import game.level.dynamicobject.player.powerups.PickUpable;
 import game.level.dynamicobject.player.powerups.Powerup;
@@ -60,6 +61,7 @@ public class Mushroom extends PowerupState {
         Powerup mushroom = new Powerup("Mushroom", "mushroom", new Sprite(POWERUP_TEXTURES_PATH + "mushroom.png", 1, 1), false, new PickUpable() {
             @Override
             public PowerupState getPowerupState(Player player) {
+                ProgramManager.getLevel().getScore().addScore(1000);
                 return new Mushroom(player);
             }
         });

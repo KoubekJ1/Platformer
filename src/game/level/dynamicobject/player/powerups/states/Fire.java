@@ -81,6 +81,7 @@ public class Fire extends PowerupState {
         Powerup fireflower = new Powerup("Fireflower", "fireflower", fireflowerSprite, true, new PickUpable() {
             @Override
             public PowerupState getPowerupState(Player player) {
+                ProgramManager.getLevel().getScore().addScore(2000);
                 return new Fire(player);
             }
         });
