@@ -12,7 +12,7 @@ public class Goomba extends EnemyBehavior {
     private boolean direction;
 
     public Goomba() {
-        this.direction = true;
+        this.direction = false;
     }
 
     public Goomba(boolean direction) {

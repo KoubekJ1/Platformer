@@ -12,7 +12,7 @@ public class Koopa extends EnemyBehavior {
     private boolean direction;
 
     public Koopa() {
-        this.direction = true;
+        this.direction = false;
     }
 
     public Koopa(boolean direction) {
