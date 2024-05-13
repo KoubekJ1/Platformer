@@ -229,8 +229,8 @@ public class Player extends DynamicObject implements Serializable {
         this.powerupState = powerupState;
     }
 
-    public int getPowerupValue() {
-        return this.powerupState.getValue();
+    public PowerupState getPowerupState() {
+        return this.powerupState;
     }
 
     @Override
