@@ -65,6 +65,10 @@ public class Block implements Serializable, Cloneable {
         return new Block("blocks/brick.png", true, new Break());
     }
 
+    public static Block getCastleBrick() {
+        return new Block("blocks/castle_brick.png", true);
+    }
+
     public static Block getGround() {
         return new Block("blocks/ground.png", true);
     }
