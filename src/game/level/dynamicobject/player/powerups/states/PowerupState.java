@@ -13,8 +13,7 @@ public abstract class PowerupState implements Serializable {
     protected static final String PLAYER_TEXTURES_DIRECTORY = "characters/player/";
 
     public PowerupState(Player parentPlayer) {
-        ProgramManager.getLevel().getScore().addScore(1000);
-        if (getValue() < parentPlayer.getPowerupValue()) return;
+        if (parentPlayer.getPowerupState() != null || getValue() < parentPlayer.getPowerupState().getValue()) return;
         this.parentPlayer = parentPlayer;
         parentPlayer.setSprite(getSprite());
         parentPlayer.enableInvulnerability();
