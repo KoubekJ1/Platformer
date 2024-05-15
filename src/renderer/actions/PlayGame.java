@@ -11,6 +11,7 @@ import game.level.dynamicobject.enemy.Piranha;
 import game.level.dynamicobject.player.powerups.states.Fire;
 import game.level.dynamicobject.player.powerups.states.Mushroom;
 import util.Level1;
+import util.Level2;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -23,6 +24,6 @@ public class PlayGame extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ProgramManager.play(Level1.getLevel());
+        ProgramManager.play(Level2.getLevel());
     }
 }
