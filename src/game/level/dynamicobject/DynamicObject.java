@@ -45,7 +45,10 @@ public abstract class DynamicObject implements Serializable {
         objectUpdate(dt);
 
         if (isOutOfBoundsX()) velocityX = 0;
-        if (isOutOfBoundsY()) velocityY = 0;
+        if (isOutOfBoundsY()) {
+            velocityY = 0;
+            kill();
+        }
 
         posX += velocityX;
         posY += velocityY;
