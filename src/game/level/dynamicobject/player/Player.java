@@ -138,6 +138,7 @@ public class Player extends DynamicObject implements Serializable {
                 jump();
                 ProgramManager.getLevel().getScore().addScore(Score.ENEMY_DAMAGE_SCORE * ProgramManager.getLevel().getScore().getMultiplier(this));
                 ProgramManager.getLevel().getScore().increaseMultiplier(this);
+                break;
             } else {
                 if (!invulnerabilityTimer.isRunning()) this.damage();
             }
