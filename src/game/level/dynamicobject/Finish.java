@@ -29,7 +29,7 @@ public class Finish extends DynamicObject {
 
     @Override
     public String getObjectCategory() {
-        return null;
+        return "finish";
     }
 
     @Override

@@ -1,7 +1,9 @@
 package game.level;
 
+import game.ProgramManager;
 import game.level.blocks.Block;
 import game.level.dynamicobject.DynamicObject;
+import game.level.dynamicobject.Finish;
 import game.level.dynamicobject.Projectile;
 import game.level.dynamicobject.player.powerups.Powerup;
 import game.level.dynamicobject.enemy.Enemy;
@@ -9,6 +11,7 @@ import game.level.dynamicobject.player.Player;
 import renderer.Renderer;
 import util.InputManager;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 import java.util.LinkedList;
@@ -31,6 +34,7 @@ public class Level implements Serializable/*, ActionListener*/ {
     private LinkedList<Enemy> enemies;
     private LinkedList<Powerup> powerups;
     private LinkedList<Projectile> projectiles;
+    private LinkedList<Finish> finishPoints;
 
     private Color background;
 
@@ -59,6 +63,7 @@ public class Level implements Serializable/*, ActionListener*/ {
         this.enemies = new LinkedList<>();
         this.powerups = new LinkedList<>();
         this.projectiles = new LinkedList<>();
+        this.finishPoints = new LinkedList<>();
 
         this.score = new Score();
 
@@ -87,6 +92,7 @@ public class Level implements Serializable/*, ActionListener*/ {
             case "enemy" -> enemies;
             case "powerup" -> powerups;
             case "projectile" -> projectiles;
+            case "finish" -> finishPoints;
             default -> throw new IllegalArgumentException("Invalid object: " + object.getObjectCategory());
         };
     }
@@ -129,14 +135,14 @@ public class Level implements Serializable/*, ActionListener*/ {
             }
         }
 
-
-        /*renderInfo = new RenderInfo(background, players.getFirst().getCamera(), blocks, dynamicObjects);
-        if (ProgramManager.isDebug()) {
-            renderInfo.setFrameRate(1/dt);
-        }*/
-
         this.fps = 1/dt;
         Renderer.render();
+    }
+
+    public void finish() {
+        JOptionPane.showMessageDialog(null, "You finished the level!\nScore: " + score.getScore(), levelName, JOptionPane.PLAIN_MESSAGE);
+        ProgramManager.endLevel();
+        Thread.currentThread().stop();
     }
 
     public Score getScore() {
@@ -181,6 +187,10 @@ public class Level implements Serializable/*, ActionListener*/ {
 
     public LinkedList<Powerup> getPowerups() {
         return powerups;
+    }
+
+    public LinkedList<Finish> getFinishPoints() {
+        return finishPoints;
     }
 
     public void serialize() throws IOException {

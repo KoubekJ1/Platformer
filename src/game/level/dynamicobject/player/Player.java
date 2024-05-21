@@ -3,6 +3,7 @@ package game.level.dynamicobject.player;
 import game.ProgramManager;
 import game.level.Score;
 import game.level.dynamicobject.DynamicObject;
+import game.level.dynamicobject.Finish;
 import game.level.dynamicobject.enemy.Enemy;
 import game.level.dynamicobject.player.camera.Camera;
 import game.level.dynamicobject.player.powerups.Powerup;
@@ -150,6 +151,12 @@ public class Player extends DynamicObject implements Serializable {
         }
 
         updateCamera();
+
+        for (Finish finish : ProgramManager.getLevel().getFinishPoints()) {
+            if (collision(finish)) {
+                ProgramManager.getLevel().finish();
+            }
+        }
 
         //region Debug
         if (!ProgramManager.isDebug()) return;
