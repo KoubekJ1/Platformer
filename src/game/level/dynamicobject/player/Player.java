@@ -17,7 +17,7 @@ import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
 
-public class Player extends DynamicObject implements Serializable {
+public class Player extends DynamicObject {
 
     private static final String PLAYER_TEXTURES_DIRECTORY = "characters/player/";
 
