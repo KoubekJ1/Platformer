@@ -24,6 +24,7 @@ public class Level implements Serializable/*, ActionListener*/ {
 
     private String levelID;
     private String levelName;
+    private ImageIcon icon;
 
     private LinkedList<DynamicObject> dynamicObjects;
     private LinkedList<DynamicObject> dynamicObjectsToAdd;
@@ -49,9 +50,10 @@ public class Level implements Serializable/*, ActionListener*/ {
     float endTime = Time.getTime();
     float dt = 0;*/
 
-    public Level(String levelID, String levelName, int sizeX, int sizeY, Color background, int playerX, int playerY) {
+    public Level(String levelID, String levelName, ImageIcon imageIcon, int sizeX, int sizeY, Color background, int playerX, int playerY) {
         this.levelID = levelID;
         this.levelName = levelName;
+        this.icon = imageIcon;
 
         this.dynamicObjects = new LinkedList<>();
         this.dynamicObjectsToAdd = new LinkedList<>();

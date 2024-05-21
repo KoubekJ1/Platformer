@@ -10,9 +10,11 @@ import game.level.dynamicobject.enemy.Piranha;
 import game.level.dynamicobject.player.powerups.states.Fire;
 import game.level.dynamicobject.player.powerups.states.Mushroom;
 
+import javax.swing.*;
+
 public class Level1 {
     public static Level getLevel() {
-        Level level = new Level("1", "1", 200, 30, Level.SKY_COLOR, 20, 19);
+        Level level = new Level("1", "1", new ImageIcon("assets/textures/level1.png"),200, 30, Level.SKY_COLOR, 20, 19);
         for (int i = 0; i < 200; i++) {
             for (int j = 20; j < 30; j++) {
                 level.addBlock(Block.getGround(), i, j);

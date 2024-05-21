@@ -24,6 +24,6 @@ public class PlayGame extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ProgramManager.play(Level1.getLevel());
+        ProgramManager.play(Level2.getLevel());
     }
 }

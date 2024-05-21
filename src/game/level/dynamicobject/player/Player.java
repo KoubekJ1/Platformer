@@ -160,10 +160,10 @@ public class Player extends DynamicObject implements Serializable {
 
         //region Debug
         if (!ProgramManager.isDebug()) return;
-        if (InputManager.isKeyPressed(KeyEvent.VK_PAGE_UP)) {
+        if (InputManager.isKeyPressed(KeyEvent.VK_PAGE_UP) || InputManager.isKeyPressed(KeyEvent.VK_N)) {
             camera.setWorldScale(camera.getTransform().getScaleX() + 1 * dt);
         }
-        if (InputManager.isKeyPressed(KeyEvent.VK_PAGE_DOWN)) {
+        if (InputManager.isKeyPressed(KeyEvent.VK_PAGE_DOWN)|| InputManager.isKeyPressed(KeyEvent.VK_M)) {
             camera.setWorldScale(camera.getTransform().getScaleX() - 1 * dt);
         }
         if (InputManager.isKeyPressed(KeyEvent.VK_I)) {

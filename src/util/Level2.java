@@ -6,12 +6,13 @@ import game.level.blocks.collision.LuckyBlock;
 import game.level.dynamicobject.enemy.Goomba;
 import game.level.dynamicobject.enemy.Koopa;
 import game.level.dynamicobject.enemy.Piranha;
-import game.level.dynamicobject.player.powerups.states.Fire;
 import game.level.dynamicobject.player.powerups.states.Mushroom;
+
+import javax.swing.*;
 
 public class Level2 {
     public static Level getLevel() {
-        Level level = new Level("2", "2", 45, 100, Level.SKY_COLOR, 4, 89);
+        Level level = new Level("2", "2", new ImageIcon("assets/textures/level2.png"),45, 100, Level.SKY_COLOR, 4, 89);
 
         int islandWidth = 20;
         for (int i = 0; i < level.getLevelSizeX(); i += islandWidth + 5) {
