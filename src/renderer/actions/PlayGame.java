@@ -15,6 +15,7 @@ import util.Level2;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 
 public class PlayGame extends AbstractAction {
 
@@ -24,6 +25,13 @@ public class PlayGame extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        try {
+            Level1.getLevel().serialize();
+            Level2.getLevel().serialize();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
         ProgramManager.play(Level2.getLevel());
     }
 }
