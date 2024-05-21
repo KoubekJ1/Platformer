@@ -7,5 +7,5 @@ import java.io.Serializable;
 
 @FunctionalInterface
 public interface PickUpable extends Serializable {
-    public PowerupState getPowerupState(Player player);
+    public PowerupState getPowerupState(Player player, int value);
 }

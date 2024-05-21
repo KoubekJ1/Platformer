@@ -21,14 +21,14 @@ public class Fire extends PowerupState {
 
     private Timer abilityTimer;
 
-    public Fire(Player parentPlayer) {
-        super(parentPlayer);
+    public Fire(Player parentPlayer, int value) {
+        super(parentPlayer, value);
         this.abilityTimer = new Timer(500, e -> abilityTimer.stop());
     }
 
     @Override
     public void damage() {
-        parentPlayer.setPowerupState(new Mushroom(parentPlayer));
+        parentPlayer.setPowerupState(new Mushroom(parentPlayer, getValue() - 1));
     }
 
     @Override
@@ -60,11 +60,6 @@ public class Fire extends PowerupState {
         return new Sprite(animations, 1, 2);
     }
 
-    @Override
-    public int getValue() {
-        return 2;
-    }
-
     public static Powerup getFireflower() {
         return getFireflower(0, 0);
     }
@@ -80,11 +75,11 @@ public class Fire extends PowerupState {
         Sprite fireflowerSprite = new Sprite(fireFlowerAnimations, 1, 1);
         Powerup fireflower = new Powerup("Fireflower", "fireflower", fireflowerSprite, true, new PickUpable() {
             @Override
-            public PowerupState getPowerupState(Player player) {
+            public PowerupState getPowerupState(Player player, int value) {
                 ProgramManager.getLevel().getScore().addScore(2000);
-                return new Fire(player);
+                return new Fire(player, value);
             }
-        });
+        }, 2);
 
         fireflower.setPosX(x);
         fireflower.setPosY(y);

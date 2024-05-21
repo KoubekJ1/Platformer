@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 public class Small extends PowerupState {
     public Small(Player parentPlayer) {
-        super(parentPlayer);
+        super(parentPlayer, 0);
     }
 
     @Override
@@ -39,10 +39,5 @@ public class Small extends PowerupState {
         animations.put("kill", new Animation(PLAYER_TEXTURES_DIRECTORY + "small/kill.png"));
 
         return new Sprite(animations, 1, 1);
-    }
-
-    @Override
-    public int getValue() {
-        return 0;
     }
 }

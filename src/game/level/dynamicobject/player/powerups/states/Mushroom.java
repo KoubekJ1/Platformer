@@ -15,8 +15,8 @@ public class Mushroom extends PowerupState {
 
     private static final String POWERUP_TEXTURES_PATH = "powerups/";
 
-    public Mushroom(Player parentPlayer) {
-        super(parentPlayer);
+    public Mushroom(Player parentPlayer, int value) {
+        super(parentPlayer, value);
     }
 
     @Override
@@ -48,11 +48,6 @@ public class Mushroom extends PowerupState {
         return new Sprite(animations, 1, 2);
     }
 
-    @Override
-    public int getValue() {
-        return 1;
-    }
-
     public static Powerup getMushroom() {
         return getMushroom(0, 0);
     }
@@ -60,11 +55,11 @@ public class Mushroom extends PowerupState {
     public static Powerup getMushroom(int x, int y) {
         Powerup mushroom = new Powerup("Mushroom", "mushroom", new Sprite(POWERUP_TEXTURES_PATH + "mushroom.png", 1, 1), false, new PickUpable() {
             @Override
-            public PowerupState getPowerupState(Player player) {
+            public PowerupState getPowerupState(Player player, int value) {
                 ProgramManager.getLevel().getScore().addScore(1000);
-                return new Mushroom(player);
+                return new Mushroom(player, value);
             }
-        });
+        }, 1);
 
         mushroom.setPosX(x);
         mushroom.setPosY(y);

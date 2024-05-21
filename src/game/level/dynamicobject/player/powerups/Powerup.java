@@ -22,23 +22,26 @@ public class Powerup extends DynamicObject implements Serializable {
     private boolean direction;
     private boolean isStatic;
     private PickUpable pickUpable;
+    private int value;
 
-    public Powerup(String name, String id, Sprite sprite, boolean isStatic, PickUpable pickUpable) {
+    public Powerup(String name, String id, Sprite sprite, boolean isStatic, PickUpable pickUpable, int value) {
         this.name = name;
         this.id = id;
         this.direction = true;
         this.sprite = sprite;
         this.pickUpable = pickUpable;
         this.isStatic = isStatic;
+        this.value = value;
     }
 
-    public Powerup(String name, String id, Sprite sprite, PickUpable pickUpable, boolean isStatic, int x, int y) {
+    public Powerup(String name, String id, Sprite sprite, PickUpable pickUpable, boolean isStatic, int value, int x, int y) {
         this.name = name;
         this.id = id;
         this.direction = true;
         this.sprite = sprite;
         this.pickUpable = pickUpable;
         this.isStatic = isStatic;
+        this.value = value;
 
         this.posX = x;
         this.posY = y;
@@ -96,6 +99,7 @@ public class Powerup extends DynamicObject implements Serializable {
 
     public PowerupState collectPowerup(Player player) {
         ProgramManager.getLevel().removeObject(this);
-        return pickUpable.getPowerupState(player);
+        if (player.getPowerupState().getValue() < this.value) return pickUpable.getPowerupState(player, value);
+        else return player.getPowerupState();
     }
 }

@@ -9,13 +9,15 @@ import java.io.Serializable;
 public abstract class PowerupState implements Serializable {
 
     protected Player parentPlayer;
-    protected int value;
     protected static final String PLAYER_TEXTURES_DIRECTORY = "characters/player/";
 
-    public PowerupState(Player parentPlayer) {
+    private int value;
+
+    public PowerupState(Player parentPlayer, int value) {
         this.parentPlayer = parentPlayer;
         parentPlayer.setSprite(getSprite());
         parentPlayer.enableInvulnerability();
+        this.value = value;
     }
 
     public abstract void damage();
@@ -24,5 +26,7 @@ public abstract class PowerupState implements Serializable {
 
     public abstract Sprite getSprite();
 
-    public abstract int getValue();
+    public int getValue() {
+        return value;
+    }
 }
