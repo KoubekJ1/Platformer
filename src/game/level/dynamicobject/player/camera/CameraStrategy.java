@@ -1,6 +1,8 @@
 package game.level.dynamicobject.player.camera;
 
-public abstract class CameraStrategy {
+import java.io.Serializable;
+
+public abstract class CameraStrategy implements Serializable {
 
     protected Camera parentCamera;
 

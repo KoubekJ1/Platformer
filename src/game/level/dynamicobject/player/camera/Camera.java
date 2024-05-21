@@ -3,8 +3,9 @@ package game.level.dynamicobject.player.camera;
 import game.level.dynamicobject.player.Player;
 
 import java.awt.geom.AffineTransform;
+import java.io.Serializable;
 
-public class Camera {
+public class Camera implements Serializable {
     private AffineTransform transform;
     private Player parentPlayer;
     private CameraStrategy cameraStrategy;

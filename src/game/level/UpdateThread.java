@@ -3,7 +3,9 @@ package game.level;
 import game.ProgramManager;
 import util.Time;
 
-public class UpdateThread extends Thread {
+import java.io.Serializable;
+
+public class UpdateThread extends Thread implements Serializable {
 
     private float beginTime;
     private float endTime;

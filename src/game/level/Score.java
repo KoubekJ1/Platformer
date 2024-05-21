@@ -2,9 +2,10 @@ package game.level;
 
 import game.level.dynamicobject.DynamicObject;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Score {
+public class Score implements Serializable {
     public static final int ENEMY_DAMAGE_SCORE = 100;
     public static final int KOOPA_DAMAGE_SCORE = 200;
 
