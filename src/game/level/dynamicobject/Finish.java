@@ -1,9 +1,15 @@
 package game.level.dynamicobject;
 
+import game.ProgramManager;
+import renderer.Sprite;
+
 public class Finish extends DynamicObject {
 
-    public Finish() {
-
+    public Finish(int x, int y) {
+        this.sprite = new Sprite("flag.png", 2, 2);
+        this.setGravity(false);
+        setPosX(x);
+        setPosY(y);
     }
 
     @Override
@@ -13,12 +19,12 @@ public class Finish extends DynamicObject {
 
     @Override
     protected void damage() {
-
+        kill();
     }
 
     @Override
     public void kill() {
-
+        ProgramManager.getLevel().removeObject(this);
     }
 
     @Override
