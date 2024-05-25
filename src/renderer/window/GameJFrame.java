@@ -33,7 +33,6 @@ public class GameJFrame extends JFrame implements KeyListener {
     }
 
     public void createMenuCard(JButton[] buttons, String card) {
-        if (!isCardCreated.getOrDefault(card, false));
         JPanel panel = new JPanel();
 
         GridBagConstraints gbc = new GridBagConstraints();

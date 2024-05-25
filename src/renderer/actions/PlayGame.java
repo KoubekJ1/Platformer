@@ -30,11 +30,6 @@ public class PlayGame extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (WindowManager.isCardCreated("level-select")) {
-            WindowManager.switchCard("level-select");
-            return;
-        }
-
         try {
             Level1.getLevel().serialize("official");
             Level2.getLevel().serialize("official");
