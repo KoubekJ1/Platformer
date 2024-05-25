@@ -63,6 +63,9 @@ public class GameJFrame extends JFrame implements KeyListener {
 
     public void switchCards(String card) {
         cardLayout.show(this.getContentPane(), card);
+
+        this.revalidate();
+        this.repaint();
     }
 
     public boolean isWindowInitialized() {
