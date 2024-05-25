@@ -11,12 +11,14 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 public abstract class AssetManager {
     private static HashMap<String, BufferedImage> textures = new HashMap<>();
     private static BufferedImage defaultImage;
 
     private static final String TEXTURES_PATH = "assets/textures/";
+    private static final String LEVELS_PATH = "assets/levels/";
 
     static {
         try {
@@ -72,5 +74,17 @@ public abstract class AssetManager {
         fileInputStream.close();
 
         return block;
+    }
+
+    public static LinkedList<Level> getLevels() throws IOException, ClassNotFoundException {
+        LinkedList<Level> levels = new LinkedList<>();
+
+        File[] files = new File(LEVELS_PATH).listFiles();
+
+        for (File file : files) {
+            levels.add(getLevel(file.getPath()));
+        }
+
+        return levels;
     }
 }
