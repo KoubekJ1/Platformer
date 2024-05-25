@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.HashMap;
 
 public class GameJFrame extends JFrame implements KeyListener {
 
@@ -14,8 +15,11 @@ public class GameJFrame extends JFrame implements KeyListener {
     private CardLayout cardLayout;
 
     private GameplayJPanel gameplayPanel;
+
+    private HashMap<String, Boolean> isCardCreated;
     
     public void initialize() {
+        isCardCreated = new HashMap<>();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Platformer");
 
@@ -29,6 +33,7 @@ public class GameJFrame extends JFrame implements KeyListener {
     }
 
     public void createMenuCard(JButton[] buttons, String card) {
+        if (!isCardCreated.getOrDefault(card, false));
         JPanel panel = new JPanel();
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -44,14 +49,17 @@ public class GameJFrame extends JFrame implements KeyListener {
         }
 
         this.add(panel, card);
+        isCardCreated.put(card, true);
     }
 
     public void createGameplayCard() {
+        if (!isCardCreated.getOrDefault("gameplay", false));
         gameplayPanel = new GameplayJPanel(true);
         this.add(gameplayPanel, "gameplay");
 
         gameplayPanel.initialize();
         gameplayCardInitialized = true;
+        isCardCreated.put("gameplay", true);
     }
 
     public void switchCards(String card) {
@@ -90,6 +98,10 @@ public class GameJFrame extends JFrame implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_F11) {
             toggleFullscreen();
         }
+    }
+
+    public boolean isCardCreated(String card) {
+        return isCardCreated.containsKey(card);
     }
 
     @Override

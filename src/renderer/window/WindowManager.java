@@ -45,4 +45,8 @@ public abstract class WindowManager {
     public static int getRefreshRate() {
         return GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getRefreshRate();
     }
+
+    public static boolean isCardCreated(String card) {
+        return window.isCardCreated(card);
+    }
 }
