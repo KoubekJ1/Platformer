@@ -1,5 +1,6 @@
 package renderer.actions;
 
+import game.ProgramManager;
 import renderer.window.WindowManager;
 
 import javax.swing.*;
@@ -13,6 +14,10 @@ public class BackToMenu extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        WindowManager.switchCard("main-menu");
+        if (ProgramManager.getLevel() != null) {
+            ProgramManager.endLevel();
+        } else {
+            WindowManager.switchCard("main-menu");
+        }
     }
 }

@@ -104,6 +104,12 @@ public class Level implements Serializable/*, ActionListener*/ {
         updateThread.start();
     }
 
+    public void resume() {
+        if (updateThread.isInterrupted()) {
+            updateThread.start();
+        }
+    }
+
     public void stop() {
         //gameTimer.stop();
         updateThread.interrupt();

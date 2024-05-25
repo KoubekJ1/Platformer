@@ -1,5 +1,6 @@
 package renderer.window;
 
+import game.ProgramManager;
 import util.InputManager;
 
 import javax.swing.*;
@@ -99,6 +100,8 @@ public class GameJFrame extends JFrame implements KeyListener {
         InputManager.pressKey(e.getKeyCode());
         if (e.getKeyCode() == KeyEvent.VK_F11) {
             toggleFullscreen();
+        } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE || e.getKeyCode() == KeyEvent.VK_P) {
+            ProgramManager.pause();
         }
     }
 
