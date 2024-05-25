@@ -1,5 +1,6 @@
 package game.level.dynamicobject.enemy;
 
+import game.ProgramManager;
 import renderer.Animation;
 import renderer.Sprite;
 
@@ -21,16 +22,22 @@ public class Piranha extends EnemyBehavior {
     public Piranha() {
         this.moving = true;
         this.direction = false;
-        this.activityTimer = new Timer(5000, e -> {
-            moving = true;
-            distanceTraveled = 0;
-            switchDirection();
-        });
-        activityTimer.start();
     }
 
     @Override
     public void update(float dt) {
+        if (this.activityTimer == null) {
+            this.activityTimer = new Timer(5000, e -> {
+                System.out.println(direction);
+                if (ProgramManager.getLevel() == null) {
+                    activityTimer.stop();
+                }
+                moving = true;
+                distanceTraveled = 0;
+                switchDirection();
+            });
+            this.activityTimer.start();
+        }
         if (!moving) {
             return;
         }
