@@ -16,6 +16,7 @@ public class UpdateThread extends Thread implements Serializable {
     @Override
     public void run() {
         try {
+            beginTime = Time.getTime();
             while (true) {
                 ProgramManager.getLevel().update(dt);
                 endTime = Time.getTime();
