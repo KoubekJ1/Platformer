@@ -36,6 +36,8 @@ public class Level implements Serializable/*, ActionListener*/ {
     private LinkedList<Projectile> projectiles;
     private LinkedList<Finish> finishPoints;
 
+    private Point playerSpawn;
+
     private Color background;
 
     private Score score;
@@ -58,7 +60,7 @@ public class Level implements Serializable/*, ActionListener*/ {
         this.dynamicObjectsForRemoval = new LinkedList<>();
 
         this.players = new LinkedList<>();
-        addObject(new Player(playerX, playerY));
+        playerSpawn = new Point(playerX, playerY);
         this.blocks = new Block[sizeX][sizeY];
         this.enemies = new LinkedList<>();
         this.powerups = new LinkedList<>();
@@ -98,7 +100,7 @@ public class Level implements Serializable/*, ActionListener*/ {
     }
 
     public void start() {
-        //gameTimer.start();
+        addObject(new Player(playerSpawn.x, playerSpawn.y));
         updateThread.start();
     }
 
@@ -193,8 +195,8 @@ public class Level implements Serializable/*, ActionListener*/ {
         return finishPoints;
     }
 
-    public void serialize() throws IOException {
-        FileOutputStream fileOutputStream = new FileOutputStream(LEVELS_DIRECTORY + "custom/" + levelID + ".level");
+    public void serialize(String category) throws IOException {
+        FileOutputStream fileOutputStream = new FileOutputStream(LEVELS_DIRECTORY + category + "/" + levelID + ".level");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
         objectOutputStream.writeObject(this);
 
