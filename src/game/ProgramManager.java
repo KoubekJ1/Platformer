@@ -45,8 +45,12 @@ public class ProgramManager {
             buttons[1] = new JButton(new BackToMenu());
             WindowManager.createMenuCard(buttons, "pause");
         }
-        level.stop();
+        level.pause();
         WindowManager.switchCard("pause");
+    }
+
+    public static void resume() {
+        level.resume();
     }
 
     public static void endLevel() {

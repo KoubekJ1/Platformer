@@ -15,6 +15,6 @@ public class Resume extends AbstractAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         WindowManager.switchCard("gameplay");
-        ProgramManager.getLevel().resume();
+        ProgramManager.resume();
     }
 }
