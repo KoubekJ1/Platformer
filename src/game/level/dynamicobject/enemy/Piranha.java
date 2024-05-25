@@ -28,7 +28,6 @@ public class Piranha extends EnemyBehavior {
     public void update(float dt) {
         if (this.activityTimer == null) {
             this.activityTimer = new Timer(5000, e -> {
-                System.out.println(direction);
                 if (ProgramManager.getLevel() == null) {
                     activityTimer.stop();
                 }
