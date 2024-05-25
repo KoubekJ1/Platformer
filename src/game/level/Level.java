@@ -204,6 +204,10 @@ public class Level implements Serializable/*, ActionListener*/ {
         fileOutputStream.close();
     }
 
+    public String getLevelName() {
+        return levelName;
+    }
+
     @Override
     public String toString() {
         return "Level{" +
