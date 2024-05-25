@@ -3,6 +3,7 @@ package util;
 import game.level.Level;
 import game.level.blocks.Block;
 import game.level.blocks.collision.LuckyBlock;
+import game.level.dynamicobject.Finish;
 import game.level.dynamicobject.enemy.Goomba;
 import game.level.dynamicobject.enemy.Koopa;
 import game.level.dynamicobject.enemy.Piranha;
@@ -153,6 +154,8 @@ public class Level2 {
         level.addBlock(Block.getPipe()[2], 35, 69);
         level.addBlock(Block.getPipe()[3], 36, 69);
         level.addObject(Piranha.getPiranha(35.5f, 68));
+
+        level.addObject(new Finish(40, 88));
 
         return level;
     }
