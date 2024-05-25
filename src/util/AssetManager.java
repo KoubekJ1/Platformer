@@ -18,7 +18,7 @@ public abstract class AssetManager {
     private static BufferedImage defaultImage;
 
     private static final String TEXTURES_PATH = "assets/textures/";
-    private static final String LEVELS_PATH = "assets/levels/";
+    private static final String LEVELS_PATH = "assets/levels/official";
 
     static {
         try {
