@@ -5,6 +5,7 @@ import game.level.Score;
 import game.level.dynamicobject.DynamicObject;
 import game.level.dynamicobject.Finish;
 import game.level.dynamicobject.enemy.Enemy;
+import game.level.dynamicobject.enemy.Piranha;
 import game.level.dynamicobject.player.camera.Camera;
 import game.level.dynamicobject.player.powerups.Powerup;
 import game.level.dynamicobject.player.powerups.states.Fire;
@@ -134,7 +135,7 @@ public class Player extends DynamicObject {
 
         for (Enemy enemy : ProgramManager.getLevel().getEnemies()) {
             if (!this.collision(enemy)) continue;
-            if (this.velocityY > 0) {
+            if (this.velocityY > 0 && enemy.getAi().getClass() != Piranha.class) {
                 enemy.damage();
                 jump();
                 ProgramManager.getLevel().getScore().addScore(Score.ENEMY_DAMAGE_SCORE * ProgramManager.getLevel().getScore().getMultiplier(this));

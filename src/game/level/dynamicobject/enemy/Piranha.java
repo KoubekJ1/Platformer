@@ -63,7 +63,7 @@ public class Piranha extends EnemyBehavior {
 
     @Override
     public void damage() {
-        parentEnemy.kill();
+
     }
 
     public static Enemy getPiranha(float x, float y) {
