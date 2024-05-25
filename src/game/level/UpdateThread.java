@@ -1,8 +1,10 @@
 package game.level;
 
 import game.ProgramManager;
+import renderer.window.WindowManager;
 import util.Time;
 
+import javax.swing.*;
 import java.io.Serializable;
 
 public class UpdateThread extends Thread implements Serializable {
@@ -22,8 +24,8 @@ public class UpdateThread extends Thread implements Serializable {
                 sleep(16);
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            this.interrupt();
+            JOptionPane.showMessageDialog(null, e.getClass() + "\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            WindowManager.switchCard("main-menu");
         }
     }
 }
