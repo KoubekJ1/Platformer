@@ -9,9 +9,16 @@ import game.level.dynamicobject.enemy.Koopa;
 import game.level.dynamicobject.enemy.Piranha;
 import game.level.dynamicobject.player.powerups.states.Mushroom;
 
-import javax.swing.*;
-
+/**
+ * Serves to generate the second level
+ * Largely unimportant class to the program's functionality as only the serialized levels are ever loaded.
+ */
 public class Level2 {
+
+    /**
+     * Returns the second level
+     * @return the second level
+     */
     public static Level getLevel() {
         Level level = new Level("2", "The Towers",45, 100, Level.SKY_COLOR, 4, 89);
 

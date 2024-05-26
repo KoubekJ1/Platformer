@@ -10,7 +10,16 @@ import game.level.dynamicobject.enemy.Piranha;
 import game.level.dynamicobject.player.powerups.states.Fire;
 import game.level.dynamicobject.player.powerups.states.Mushroom;
 
+/**
+ * Serves to generate the first level
+ * Largely unimportant class to the program's functionality as only the serialized levels are ever loaded.
+ */
 public class Level1 {
+
+    /**
+     * Returns the first level
+     * @return the first level
+     */
     public static Level getLevel() {
         Level level = new Level("1", "The Plains",200, 30, Level.SKY_COLOR, 20, 19);
         for (int i = 0; i < 200; i++) {
