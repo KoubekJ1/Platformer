@@ -30,20 +30,12 @@ public class PlayGame extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        try {
-            Level1.getLevel().serialize("official");
-            Level2.getLevel().serialize("official");
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
-
         LinkedList<Level> levels;
         try {
             levels = AssetManager.getLevels();
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        } catch (ClassNotFoundException ex) {
-            throw new RuntimeException(ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Unable to load levels" + "\n" + ex.getClass() + "\n" + ex.getMessage() + "\n\nPlease try running the game in debug mode and clicking the\"Serialize levels\" button.");
+            return;
         }
         JButton[] buttons = new JButton[levels.size() + 1];
         int index = 0;
