@@ -25,7 +25,7 @@ public class SerializeLevels extends AbstractAction {
             Level2.getLevel().serialize("official");
             JOptionPane.showMessageDialog(null, "Serialization successful!", "Serialize levels", JOptionPane.PLAIN_MESSAGE);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Unable to serialize levels\n" + ex.getClass() + "\n" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Unable to serialize levels!\n\n" + ex.getClass() + "\n" + ex.getMessage() + "\n\nPlease download the serialized levels from GitHub in the \"assets/levels/official/\" folder.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
