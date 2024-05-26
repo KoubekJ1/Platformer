@@ -1,5 +1,6 @@
 package util;
 
+import game.ProgramManager;
 import game.level.blocks.Block;
 import game.level.Level;
 import game.level.dynamicobject.enemy.Enemy;
@@ -41,8 +42,9 @@ public abstract class AssetManager {
                 return textures.get(textureFile.getAbsolutePath());
             } catch (IOException e) {
                 if (!warning_showed) {
-                    JOptionPane.showMessageDialog(null,"A texture could not be loaded\n" + e.getClass() + "\n" + e.getMessage() + "\n\nThe texture is most likely missing from your \"assets\" folder. Make sure you have installed the game correctly.", "Warning", JOptionPane.WARNING_MESSAGE);
                     warning_showed = true;
+                    ProgramManager.pause();
+                    JOptionPane.showMessageDialog(null,"A texture could not be loaded!\n" + path + "\n\n" + e.getClass() + "\n" + e.getMessage() + "\n\nThe texture is most likely missing from your \"assets\" folder. Make sure you have installed the game correctly.", "Warning", JOptionPane.WARNING_MESSAGE);
                 }
                 return defaultImage;
             }
