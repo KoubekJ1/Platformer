@@ -34,7 +34,7 @@ public class PlayGame extends AbstractAction {
         try {
             levels = AssetManager.getLevels();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Unable to load levels" + "\n" + ex.getClass() + "\n" + ex.getMessage() + "\n\nPlease try running the game in debug mode and clicking the\"Serialize levels\" button.");
+            JOptionPane.showMessageDialog(null, "Unable to load levels" + "\n" + ex.getClass() + "\n" + ex.getMessage() + "\n\nPlease try running the game in debug mode and clicking the \"Serialize levels\" button.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         JButton[] buttons = new JButton[levels.size() + 1];
