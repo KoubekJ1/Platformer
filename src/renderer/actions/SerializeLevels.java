@@ -15,6 +15,10 @@ public class SerializeLevels extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        serializeLevels();
+    }
+
+    public static void serializeLevels() {
         try {
             // To prevent bugs related to the classes being modified,
             Level1.getLevel().serialize("official");

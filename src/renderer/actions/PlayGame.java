@@ -20,6 +20,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.LinkedList;
 
 public class PlayGame extends AbstractAction {
@@ -34,7 +35,10 @@ public class PlayGame extends AbstractAction {
         try {
             levels = AssetManager.getLevels();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Unable to load levels" + "\n" + ex.getClass() + "\n" + ex.getMessage() + "\n\nPlease try running the game in debug mode and clicking the \"Serialize levels\" button.", "Error", JOptionPane.ERROR_MESSAGE);
+            int answer = JOptionPane.showConfirmDialog(null, "Unable to load levels" + "\n" + ex.getClass() + "\n" + ex.getMessage() + "\n\nDo you wish to serialize the levels?\n(If you don't know what this means, click yes)", "Error", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
+            if (answer == 0) {
+                SerializeLevels.serializeLevels();
+            }
             return;
         }
         JButton[] buttons = new JButton[levels.size() + 1];
