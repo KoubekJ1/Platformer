@@ -42,6 +42,7 @@ public class GameplayJPanel extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
+        if (ProgramManager.getLevel() == null) return;
         Graphics2D g2D = (Graphics2D) g;
 
         this.level = ProgramManager.getLevel();
