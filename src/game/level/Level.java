@@ -140,6 +140,7 @@ public class Level implements Serializable/*, ActionListener*/ {
             for (Enemy enemy : enemies) {
                 if (projectile.collision(enemy)) {
                     enemy.damage();
+                    score.addScore(200);
                     removeObject(projectile);
                 }
             }
