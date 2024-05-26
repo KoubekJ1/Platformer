@@ -44,6 +44,7 @@ public class GameJFrame extends JFrame implements KeyListener {
         gbc.gridx = 0;
         gbc.gridy = 0;
         for (JButton button : buttons) {
+            if (button == null) continue;
             panel.add(button, gbc);
             gbc.gridy++;
         }
