@@ -116,20 +116,7 @@ public class Level1 {
         level.addBlock(Block.getPipe()[2], 154, 19);
         level.addBlock(Block.getPipe()[3], 155, 19);
 
-        level.addObject(Piranha.getPiranha(154.5f, 18));
-        for (int i = 158; i <= 181; i++) {
-            level.addBlock(Block.getBrick(), i, 15);
-        }
-        for (int i = 160; i <= 179; i++) {
-            level.addBlock(Block.getBrick(), i, 11);
-        }
-
-        level.addBlock(Block.getPipe()[0], 184, 18);
-        level.addBlock(Block.getPipe()[1], 185, 18);
-        level.addBlock(Block.getPipe()[2], 184, 19);
-        level.addBlock(Block.getPipe()[3], 185, 19);
-
-        level.addObject(new Finish(190, 18));
+        level.addObject(new Finish(165, 18));
 
         return level;
     }
