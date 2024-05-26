@@ -13,6 +13,8 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class GameplayJPanel extends JPanel {
     private Level level;
@@ -22,6 +24,8 @@ public class GameplayJPanel extends JPanel {
     private static AffineTransform defaultTransform;
     private static AffineTransform currentTransform;
 
+    private Font font;
+
     public GameplayJPanel(boolean isDoubleBuffered) {
         super(isDoubleBuffered);
     }
@@ -30,6 +34,14 @@ public class GameplayJPanel extends JPanel {
         Renderer.setPanel(this);
         defaultTransform = ((Graphics2D) this.getGraphics()).getTransform();
         currentTransform = new AffineTransform();
+        // region Code from Stack Overflow - Source: https://stackoverflow.com/questions/5652344/how-can-i-use-a-custom-font-in-java
+        try {
+            this.font = Font.createFont(Font.TRUETYPE_FONT, new File("assets/fonts/font.ttf"));
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(font);
+        } catch (IOException | FontFormatException e) {
+            this.font = new Font("Segoe UI", Font.PLAIN, 20);
+        }
     }
 
     private void updateBaseBlockSize() {
@@ -90,7 +102,7 @@ public class GameplayJPanel extends JPanel {
             //Handle exception
         }*/
         // endregion
-        g2D.setFont(new Font("Segoe UI", Font.PLAIN, (int) baseBlockSize));
+        g2D.setFont(font.deriveFont(baseBlockSize));
         g2D.drawString("Score", baseBlockSize, baseBlockSize);
         g2D.drawString(String.valueOf(level.getScore()), baseBlockSize, 2 * baseBlockSize);
 
