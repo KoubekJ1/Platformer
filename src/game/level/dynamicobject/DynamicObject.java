@@ -72,7 +72,8 @@ public abstract class DynamicObject implements Serializable {
                 i = velocityY;
             }
             if (Math.ceil(posY + i) >= ProgramManager.getLevel().getLevelSizeY()) break;
-            for (float j = 0; j <= sprite.getWidth(); j++) {
+            // To avoid rounding errors - Just sprite.getWidth() results in getting stuck in the wall
+            for (float j = 0; j <= sprite.getWidth() - 1 + (Math.ceil(posX) - (int) posX); j++) {
                 Block block = ProgramManager.getLevel().getBlock((int) (posX + j), (int) (posY + sprite.getHeight() + i));
                 if (block != null && block.isCollision()) {
                     posY = (float) Math.floor(posY + i);
@@ -90,7 +91,7 @@ public abstract class DynamicObject implements Serializable {
             }
             if (Math.floor(posY + i) < 0) break;
             LinkedList<Block> blocks = new LinkedList<>();
-            for (float j = 0; j <= sprite.getWidth(); j++) {
+            for (float j = 0; j <= sprite.getWidth() - 1 + (Math.ceil(posX) - (int) posX); j++) {
                 int blockX = (int) (posX + j);
                 int blockY = (int) (posY + i);
                 Block block = ProgramManager.getLevel().getBlock(blockX, blockY);
