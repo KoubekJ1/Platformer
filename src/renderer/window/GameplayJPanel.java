@@ -41,6 +41,7 @@ public class GameplayJPanel extends JPanel {
             ge.registerFont(font);
         } catch (IOException | FontFormatException e) {
             this.font = new Font("Segoe UI", Font.PLAIN, 20);
+            JOptionPane.showMessageDialog(null, "Could not load the game font\n" + e.getClass() + "\n" + e.getMessage() + "\n\nThe font is most likely missing from your \"assets\" folder. Make sure you have installed the game correctly.", "Warning", JOptionPane.WARNING_MESSAGE);
         }
     }
 

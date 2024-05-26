@@ -5,6 +5,7 @@ import game.level.Level;
 import game.level.dynamicobject.enemy.Enemy;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,6 +17,7 @@ import java.util.LinkedList;
 public abstract class AssetManager {
     private static HashMap<String, BufferedImage> textures = new HashMap<>();
     private static BufferedImage defaultImage;
+    private static boolean warning_showed = false;
 
     private static final String TEXTURES_PATH = "assets/textures/";
     private static final String LEVELS_PATH = "assets/levels/official";
@@ -38,6 +40,10 @@ public abstract class AssetManager {
                 textures.put(textureFile.getAbsolutePath(), ImageIO.read(textureFile));
                 return textures.get(textureFile.getAbsolutePath());
             } catch (IOException e) {
+                if (!warning_showed) {
+                    JOptionPane.showMessageDialog(null,"A texture could not be loaded\n" + e.getClass() + "\n" + e.getMessage() + "\n\nThe texture is most likely missing from your \"assets\" folder. Make sure you have installed the game correctly.", "Warning", JOptionPane.WARNING_MESSAGE);
+                    warning_showed = true;
+                }
                 return defaultImage;
             }
         }
