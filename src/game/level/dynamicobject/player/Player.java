@@ -19,18 +19,12 @@ import java.awt.event.KeyEvent;
 import java.io.Serializable;
 
 public class Player extends DynamicObject {
-
-    private static final String PLAYER_TEXTURES_DIRECTORY = "characters/player/";
-
-    private static final float TERMINAL_VELOCITY = 50;
     private static final float JUMP_VELOCITY = 0.4f;
     private static final float GRAVITY_ACCELERATION = 1;
     private static final float MAX_RUNNING_SPEED = 0.15f;
     private static final float MAX_SPRINTING_SPEED = 0.25f;
     private static final float ACCELERATION = 1;
     private static final int INVULNERABILITY_DURATION = 2000;
-    //private static final float SPRINTING_ACCELERATION = 3;
-    //private static final int DRAG_SLOWDOWN = 5;
 
     private Camera camera;
     private PowerupState powerupState;

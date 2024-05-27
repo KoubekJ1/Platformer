@@ -44,12 +44,7 @@ public class Level implements Serializable/*, ActionListener*/ {
 
     private float fps;
 
-    //private Timer gameTimer;
     private UpdateThread updateThread;
-
-    /*float beginTime = Time.getTime();
-    float endTime = Time.getTime();
-    float dt = 0;*/
 
     public Level(String levelID, String levelName, int sizeX, int sizeY, Color background, int playerX, int playerY) {
         this.levelID = levelID;
@@ -113,7 +108,6 @@ public class Level implements Serializable/*, ActionListener*/ {
     }
 
     public void stop() {
-        //gameTimer.stop();
         updateThread.interrupt();
         InputManager.resetInputs();
     }
@@ -226,14 +220,4 @@ public class Level implements Serializable/*, ActionListener*/ {
                 ", levelName='" + levelName + '\'' +
                 '}';
     }
-
-    /*@Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == gameTimer) {
-            update();
-            endTime = Time.getTime();
-            dt = endTime - beginTime;
-            beginTime = endTime;
-        }
-    }*/
 }
