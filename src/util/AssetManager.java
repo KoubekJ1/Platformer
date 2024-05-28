@@ -35,6 +35,11 @@ public abstract class AssetManager {
         }
     }
 
+    /**
+     * Returns the texture located on the selected path
+     * @param path the texture's path within the "textures/" folder
+     * @return the texture
+     */
     public static BufferedImage getTexture(String path) {
         File textureFile = new File(TEXTURES_PATH + path);
 
@@ -55,6 +60,13 @@ public abstract class AssetManager {
         }
     }
 
+    /**
+     * Deserializes and returns the level on the selected path
+     * @param path the level's path
+     * @return the level
+     * @throws IOException in case the file is missing or corrupted
+     * @throws ClassNotFoundException in case the class could not be found
+     */
     public static Level getLevel(String path) throws IOException, ClassNotFoundException {
         FileInputStream fileInputStream = new FileInputStream(path);
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
@@ -66,6 +78,14 @@ public abstract class AssetManager {
         return level;
     }
 
+    /**
+     * Deserializes and returns the enemy on the selected path
+     * Unused
+     * @param path the enemy's path
+     * @return the enemy
+     * @throws IOException in case the file is missing or corrupted
+     * @throws ClassNotFoundException in case the class could not be found
+     */
     public static Enemy getEnemy(String path) throws IOException, ClassNotFoundException {
         FileInputStream fileInputStream = new FileInputStream(path);
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
@@ -77,6 +97,14 @@ public abstract class AssetManager {
         return enemy;
     }
 
+    /**
+     * Deserializes and returns the block on the selected path
+     * Unused
+     * @param path the block's path
+     * @return the block
+     * @throws IOException in case the file is missing or corrupted
+     * @throws ClassNotFoundException in case the class could not be found
+     */
     public static Block getBlock(String path) throws IOException, ClassNotFoundException {
         FileInputStream fileInputStream = new FileInputStream(path);
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
@@ -88,6 +116,12 @@ public abstract class AssetManager {
         return block;
     }
 
+    /**
+     * Deserializes and returns a LinkedList of all levels in the assets/levels/official/ folder
+     * @return the levels
+     * @throws IOException in case the levels could not be loaded
+     * @throws ClassNotFoundException in case the class could not be found
+     */
     public static LinkedList<Level> getLevels() throws IOException, ClassNotFoundException {
         LinkedList<Level> levels = new LinkedList<>();
 
