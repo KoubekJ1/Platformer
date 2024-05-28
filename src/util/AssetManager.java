@@ -15,6 +15,10 @@ import java.io.ObjectInputStream;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+/**
+ * AssetManager serves as a way to access textures and serialized objects
+ * To prevent loading the textures multiple times and slowing down the game, they are saved upon first being loaded
+ */
 public abstract class AssetManager {
     private static HashMap<String, BufferedImage> textures = new HashMap<>();
     private static BufferedImage defaultImage;
@@ -27,7 +31,7 @@ public abstract class AssetManager {
         try {
             defaultImage = ImageIO.read(new File(TEXTURES_PATH + "default.png"));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            JOptionPane.showMessageDialog(null, "Cannot load the default texture!\n\n" + e.getClass() + "\n" + e.getMessage() + "\n\nThe texture is most likely missing from your \"assets\" folder. Make sure you have installed the game correctly.", "Warning", JOptionPane.WARNING_MESSAGE);
         }
     }
 
