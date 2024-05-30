@@ -18,6 +18,9 @@ import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
 
+/**
+ * A Player instance represents a playable character in the level
+ */
 public class Player extends DynamicObject {
     private static final float JUMP_VELOCITY = 0.4f;
     private static final float GRAVITY_ACCELERATION = 1;
@@ -30,6 +33,11 @@ public class Player extends DynamicObject {
     private PowerupState powerupState;
     private Timer invulnerabilityTimer;
 
+    /**
+     * Creates a new Player with a FollowPlayer camera strategy and the basic PowerupState in the given coordinates
+     * @param x x position
+     * @param y y position
+     */
     public Player(int x, int y) {
         this.posX = x;
         this.posY = y;
@@ -189,6 +197,10 @@ public class Player extends DynamicObject {
         Thread.currentThread().stop();
     }
 
+    /**
+     * Sets the player as invulnerable for a short while
+     * Also makes the player blip for as long as he's invulnerable
+     */
     public void enableInvulnerability() {
         invulnerabilityTimer.start();
         sprite.blip();
@@ -199,10 +211,18 @@ public class Player extends DynamicObject {
         return "player";
     }
 
+    /**
+     * Gives the player upwards velocity representing a jump
+     */
     private void jump() {
         velocityY = -JUMP_VELOCITY;
     }
 
+    /**
+     * Slows down the player representing drag force
+     * @param dt time between update() calls
+     * @param acceleration player acceleration speed
+     */
     private void applyDrag(float dt, float acceleration) {
         if (velocityX == 0) return;
         int direction = (int) (velocityX / Math.abs(velocityX));
@@ -212,6 +232,9 @@ public class Player extends DynamicObject {
         }
     }
 
+    /**
+     * Updates the camera
+     */
     public void updateCamera() {
         camera.update();
     }

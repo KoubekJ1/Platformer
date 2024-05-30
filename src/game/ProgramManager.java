@@ -6,11 +6,18 @@ import renderer.window.WindowManager;
 
 import javax.swing.*;
 
+/**
+ * ProgramManager is used for the basic functionality of the program, including starting and playing levels
+ */
 public class ProgramManager {
 
     private static boolean debug;
     private static Level level;
 
+    /**
+     * Starts the game and shows the window with the main menu
+     * @param args program arguments (used for enabling debug mode)
+     */
     public static void startProgram(String[] args) {
         for (String arg : args) {
             if (arg.equalsIgnoreCase("debug")) {
@@ -31,12 +38,19 @@ public class ProgramManager {
         WindowManager.switchCard("main-menu");
     }
 
+    /**
+     * Plays the given level
+     * @param level the level
+     */
     public static void play(Level level) {
         WindowManager.showGameplayCard();
         ProgramManager.level = level;
         ProgramManager.level.start();
     }
 
+    /**
+     * Pauses the game
+     */
     public static void pause() {
         if (ProgramManager.level == null) return;
         if (!WindowManager.isCardCreated("pause")) {
@@ -49,10 +63,16 @@ public class ProgramManager {
         WindowManager.switchCard("pause");
     }
 
+    /**
+     * Resumes the game
+     */
     public static void resume() {
         level.resume();
     }
 
+    /**
+     * Ends the level and returns the player back to the main menu
+     */
     public static void endLevel() {
         level.stop();
         level = null;

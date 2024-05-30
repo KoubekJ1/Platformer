@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 
+/**
+ * The button used for serializing the levels
+ */
 public class SerializeLevels extends AbstractAction {
 
     public SerializeLevels() {
@@ -18,6 +21,9 @@ public class SerializeLevels extends AbstractAction {
         serializeLevels();
     }
 
+    /**
+     * Serializes the game levels
+     */
     public static void serializeLevels() {
         try {
             // To prevent bugs related to the classes being modified,

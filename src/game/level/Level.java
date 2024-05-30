@@ -16,6 +16,9 @@ import java.awt.*;
 import java.io.*;
 import java.util.LinkedList;
 
+/**
+ * Instances of the Level class represent the individual game worlds that the player navigates through
+ */
 public class Level implements Serializable/*, ActionListener*/ {
     private static final String LEVELS_DIRECTORY = "assets/levels/";
 
@@ -46,6 +49,16 @@ public class Level implements Serializable/*, ActionListener*/ {
 
     private UpdateThread updateThread;
 
+    /**
+     * Creates a new level with the given parameters
+     * @param levelID the id of the level (used for serialization)
+     * @param levelName the level's name
+     * @param sizeX the size of the level on the x-axis
+     * @param sizeY the size of the level on the y-axis
+     * @param background the color of the background
+     * @param playerX the player's spawn x-coordinate
+     * @param playerY the player's spawn y-coordinate
+     */
     public Level(String levelID, String levelName, int sizeX, int sizeY, Color background, int playerX, int playerY) {
         this.levelID = levelID;
         this.levelName = levelName;
@@ -69,20 +82,39 @@ public class Level implements Serializable/*, ActionListener*/ {
         this.updateThread = new UpdateThread();
     }
 
+    /**
+     * Puts the given block in the given coordinates
+     * @param block the block
+     * @param x the x-coordinate
+     * @param y the y-coordinate
+     */
     public void addBlock(Block block, int x, int y) {
         blocks[x][y] = block;
     }
 
+    /**
+     * Adds the dynamicObject to the level and puts it in its category for optimization purposes
+     * @param object the object to be added
+     */
     public void addObject(DynamicObject object) {
         if (dynamicObjects.contains(object)) return;
         dynamicObjectsToAdd.add(object);
     }
 
+    /**
+     * Removes the object from the level
+     * @param object the object to be removed
+     */
     public void removeObject(DynamicObject object) {
         if (!dynamicObjects.contains(object)) return;
         dynamicObjectsForRemoval.add(object);
     }
 
+    /**
+     * Gets the linked list that the object belongs in based on its class
+     * @param object the object
+     * @return the linked list
+     */
     private LinkedList getCorrespondingDynamicObjectLinkedList(DynamicObject object) {
         return switch (object.getObjectCategory()) {
             case "player" -> players;
@@ -94,24 +126,40 @@ public class Level implements Serializable/*, ActionListener*/ {
         };
     }
 
+    /**
+     * Starts the game loop
+     */
     public void start() {
         addObject(new Player(playerSpawn.x, playerSpawn.y));
         updateThread.start();
     }
 
+    /**
+     * Pauses the game
+     */
     public void pause() {
         updateThread.pause();
     }
 
+    /**
+     * Unpauses the game
+     */
     public void resume() {
         updateThread.unpause();
     }
 
+    /**
+     * Ends the level
+     */
     public void stop() {
         updateThread.interrupt();
         InputManager.resetInputs();
     }
 
+    /**
+     * Handles the level's update loop
+     * @param dt the time between update() calls in seconds
+     */
     public void update(float dt) {
         for (DynamicObject object : dynamicObjects) {
             object.update(dt);
@@ -144,6 +192,9 @@ public class Level implements Serializable/*, ActionListener*/ {
         Renderer.render();
     }
 
+    /**
+     * Ends the level victoriously
+     */
     public void finish() {
         JOptionPane.showMessageDialog(null, "You finished the level!\nScore: " + score.getScore(), levelName, JOptionPane.PLAIN_MESSAGE);
         ProgramManager.endLevel();
@@ -198,6 +249,11 @@ public class Level implements Serializable/*, ActionListener*/ {
         return finishPoints;
     }
 
+    /**
+     * Serializes the level into its given category
+     * @param category the category
+     * @throws IOException in case there's an error
+     */
     public void serialize(String category) throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream(LEVELS_DIRECTORY + category + "/" + levelID + ".level");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);

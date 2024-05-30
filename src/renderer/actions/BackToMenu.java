@@ -6,6 +6,9 @@ import renderer.window.WindowManager;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
+/**
+ * The button that returns the player back to the main menu
+ */
 public class BackToMenu extends AbstractAction {
 
     public BackToMenu() {

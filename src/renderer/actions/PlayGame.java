@@ -23,6 +23,9 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.LinkedList;
 
+/**
+ * The button used for showing the level selection screen
+ */
 public class PlayGame extends AbstractAction {
 
     public PlayGame() {

@@ -7,6 +7,9 @@ import util.Time;
 import javax.swing.*;
 import java.io.Serializable;
 
+/**
+ * The thread that handles the level's update loop
+ */
 public class UpdateThread extends Thread implements Serializable {
 
     private float beginTime;

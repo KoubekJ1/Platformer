@@ -9,6 +9,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.HashMap;
 
+/**
+ * The particular window used by the game
+ */
 public class GameJFrame extends JFrame implements KeyListener {
 
     private boolean windowInitialized = false;
@@ -18,7 +21,10 @@ public class GameJFrame extends JFrame implements KeyListener {
     private GameplayJPanel gameplayPanel;
 
     private HashMap<String, Boolean> isCardCreated;
-    
+
+    /**
+     * Initializes the window including its size and layout
+     */
     public void initialize() {
         isCardCreated = new HashMap<>();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,6 +39,11 @@ public class GameJFrame extends JFrame implements KeyListener {
         this.setFocusable(true);
     }
 
+    /**
+     * Creates a menu screen with the given buttons
+     * @param buttons the buttons in the menu screen
+     * @param card the card id used for the menu screen
+     */
     public void createMenuCard(JButton[] buttons, String card) {
         JPanel panel = new JPanel();
 
@@ -53,6 +64,9 @@ public class GameJFrame extends JFrame implements KeyListener {
         isCardCreated.put(card, true);
     }
 
+    /**
+     * Creates the gameplay card used for rendering the game world
+     */
     public void createGameplayCard() {
         if (!isCardCreated.getOrDefault("gameplay", false));
         gameplayPanel = new GameplayJPanel(true);
@@ -63,6 +77,10 @@ public class GameJFrame extends JFrame implements KeyListener {
         isCardCreated.put("gameplay", true);
     }
 
+    /**
+     * Switches the displayed card to the given card
+     * @param card the card to be shown
+     */
     public void switchCards(String card) {
         cardLayout.show(this.getContentPane(), card);
 
@@ -78,6 +96,9 @@ public class GameJFrame extends JFrame implements KeyListener {
         return gameplayCardInitialized;
     }
 
+    /**
+     * Toggles fullscreen mode
+     */
     public void toggleFullscreen() {
         if (this.isUndecorated()) {
             this.dispose();
@@ -106,6 +127,11 @@ public class GameJFrame extends JFrame implements KeyListener {
         }
     }
 
+    /**
+     * Returns whether the card has already been created
+     * @param card the card
+     * @return if it was created
+     */
     public boolean isCardCreated(String card) {
         return isCardCreated.containsKey(card);
     }

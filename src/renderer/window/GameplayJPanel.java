@@ -16,6 +16,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * GameplayJPanel is a panel that is used for rendering the game world
+ */
 public class GameplayJPanel extends JPanel {
     private Level level;
 
@@ -30,6 +33,9 @@ public class GameplayJPanel extends JPanel {
         super(isDoubleBuffered);
     }
 
+    /**
+     * Initializes the panel, creating the transform and the font
+     */
     public void initialize() {
         Renderer.setPanel(this);
         defaultTransform = ((Graphics2D) this.getGraphics()).getTransform();
@@ -45,10 +51,16 @@ public class GameplayJPanel extends JPanel {
         }
     }
 
+    /**
+     * Updates the size of the game unit
+     */
     private void updateBaseBlockSize() {
         baseBlockSize = Math.round(this.getHeight() / 20.0f);
     }
 
+    /**
+     * Renders the game
+     */
     public void render() {
         repaint();
     }
@@ -124,10 +136,25 @@ public class GameplayJPanel extends JPanel {
         }
     }
 
+    /**
+     * Renders a tile in the game world
+     * @param graphics2D the graphics instance used for rendering
+     * @param image the texture to be drawn
+     * @param x x-position of the tile
+     * @param y y-position of the tile
+     */
     private void renderTile(Graphics2D graphics2D, BufferedImage image, float x, float y) {
         graphics2D.drawImage(image, (int) (x * baseBlockSize), (int) (y * baseBlockSize), null, null);
     }
 
+    /**
+     * Returns whether the given tile is located in the bounds of the screen to avoid rendering the whole world at all times
+     * @param x the x-position of the tile
+     * @param y the y-position of the tile
+     * @param blockSize the size of 1 game unit in pixels
+     * @param transform the transform used for rendering
+     * @return whether it's visible
+     */
     private boolean isTileVisible(float x, float y, float blockSize, AffineTransform transform) {
         Point2D destinationPoint = new Point2D.Float();
         transform.transform(new Point2D.Float(x * blockSize, y * blockSize), destinationPoint);

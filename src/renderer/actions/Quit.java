@@ -3,6 +3,9 @@ package renderer.actions;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
+/**
+ * Quits the game
+ */
 public class Quit extends AbstractAction {
 
     public Quit() {
