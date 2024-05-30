@@ -141,10 +141,7 @@ public abstract class DynamicObject implements Serializable {
 
     public boolean collision(DynamicObject dynamicObject) {
         if (this == dynamicObject) return false;
-        if (this.sprite == null) {
-            return false;
-        }
-        if (dynamicObject.sprite == null) {
+        if (this.sprite == null || dynamicObject.sprite == null) {
             return false;
         }
         if (!this.hasCollision || !dynamicObject.hasCollision) return false;
