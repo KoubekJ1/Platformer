@@ -50,7 +50,6 @@ public abstract class AssetManager {
         } else {
             try {
                 URL url = AssetManager.class.getClassLoader().getResource(TEXTURES_PATH + path);
-                System.out.println("g");
                 textures.put(textureFile.getAbsolutePath(), ImageIO.read(url));
                 return textures.get(textureFile.getAbsolutePath());
             } catch (IOException e) {
