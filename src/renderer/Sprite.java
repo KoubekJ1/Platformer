@@ -138,6 +138,7 @@ public class Sprite implements Serializable {
      * @return the resized image
      */
     private BufferedImage getProperlySizedImage(BufferedImage image, float currentBlockSize) {
+        if (image == null) return null;
         // Optimization
         if (currentBlockSize != lastBlockSize) {
             scaledImages.clear();
