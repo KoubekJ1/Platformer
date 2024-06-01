@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -29,7 +30,8 @@ public abstract class AssetManager {
 
     static {
         try {
-            defaultImage = ImageIO.read(new File(TEXTURES_PATH + "default.png"));
+            URL url = AssetManager.class.getClassLoader().getResource(TEXTURES_PATH + "default.png");
+            defaultImage = ImageIO.read(url);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Cannot load the default texture!\n\n" + e.getClass() + "\n" + e.getMessage() + "\n\nThe texture is most likely missing from your \"assets\" folder. Make sure you have installed the game correctly.", "Warning", JOptionPane.WARNING_MESSAGE);
         }
@@ -47,7 +49,9 @@ public abstract class AssetManager {
             return textures.get(textureFile.getAbsolutePath());
         } else {
             try {
-                textures.put(textureFile.getAbsolutePath(), ImageIO.read(textureFile));
+                URL url = AssetManager.class.getClassLoader().getResource(TEXTURES_PATH + path);
+                System.out.println("g");
+                textures.put(textureFile.getAbsolutePath(), ImageIO.read(url));
                 return textures.get(textureFile.getAbsolutePath());
             } catch (IOException e) {
                 if (!warning_showed) {
@@ -125,11 +129,8 @@ public abstract class AssetManager {
     public static LinkedList<Level> getLevels() throws IOException, ClassNotFoundException {
         LinkedList<Level> levels = new LinkedList<>();
 
-        File[] files = new File(LEVELS_PATH).listFiles();
-
-        for (File file : files) {
-            levels.add(getLevel(file.getPath()));
-        }
+        levels.add(Level1.getLevel());
+        levels.add(Level2.getLevel());
 
         return levels;
     }

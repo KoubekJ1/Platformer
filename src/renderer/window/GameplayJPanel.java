@@ -42,7 +42,7 @@ public class GameplayJPanel extends JPanel {
         currentTransform = new AffineTransform();
         // region Code from Stack Overflow - Source: https://stackoverflow.com/questions/5652344/how-can-i-use-a-custom-font-in-java
         try {
-            this.font = Font.createFont(Font.TRUETYPE_FONT, new File("assets/fonts/font.ttf"));
+            this.font = Font.createFont(Font.TRUETYPE_FONT, this.getClass().getClassLoader().getResourceAsStream("assets/fonts/font.ttf"));
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(font);
         } catch (IOException | FontFormatException e) {
