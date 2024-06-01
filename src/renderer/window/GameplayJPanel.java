@@ -85,12 +85,8 @@ public class GameplayJPanel extends JPanel {
 
         // Setup
         updateBaseBlockSize();
-        if (level.getPlayers().size() > 0) {
-            Camera camera = level.getPlayers().getFirst().getCamera();
-            currentTransform.setTransform(camera.getTransform().getScaleX(), 0, 0, camera.getTransform().getScaleY(), camera.getTransform().getTranslateX() * baseBlockSize * camera.getTransform().getScaleX(), camera.getTransform().getTranslateY() * baseBlockSize * camera.getTransform().getScaleX());
-        } else {
-            currentTransform = defaultTransform;
-        }
+        Camera camera = level.getPlayers().getFirst().getCamera();
+        currentTransform.setTransform(camera.getTransform().getScaleX(), 0, 0, camera.getTransform().getScaleY(), camera.getTransform().getTranslateX() * baseBlockSize * camera.getTransform().getScaleX(), camera.getTransform().getTranslateY() * baseBlockSize * camera.getTransform().getScaleX());
         g2D.setTransform(currentTransform);
 
         // Rendering the player(s)
@@ -127,12 +123,11 @@ public class GameplayJPanel extends JPanel {
             g2D.setFont(new Font("Segoe UI", Font.PLAIN, 20));
             g2D.setColor(Color.BLACK);
             g2D.drawString("FPS: " + level.getFps(), 0, 20);
-            if (level.getPlayers().size() <= 0) return;
             Player player = ProgramManager.getLevel().getPlayers().getFirst();
             g2D.drawString("Player position: " + player.getPosX() + ", " + player.getPosY(), 0, 40);
             float[] velocity = player.getVelocity();
             g2D.drawString("Player velocity: " + velocity[0] + ", " + velocity[1], 0, 60);
-            AffineTransform playerCamera = player.getCamera().getTransform();
+            AffineTransform playerCamera = camera.getTransform();
             g2D.drawString("Camera position: " + playerCamera.getTranslateX() + ", " + playerCamera.getTranslateY(), 0, 80);
             g2D.drawString("Display scale: " + playerCamera.getScaleX(), 0, 100);
             AffineTransform finalTransform = currentTransform;
