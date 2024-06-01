@@ -21,7 +21,6 @@ class BlockTest {
         ProgramManager.play(level);
 
         block.hit(blockX, blockY);
-
         Assertions.assertNull(level.getBlock(blockX, blockY));
     }
 }
