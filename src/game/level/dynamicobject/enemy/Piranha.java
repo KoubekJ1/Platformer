@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.Timer;
 
+/**
+ * Piranhas are plants that come out of pipes in short intervals to try to damage the player
+ */
 public class Piranha extends EnemyBehavior {
 
     private static float SPEED = 1.5f;
@@ -19,6 +22,9 @@ public class Piranha extends EnemyBehavior {
     private boolean moving;
     private float distanceTraveled;
 
+    /**
+     * Creates a new Piranha instance
+     */
     public Piranha() {
         this.moving = true;
         this.direction = false;
@@ -49,6 +55,10 @@ public class Piranha extends EnemyBehavior {
         }
     }
 
+    /**
+     * Gets the direction of the piranha used for multiplying the enemy's velocity
+     * @return the direction
+     */
     private int getDirection() {
         if (direction) {
             return 1;
@@ -57,6 +67,9 @@ public class Piranha extends EnemyBehavior {
         }
     }
 
+    /**
+     * Switches the Piranha's direction
+     */
     private void switchDirection() {
         direction = !direction;
     }
@@ -66,6 +79,12 @@ public class Piranha extends EnemyBehavior {
 
     }
 
+    /**
+     * Returns a new piranha enemy
+     * @param x the x-coordinate of the piranha
+     * @param y the y-coordinate of the piranha
+     * @return the piranha
+     */
     public static Enemy getPiranha(float x, float y) {
         HashMap<String, Animation> animations = new HashMap<>();
         ArrayList<String> piranhaImages = new ArrayList<>();

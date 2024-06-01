@@ -7,14 +7,24 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Koopa is an enemy that behaves the same way as goomba until it gets hit, then it retreats into its shell, and the enemy's EnemyBehavior instance gets changed to KoopaShell
+ */
 public class Koopa extends EnemyBehavior {
     private static final float SPEED = 1;
     private boolean direction;
 
+    /**
+     * Creates a new Koopa that moves to the right
+     */
     public Koopa() {
         this.direction = false;
     }
 
+    /**
+     * Creates a new Koopa that moves in the given direction
+     * @param direction the direction
+     */
     public Koopa(boolean direction) {
         this.direction = direction;
     }
@@ -41,6 +51,10 @@ public class Koopa extends EnemyBehavior {
         parentEnemy.setSizeY(1);
     }
 
+    /**
+     * Gets the direction of the enemy used for multiplying the enemy's velocity
+     * @return the direction
+     */
     private int getDirection() {
         if (direction) {
             return 1;
@@ -49,10 +63,19 @@ public class Koopa extends EnemyBehavior {
         }
     }
 
+    /**
+     * Switches the enemy's direction
+     */
     private void switchDirection() {
         direction = !direction;
     }
 
+    /**
+     * Returns a new koopa enemy
+     * @param x the x-coordinate of the koopa
+     * @param y the y-coordinate of the koopa
+     * @return the koopa
+     */
     public static Enemy getKoopa(int x, int y) {
         HashMap<String, Animation> animations = new HashMap<>();
         Animation staticAnimation = new Animation("characters/enemies/koopa/static.png");

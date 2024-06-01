@@ -1,5 +1,8 @@
 package game.level.dynamicobject.player.camera;
 
+/**
+ * Camera strategy that actively follows the player to keep him visible at all times
+ */
 public class FollowPlayerStrategy extends CameraStrategy {
     public FollowPlayerStrategy(Camera parentCamera) {
         super(parentCamera);

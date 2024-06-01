@@ -7,14 +7,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Goomba is an enemy that moves across the ground until it hits the wall, then it switches it direction
+ * The goomba dies when it is hit by the player
+ */
 public class Goomba extends EnemyBehavior {
     private static final float SPEED = 1;
     private boolean direction;
 
+    /**
+     * Creates a new Goomba that moves to the right
+     */
     public Goomba() {
         this.direction = false;
     }
 
+    /**
+     * Creates a new Goomba that moves in the given direction
+     * @param direction the direction
+     */
     public Goomba(boolean direction) {
         this.direction = direction;
     }
@@ -37,6 +48,10 @@ public class Goomba extends EnemyBehavior {
         parentEnemy.kill();
     }
 
+    /**
+     * Gets the direction of the Goomba used for multiplying the enemy's velocity
+     * @return the direction
+     */
     private int getDirection() {
         if (direction) {
             return 1;
@@ -45,10 +60,19 @@ public class Goomba extends EnemyBehavior {
         }
     }
 
+    /**
+     * Switches the Goomba's direction
+     */
     private void switchDirection() {
         direction = !direction;
     }
 
+    /**
+     * Returns a new Goomba enemy
+     * @param x the x-coordinate of the Goomba
+     * @param y the y-coordinate of the Goomba
+     * @return the Goomba
+     */
     public static Enemy getGoomba(int x, int y) {
         HashMap<String, Animation> animations = new HashMap<>();
         Animation staticAnimation = new Animation("characters/enemies/goomba/static.png");

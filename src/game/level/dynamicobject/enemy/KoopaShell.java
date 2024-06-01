@@ -3,19 +3,29 @@ package game.level.dynamicobject.enemy;
 import game.ProgramManager;
 import game.level.Score;
 
+/**
+ * A koopa that has retracted to its shell
+ * When the shell is hit, it starts speeding across the ground bouncing back and forth, until the player stops it by hitting it again
+ */
 public class KoopaShell extends EnemyBehavior {
 
     private static final float SPEED = 5;
     private boolean direction;
     private boolean moving;
 
+    /**
+     * Creates a new KoopaShell
+     */
     public KoopaShell() {
         this.direction = true;
         this.moving = false;
     }
 
+    /**
+     * Creates a new KoopaShell moving in the given direction
+     * @param direction the direction
+     */
     public KoopaShell(boolean direction) {
-        parentEnemy.setSizeY(1);
         this.direction = direction;
         this.moving = false;
     }
@@ -52,6 +62,10 @@ public class KoopaShell extends EnemyBehavior {
         this.moving = !moving;
     }
 
+    /**
+     * Gets the direction of the shell used for multiplying the enemy's velocity
+     * @return the direction
+     */
     private int getDirection() {
         if (direction) {
             return 1;
@@ -60,6 +74,9 @@ public class KoopaShell extends EnemyBehavior {
         }
     }
 
+    /**
+     * Switches the shell's direction
+     */
     private void switchDirection() {
         direction = !direction;
     }

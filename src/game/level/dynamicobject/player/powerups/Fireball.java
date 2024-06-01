@@ -9,15 +9,30 @@ import renderer.Sprite;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Fireball projectiles are the projectiles thrown by the player with the Fire PowerupState
+ */
 public class Fireball extends Projectile {
 
     private static final float SPEED = 10;
     private static final float JUMP_VELOCITY = 0.2f;
 
+    /**
+     * Creates a new fireball with the given parameters
+     * @param x the x-coordinate
+     * @param y the y-coordinate
+     * @param direction the direction of the fireball (1 - right, -1 - left)
+     */
     public Fireball(float x, float y, int direction) {
         super(x, y, SPEED, JUMP_VELOCITY, false, true, direction);
     }
 
+    /**
+     * Creates a new fireball with the given parameters
+     * @param x the x-coordinate
+     * @param y the y-coordinate
+     * @param direction the direction of the fireball (true - right, false - left)
+     */
     public Fireball(float x, float y, boolean direction) {
         super(x, y, SPEED, JUMP_VELOCITY, false, true, direction);
     }

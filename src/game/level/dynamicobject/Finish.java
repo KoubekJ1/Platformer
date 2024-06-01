@@ -3,8 +3,16 @@ package game.level.dynamicobject;
 import game.ProgramManager;
 import renderer.Sprite;
 
+/**
+ * Finish objects are displayed as flags that the player must reach to win the game
+ */
 public class Finish extends DynamicObject {
 
+    /**
+     * Constructs a new Finish instance in the given coordinates
+     * @param x the x-coordinate
+     * @param y the y-coordinate
+     */
     public Finish(int x, int y) {
         this.sprite = new Sprite("flag.png", 2, 2);
         this.setGravity(false);

@@ -9,10 +9,18 @@ import renderer.Sprite;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * A lucky block is a block that contains a DynamicObject instance inside
+ * The object is released when the lucky block is hit
+ */
 public class LuckyBlock implements Collidable {
 
     private DynamicObject content;
 
+    /**
+     * Creates a lucky block containing the given object
+     * @param content the object
+     */
     public LuckyBlock(DynamicObject content) {
         this.content = content;
     }
@@ -26,6 +34,11 @@ public class LuckyBlock implements Collidable {
         ProgramManager.getLevel().addBlock(new Block("blocks/luckyblock/empty.png", true), blockX, blockY);
     }
 
+    /**
+     * Returns a lucky block containing the given object
+     * @param content the object
+     * @return a lucky block
+     */
     public static Block getLuckyBlock(DynamicObject content) {
         HashMap<String, Animation> animations = new HashMap<>();
 

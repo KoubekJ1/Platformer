@@ -14,6 +14,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Power-ups are small objects that the player can collect for increased health and sometimes even gain some special powers
+ */
 public class Powerup extends DynamicObject implements Serializable {
 
     private static final String POWERUP_TEXTURES_PATH = "powerups/";
@@ -24,6 +27,15 @@ public class Powerup extends DynamicObject implements Serializable {
     private PickUpable pickUpable;
     private int value;
 
+    /**
+     * Creates a new power-up without specifying coordinates (used for lucky blocks)
+     * @param name the name of the power-up
+     * @param id the id of the power-up (used for serialization)
+     * @param sprite the power-up's sprite
+     * @param isStatic whether the power-up stays in place
+     * @param pickUpable the action to carry out upon collecting the power-up
+     * @param value the value of the power-up (to prevent power-up downgrading)
+     */
     public Powerup(String name, String id, Sprite sprite, boolean isStatic, PickUpable pickUpable, int value) {
         this.name = name;
         this.id = id;
@@ -34,6 +46,17 @@ public class Powerup extends DynamicObject implements Serializable {
         this.value = value;
     }
 
+    /**
+     * Creates a new power-up without specifying coordinates (used for lucky blocks)
+     * @param name the name of the power-up
+     * @param id the id of the power-up (used for serialization)
+     * @param sprite the power-up's sprite
+     * @param isStatic whether the power-up stays in place
+     * @param pickUpable the action to carry out upon collecting the power-up
+     * @param value the value of the power-up (to prevent power-up downgrading)
+     * @param x the x-coordinate
+     * @param y the y-coordinate
+     */
     public Powerup(String name, String id, Sprite sprite, PickUpable pickUpable, boolean isStatic, int value, int x, int y) {
         this.name = name;
         this.id = id;
@@ -60,6 +83,10 @@ public class Powerup extends DynamicObject implements Serializable {
         velocityX = POWERUP_SPEED * getDirection() * dt;
     }
 
+    /**
+     * Returns the direction in which the power-up is moving to use for multiplying
+     * @return the direction
+     */
     private int getDirection() {
         if (direction) {
             return 1;
@@ -68,6 +95,9 @@ public class Powerup extends DynamicObject implements Serializable {
         }
     }
 
+    /**
+     * Switches the power-up's direction
+     */
     private void switchDirection() {
         direction = !direction;
     }
@@ -97,6 +127,11 @@ public class Powerup extends DynamicObject implements Serializable {
         return ".powerup";
     }
 
+    /**
+     * Applies the power-up effects and removes it from the level
+     * @param player the player who picked up the power-up
+     * @return the PowerupState to be given to the player
+     */
     public PowerupState collectPowerup(Player player) {
         ProgramManager.getLevel().removeObject(this);
         if (player.getPowerupState().getValue() < this.value) return pickUpable.getPowerupState(player, value);
