@@ -58,7 +58,7 @@ public class Level implements Serializable/*, ActionListener*/ {
      * @param background the color of the background
      * @param playerX the player's spawn x-coordinate
      * @param playerY the player's spawn y-coordinate
-     */
+     * */
     public Level(String levelID, String levelName, int sizeX, int sizeY, Color background, int playerX, int playerY) {
         this.levelID = levelID;
         this.levelName = levelName;
