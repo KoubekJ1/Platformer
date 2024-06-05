@@ -17,7 +17,7 @@ public class OpenLevelEditor extends AbstractAction
     @Override
     public void actionPerformed(ActionEvent e) {
         if (!WindowManager.isCardCreated("level-editor")) {
-            WindowManager.createCard(new LevelEditorPanel(), "level-editor");
+            WindowManager.createCard(LevelEditorPanel.get(), "level-editor");
         }
         WindowManager.switchCard("level-editor");
     }
