@@ -69,7 +69,7 @@ public class GameJFrame extends JFrame implements KeyListener {
      */
     public void createGameplayCard() {
         if (!isCardCreated.getOrDefault("gameplay", false));
-        gameplayPanel = new GameplayJPanel(true);
+        gameplayPanel = new GameplayJPanel();
         this.add(gameplayPanel, "gameplay");
 
         gameplayPanel.initialize();

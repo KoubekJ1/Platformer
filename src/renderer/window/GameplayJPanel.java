@@ -29,8 +29,8 @@ public class GameplayJPanel extends JPanel {
 
     private Font font;
 
-    public GameplayJPanel(boolean isDoubleBuffered) {
-        super(isDoubleBuffered);
+    public GameplayJPanel() {
+        super(true);
     }
 
     /**
