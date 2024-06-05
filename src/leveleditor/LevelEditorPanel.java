@@ -1,5 +1,6 @@
 package leveleditor;
 
+import game.level.Level;
 import renderer.window.GameplayJPanel;
 
 import javax.swing.*;
@@ -13,6 +14,8 @@ public class LevelEditorPanel extends JPanel {
     private GameplayJPanel levelPanel;
     private JPanel propertiesPanel;
     private JToolBar toolBar;
+
+    private Level level;
 
     private LevelEditorPanel() {
         this.setLayout(new BorderLayout(5, 5));
@@ -29,6 +32,7 @@ public class LevelEditorPanel extends JPanel {
     }
 
     public static LevelEditorPanel get() {
+        if (levelEditorPanel == null) levelEditorPanel = new LevelEditorPanel();
         return levelEditorPanel;
     }
 }
