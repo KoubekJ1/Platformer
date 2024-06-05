@@ -81,4 +81,8 @@ public abstract class WindowManager {
     public static boolean isCardCreated(String card) {
         return window.isCardCreated(card);
     }
+
+    public static void createCard(JPanel panel, String card) {
+        window.add(panel, card);
+    }
 }
